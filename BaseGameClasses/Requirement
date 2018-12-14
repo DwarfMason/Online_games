@@ -1,0 +1,38 @@
+((main) =>
+{
+    class KofEfficiency
+    {
+        class(k1 = 0.7, k2 = 1, k3 = 0.7, k4 = 1)
+        {
+            this["k1"] = k1;
+            this["k2"] = k2;
+            this["k3"] = k3;
+            this["k4"] = k4;
+        }
+    }
+
+
+    class BaseRequirement
+    {
+        constructor(kof)
+        {
+            this["KofEff"] = kof;
+        }
+    }
+
+    class SkillRequirementb extends BaseRequirement
+    {
+        constructor(index, value, kof, description)
+        {
+            super(kof);
+            this["skill"] = index;
+            this["value"] = value;
+            this["description"] = value;
+        }
+        get descripton()
+        {
+            return this["description"];
+        }
+    }
+
+})(this)

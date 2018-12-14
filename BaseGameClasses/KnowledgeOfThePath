@@ -1,0 +1,15 @@
+((main) =>
+{
+
+    class Path  /// Типа древа разития, todo
+    {
+        constructor()
+        {
+            this["CentralSphere"];
+            this["MainSpheres"] = new Array(6);
+            this["AdvancedSpheres"] = new Array(6);
+        }
+    }
+
+
+})(this);
