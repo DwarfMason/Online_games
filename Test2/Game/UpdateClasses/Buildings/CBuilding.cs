@@ -8,5 +8,9 @@ namespace AdminictratorProject.Game.UpdateClasses.Buildings
 {
     public class CBuilding:CLocation
     {
+        public CBuilding(GInt gInt, string name) : base(gInt, name)
+        {
+            //todo Хз что но можно
+        }
     }
 }

@@ -31,10 +31,8 @@ namespace AdministratorProject.Game.Locations
         }
         public class Metropolis_Market : CMarket
         {
-            Metropolis_Market(int id)
+            public Metropolis_Market(GInt gInt, string name) : base(gInt, name)
             {
-                Id = id;
-                Name = "Центральный рынок Метрополиса";
                 Description = "Пока есть только торговец палками";
 
             }

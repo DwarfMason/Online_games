@@ -56,10 +56,6 @@ namespace AdministratorProject.Game.BaseClasses
             Name = name;
             GLocationsList.Add(this);
         }
-        public CLocation()
-        {
-            throw new Exception("Not enought arguments"); 
-        }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

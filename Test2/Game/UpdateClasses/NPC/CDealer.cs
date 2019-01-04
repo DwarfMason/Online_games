@@ -14,7 +14,7 @@ namespace AdministratorProject.Game.UpdateClasses.NPC
         {
         }
     }
-    public class Dealer:NPC
+    public class CDealer:CNPC
     {
        
         public class DealerRequirement:IBaseRequirement
@@ -63,10 +63,10 @@ namespace AdministratorProject.Game.UpdateClasses.NPC
         public List<LCMob> LegendaryMobs { get; set; }
         public List<IBaseActions> Actions { get; set; }
         */
-        Dealer(int id)
+        public CDealer(GInt gInt, string name) : base(gInt, name)
         {
             throw new NotImplementedException();//todo
         }
-       
+
     }
 }
