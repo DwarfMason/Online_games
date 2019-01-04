@@ -6,20 +6,17 @@ using AdministratorProject.Game.BaseClasses;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace AdministratorProject.Game.UpdateClasses
+namespace AdministratorProject.Game.UpdateClasses.NPC
 {
-    public class Dealer:NPC
+    public class DealerList
     {
-        /*
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public List<CLocation> SubLocations { get; set; }
-        public List<LCMob> Mobs { get; set; } 
-        public List<LCItems> Collectibles { get; set; }
-        public List<LCMob> LegendaryMobs { get; set; }
-        public List<IBaseActions> Actions { get; set; }
-        */
+        public DealerList()
+        {
+        }
+    }
+    public class CDealer:CNPC
+    {
+       
         public class DealerRequirement:IBaseRequirement
         {
             private int Price;
@@ -38,9 +35,12 @@ namespace AdministratorProject.Game.UpdateClasses
         }
         public class DealerAction : IBaseActions
         {
-            public CItemDescription Item;
-            DealerAction(CItemDescription Item, int price)
+            CItemInventory Item { get; set; }
+            public int Prise { get; set; }
+            DealerAction(CItemInventory item, int price)
             {
+                Item = item;
+                Prise = price;
                 Requirements = new List<IBaseRequirement> { new DealerRequirement(price)};
 
             }
@@ -52,16 +52,21 @@ namespace AdministratorProject.Game.UpdateClasses
                 }
             }
         }
-        public class DealerList
+
+        /*
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public List<CLocation> SubLocations { get; set; }
+        public List<LCMob> Mobs { get; set; } 
+        public List<LCItems> Collectibles { get; set; }
+        public List<LCMob> LegendaryMobs { get; set; }
+        public List<IBaseActions> Actions { get; set; }
+        */
+        public CDealer(GInt gInt, string name) : base(gInt, name)
         {
-
+            throw new NotImplementedException();//todo
         }
-        Dealer(int id,DealerList items)
-        {
-            Id = id.ToString();
 
-
-        }
-       
     }
 }

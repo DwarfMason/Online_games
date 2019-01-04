@@ -19,7 +19,7 @@ namespace AdministratorProject.Game.BaseClasses
     }
     public class CItemDescription
     {
-        CItemDescription(int id, string name, string description, int rang)
+        CItemDescription(int id, string name, string description)
         {
             if (GItemsList.ItemsList.ContainsKey(id))
             {
@@ -28,25 +28,19 @@ namespace AdministratorProject.Game.BaseClasses
             Id = id;
             Name = name;
             Description = description;
-            Rang = rang;
             GItemsList.Add(this);
-        }
-        public static explicit operator CInventoryItem(CItemDescription _in)
-        {
-            return new CInventoryItem(_in.Id, _in.Rang);
         }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Rang { get; set; }
     }
-    public class CInventoryItem
+    public class CItemInventory
     {
-        public CInventoryItem()
+        public CItemInventory()
         {
             Id = -1;
         }
-        public CInventoryItem(int id, int rang)
+        public CItemInventory(int id, int rang)
         {
             Id = id;
             Rang = rang;

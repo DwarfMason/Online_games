@@ -8,7 +8,7 @@ namespace AdministratorProject.Game.BaseClasses
 {
     public abstract class IBaseActions
     {
-        public string Description { get; set; }
+        public string Description { get; set; } = "0";
         public List<IBaseRequirement> Requirements { get; set; }
 
         public float CanDo(CCultivator c)
