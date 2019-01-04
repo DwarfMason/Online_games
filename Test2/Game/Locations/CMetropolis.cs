@@ -10,7 +10,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace AdministratorProject.Game.Locations
 {
-    public class Metropolis: CLocation
+    public class CMetropolis: CLocation
     {
         /*
         public string Id { get; set; }
@@ -23,7 +23,7 @@ namespace AdministratorProject.Game.Locations
         public List<IBaseActions> Actions { get; set; }
         public List<IBaseActions> NeighboringLocs { get; set; }
         */
-        Metropolis(GInt counter):base(counter, "Метрополис")
+        CMetropolis(GInt counter):base(counter, "Метрополис")
         {
             Description = "Стартовый город для новичков";
 

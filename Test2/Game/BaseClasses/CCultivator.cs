@@ -67,6 +67,7 @@ namespace AdministratorProject.Game.BaseClasses
         public CStats Stats { get; set; } = new CStats();
 
         public int Gold { get; set; } = 10;
+        public int Locationid { get; set; } = 0;
         public CInventory Invenmtory { get; } = new CInventory(); 
 
 
