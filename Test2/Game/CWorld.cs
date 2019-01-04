@@ -8,7 +8,7 @@ using AdministratorProject.Game.BaseClasses;
 
 namespace AdministratorProject.Game
 {
-    public class CWorld:CLocation
+    public class CWorld : CLocation
     {
         private static CWorld instance;
         private static object syncRoot = new Object();
@@ -18,11 +18,11 @@ namespace AdministratorProject.Game
         public List<CEvents> EventNow;
         public List<CEvents> Event5Sec;
         public List<CEvents> Event5Min;
-
-        private CWorld()
+        public static GInt Counter = new GInt();
+        private CWorld() : base(Counter, "Элдария")
         {
-            Name = "Элдария";
-            
+
+
             ///All World Inicialization 
         }
         public static CWorld GetInstance()

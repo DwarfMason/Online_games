@@ -42,20 +42,16 @@ namespace AdministratorProject.Game.BaseClasses
 
         public class CInventory
         {
-            public List<CInventoryItem> Items = new List<CInventoryItem>();
-            public void AddItem(CInventoryItem i)
-            {
-                throw new NotImplementedException();
-            }
-
-            internal void AddItem(CItemDescription item)
+            public List<CItemInventory> Items = new List<CItemInventory>();
+            public void AddItem(CItemInventory item)
             {
                 throw new NotImplementedException();//todo
             }
 
-            public void DeleteItem(CInventoryItem i)
+
+            public void DeleteItem(CItemInventory item)
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException();//todo
             }
 
         }

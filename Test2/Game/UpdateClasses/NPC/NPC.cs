@@ -6,7 +6,7 @@ using AdministratorProject.Game.BaseClasses;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace AdministratorProject.Game.UpdateClasses
+namespace AdministratorProject.Game.UpdateClasses.NPC
 {
     public class NPC:CLocation
     {

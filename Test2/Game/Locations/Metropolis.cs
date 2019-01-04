@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AdminictratorProject.Game.UpdateClasses.Buildings;
 using AdministratorProject.Game;
 using AdministratorProject.Game.BaseClasses;
 using MongoDB.Bson;
@@ -20,20 +21,19 @@ namespace AdministratorProject.Game.Locations
         public List<LCItems> Collectibles { get; set; } = new List<LCItems>();
         public List<LCMob> LegendaryMobs { get; set; }
         public List<IBaseActions> Actions { get; set; }
+        public List<IBaseActions> NeighboringLocs { get; set; }
         */
-        Metropolis(int id)
+        Metropolis(GInt counter):base(counter, "Метрополис")
         {
-            Id = id.ToString();
-            Name = "Метрополис";
             Description = "Стартовый город для новичков";
 
 
         }
-        public class Metropolis_Market : CLocation
+        public class Metropolis_Market : CMarket
         {
             Metropolis_Market(int id)
             {
-                Id = id.ToString();
+                Id = id;
                 Name = "Центральный рынок Метрополиса";
                 Description = "Пока есть только торговец палками";
 
