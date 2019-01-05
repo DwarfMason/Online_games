@@ -31,7 +31,7 @@ namespace AdministratorProject.Game
         public class GTimer
         {
             private Timer timer;
-            private CWorld World = CWorld.GetInstance();
+           // private CWorld World = GWorld.World; todo
 
         }
     }

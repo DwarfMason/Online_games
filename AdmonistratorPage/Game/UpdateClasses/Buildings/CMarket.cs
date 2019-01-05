@@ -8,7 +8,7 @@ namespace AdminictratorProject.Game.UpdateClasses.Buildings
 {
     public class CMarket:CBuilding
     {
-        public CMarket(GInt gInt, string name) : base(gInt, name)
+        public CMarket(GInt gInt, string name, int? p) : base(gInt, name,p)
         {
             //todo Хз что но можно
         }

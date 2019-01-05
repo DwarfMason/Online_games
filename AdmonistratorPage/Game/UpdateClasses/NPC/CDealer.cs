@@ -63,9 +63,8 @@ namespace AdministratorProject.Game.UpdateClasses.NPC
         public List<LCMob> LegendaryMobs { get; set; }
         public List<IBaseActions> Actions { get; set; }
         */
-        public CDealer(GInt gInt, string name,List<IBaseActions> products) : base(gInt, name)
+        public CDealer(GInt gInt, string name,int? p,List<IBaseActions> products) : base(gInt, name,p)
         {
-            throw new NotImplementedException();
             Actions = products;
         }
 

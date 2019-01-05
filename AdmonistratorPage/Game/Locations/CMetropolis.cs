@@ -23,10 +23,10 @@ namespace AdministratorProject.Game.Locations
         public List<LCMob> LegendaryMobs { get; set; }
         public List<IBaseActions> Actions { get; set; }
         */
-        Metropolis(GInt counter):base(counter, "Метрополис")
+        Metropolis(GInt counter,int? p) :base(counter, "Метрополис",p)
         {
             Description = "Стартовый город для новичков";
-            SubLocations = new List<CLocation> { new Metropolis_Market(counter) };
+            SubLocations = new List<CLocation> { new Metropolis_Market(counter, this.Id) };
             Directions = new List<LCLocation>();
             foreach (var i in SubLocations)
             {
@@ -40,7 +40,7 @@ namespace AdministratorProject.Game.Locations
         }
         public class Metropolis_Market : CMarket
         {
-            public Metropolis_Market(GInt gInt) : base(gInt, "Рынок Метрополиса")
+            public Metropolis_Market(GInt gInt, int? p) : base(gInt, "Рынок Метрополиса",p)
             {
                 Description = "Пока есть только торговец палками";
 

@@ -8,7 +8,7 @@ namespace AdminictratorProject.Game.UpdateClasses.Buildings
 {
     public class CBuilding:CLocation
     {
-        public CBuilding(GInt gInt, string name) : base(gInt, name)
+        public CBuilding(GInt gInt, string name, int? p) : base(gInt, name,p)
         {
             //todo Хз что но можно
         }

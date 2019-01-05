@@ -10,7 +10,7 @@ namespace AdministratorProject.Game.UpdateClasses.NPC
 {
     public class CNPC:CLocation
     {
-        public CNPC(GInt gInt, string name) : base(gInt, name)
+        public CNPC(GInt gInt, string name, int? p) : base(gInt, name,p)
         {
             //todo Хз что но можно
         }
