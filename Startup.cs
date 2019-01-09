@@ -37,8 +37,8 @@ namespace WebApplication1
             });
 
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
- 
+                options.UseSqlite(Configuration.GetConnectionString("SqliteConnection")));
+                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationContext>();
  
