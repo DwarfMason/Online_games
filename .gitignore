@@ -258,5 +258,4 @@ paket-files/
 
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
-*.pyc
-obj/Debug/netcoreapp2.2/WebApplication1.csproj.CoreCompileInputs.cache
+.pyc
