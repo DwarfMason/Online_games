@@ -1,4 +1,5 @@
 ﻿﻿using System.Diagnostics;
+ using System.Threading.Tasks;
  using AdministratorProject.Game;
  using Microsoft.AspNetCore.Identity;
  using Microsoft.AspNetCore.Mvc;
@@ -10,15 +11,15 @@ namespace WebApplication1.Controllers
         private readonly UserManager<User> _userManager;
         private CultivatorContext cultivatordb = new CultivatorContext();
         
-        public IActionResult Index()
+        public async Task<ActionResult> Index()
         {
             if (User.Identity.IsAuthenticated)
             {
-                TempData["Nickname"] = cultivatordb.GetName(User.Identity.Name);
+                TempData["Nickname"] = await cultivatordb.GetName(User.Identity.Name);
             }
             return View();
         }
-        
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

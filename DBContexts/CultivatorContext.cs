@@ -67,5 +67,10 @@ namespace AdministratorProject.Game
                 .Find(filter)
                 .FirstOrDefaultAsync();
         }
+        
+        public async Task Update(CCultivator c)
+        {
+            await Collection.ReplaceOneAsync(new BsonDocument("PlayerId", c.PlayerId), c);
+        }
     }
 }
