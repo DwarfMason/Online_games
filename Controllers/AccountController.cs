@@ -43,7 +43,7 @@ namespace WebApplication1.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Profile", "Account");
                     }
                 }
                 else
@@ -82,10 +82,11 @@ namespace WebApplication1.Controllers
                     // установка куки
                     await _signInManager.SignInAsync(user, false);
                     CCultivator newCultivator = new CCultivator();
-                    newCultivator.PlayerId = user.Id;
+                    newCultivator.PlayerId = user.UserName;
                     newCultivator.Name = user.Nick;
+                    newCultivator.Inventory = new CCultivator.CInventory();
                     await cultivatordb.Create(newCultivator);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Profile", "Account");
                 }
                 else
                 {
@@ -102,6 +103,9 @@ namespace WebApplication1.Controllers
         [Authorize]
         public IActionResult Profile()
         {
+            
+            var cult = cultivatordb.GetCultivator(User.Identity.Name);
+            TempData["Nick Name"] = ; 
             return View();
         }
     }

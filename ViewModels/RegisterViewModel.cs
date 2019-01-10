@@ -12,8 +12,8 @@ namespace WebApplication1.ViewModels
         public string Email { get; set; }
         
         [Required]
-        [Display(Name = "Nick")]
-        public string Nick { get; set; }
+        [Display(Name = "Nickname")]
+        public string Nickname { get; set; }
         
         [Required]
         [DataType(DataType.Password)]
