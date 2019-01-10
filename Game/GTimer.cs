@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
-using AdministratorProject.Game;
+using WebApplication1.Game;
 
-namespace AdministratorProject.Game
+namespace WebApplication1.Game
 {
     public class GString
     {

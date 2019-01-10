@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AdministratorProject.Game.BaseClasses;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using WebApplication1.Game.BaseClasses;
 
-namespace AdministratorProject.Game.UpdateClasses.NPC
+namespace WebApplication1.Game.UpdateClasses.NPC
 {
     public class CNPC:CLocation
     {

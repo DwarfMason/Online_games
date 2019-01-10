@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
 using MongoDB.Driver.GridFS;
 
-namespace AdministratorProject.Game
+namespace WebApplication1.Game
 {
     using BaseClasses;
     public class CultivatorContext : DbContext

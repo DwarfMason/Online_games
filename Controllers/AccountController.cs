@@ -2,8 +2,8 @@ using System;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using AdministratorProject.Game;
-using AdministratorProject.Game.BaseClasses;
+using WebApplication1.Game;
+using WebApplication1.Game.BaseClasses;
 using Microsoft.AspNetCore.Authorization;
 using WebApplication1.ViewModels;
 using WebApplication1.Models;
@@ -33,6 +33,7 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            var a = GWorld.World;
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
