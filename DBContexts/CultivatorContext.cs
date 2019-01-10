@@ -1,49 +1,49 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.GridFS;
+﻿using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
+using MongoDB.Driver.GridFS;
 
 namespace AdministratorProject.Game
 {
     using BaseClasses;
-    public class CultivatorContext
+    public class CultivatorContext : DbContext
     {
         private static CultivatorContext instance;
         private static object syncRoot = new Object();
 
 
         private IMongoDatabase database; // база данных
-        private IMongoCollection<CCultivator> collection; // база данных
+        private IGridFSBucket gridFS;
 
-        private CultivatorContext()
+        public CultivatorContext()
         {
             // строка подключения
-            string connectionString = "mongodb://localhost:27017";
-
+            var connectionString = "mongodb://root:Csharpgovno1@ds151814.mlab.com:51814/gamedb";
+            var connection = new MongoUrlBuilder(connectionString);
+            
             // получаем клиента для взаимодействия с базой данных
             MongoClient client = new MongoClient(connectionString);
+            
             // получаем доступ к самой базе данных
-            database = client.GetDatabase("GameDB");
-            collection = database.GetCollection<CCultivator>("Cultivators");
+            database = client.GetDatabase(connection.DatabaseName);
+            gridFS = new GridFSBucket(database);
         }
-        /* public Cultivator getID()
-         {
-             return 
-         }*/
-        public static CultivatorContext GetInstance()
+
+        public IMongoCollection<CCultivator> Collection
         {
-            if (instance == null)
-            {
-                lock (syncRoot)
-                {
-                    if (instance == null)
-                        instance = new CultivatorContext();
-                }
-            }
-            return instance;
+            get { return database.GetCollection<CCultivator>("Players"); }
+        }
+
+        public async Task Create(CCultivator c)
+        {
+            await Collection.InsertOneAsync(c);
+        }
+
+        public async Task<CCultivator> GetCultivator(string id)
+        {
+            return await Collection.Find(new BsonDocument("_id", new ObjectId(id))).FirstOrDefaultAsync();
         }
     }
 }

@@ -1,14 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using AdministratorProject.Game;
+using AdministratorProject.Game.BaseClasses;
 using WebApplication1.ViewModels;
 using WebApplication1.Models;
 using Microsoft.AspNetCore.Identity;
+
 namespace WebApplication1.Controllers
 {
     public class AccountController : Controller
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private CultivatorContext cultivatordb = new CultivatorContext();
  
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
@@ -76,6 +80,10 @@ namespace WebApplication1.Controllers
                 {
                     // установка куки
                     await _signInManager.SignInAsync(user, false);
+                    CCultivator newCultivator = new CCultivator();
+                    newCultivator.PlayerId = user.Id;
+                    newCultivator.Name = user.Nick;
+                    await cultivatordb.Create(newCultivator);
                     return RedirectToAction("Index", "Home");
                 }
                 else
