@@ -74,7 +74,7 @@ namespace WebApplication1.Controllers
         {
             if(ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email, Nick = model.Nick};
+                User user = new User { Email = model.Email, UserName = model.Email, Nickname = model.Nickname};
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -83,7 +83,7 @@ namespace WebApplication1.Controllers
                     await _signInManager.SignInAsync(user, false);
                     CCultivator newCultivator = new CCultivator();
                     newCultivator.PlayerId = user.UserName;
-                    newCultivator.Name = user.Nick;
+                    newCultivator.Name = user.Nickname;
                     newCultivator.Inventory = new CCultivator.CInventory();
                     await cultivatordb.Create(newCultivator);
                     return RedirectToAction("Profile", "Account");
@@ -105,7 +105,11 @@ namespace WebApplication1.Controllers
         {
             
             var cult = cultivatordb.GetCultivator(User.Identity.Name);
-            TempData["Nick Name"] = ; 
+            TempData["Nickname"] = cult.Result.Name;
+            TempData["Strength"] = cult.Result.Stats.MainStats.Strength;
+            TempData["Agility"] = cult.Result.Stats.MainStats.Agility;
+            TempData["Gold"] = cult.Result.Gold;
+            TempData["Inventory"] = cult.Result.Inventory;
             return View();
         }
     }
