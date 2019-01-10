@@ -14508,11 +14508,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Alkoniorrab stol\\Новая папка (2)\\Online_games\\WebApplication1.csproj",
+      "projectUniqueName": "D:\\Alkoniorrab stol\\Новая папка (2)\\Новая папка (2)\\Online_games\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "D:\\Alkoniorrab stol\\Новая папка (2)\\Online_games\\WebApplication1.csproj",
+      "projectPath": "D:\\Alkoniorrab stol\\Новая папка (2)\\Новая папка (2)\\Online_games\\WebApplication1.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\Alkoniorrab stol\\Новая папка (2)\\Online_games\\obj\\",
+      "outputPath": "D:\\Alkoniorrab stol\\Новая папка (2)\\Новая папка (2)\\Online_games\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

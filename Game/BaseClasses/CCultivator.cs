@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace AdministratorProject.Game.BaseClasses
+namespace WebApplication1.Game.BaseClasses
 {
 
     public class CCultivator
@@ -17,18 +17,18 @@ namespace AdministratorProject.Game.BaseClasses
             public CScales Scales { get; set; } = new CScales();
             public class CMainStats
             {
-                public float Strength { get; set; }
-                public float Agility { get; set; }
-                public float Intelligence { get; set; }
-                public float Endurance { get; set; }
+                public float Strength { get; set; } = 5;
+                public float Agility { get; set; } = 5;
+                public float Intelligence { get; set; } = 5;
+                public float Endurance { get; set; } = 5;
 
                 public float Undistributed { get; set; } = 5;
             }
             public class CSubStats
             {
-                public float Luck { get; set; }
-                public float Charisma { get; set; }
-                public float Perception { get; set; }
+                public float Luck { get; set; } = 5;
+                public float Charisma { get; set; } = 5;
+                public float Perception { get; set; } = 5;
                 public float Undistributed { get; set; } = 10;
             }
             public class CScales
@@ -56,19 +56,20 @@ namespace AdministratorProject.Game.BaseClasses
 
         }
 
-        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-
+        
+        [BsonId]
         public string PlayerId { get; set; }
         public string Name { get; set; }
 
         public int Tier { get; set; } = 0;
 
         public CStats Stats { get; set; } = new CStats();
+        public string HeroType { get; set; }
 
         public int Gold { get; set; } = 10;
         public int LocationId { get; set; } = 0;
-        public CInventory Inventory { get; } = new CInventory(); 
+        public CInventory Inventory { get; set; } = new CInventory();
 
 
     }

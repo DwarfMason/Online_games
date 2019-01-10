@@ -1,13 +1,24 @@
 @model WebApplication1.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
 <h2>Register</h2>
 <style>
     h1, h2 , h3 {
         alignment: center;
     }
     
-    input[type="checkbox"]:checked + span {
-        border-color: #28a745;
-        border-width: 2px;
+    input[type="radio"]:hover + span {
+        border:2px solid #999;
+    }
+    
+    input[type="radio"]:checked + span {
+        border:2px solid #000;
+    }
+    input[type="radio"]:checked:hover + span {
+        border:2px solid #000;
     }
     
     .wrapper {
@@ -15,9 +26,11 @@
     }
     
     .hero-check {
+        margin-top : -55px;
         margin-left: 400px;
     }
     .hero-check2 {
+        margin-top: -55px;
         margin-left: 800px;
     }
 </style>
@@ -31,20 +44,20 @@
                 <div >
                     <label style="display: block; position: relative"></label><br/>
                     <label style="display: block; position: relative">
-                        <input type="checkbox" asp-for="HeroType" value="1"
-                               style="display: none;"><span style="background: url(/img/hero1.png) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span></label>
+                        <input type="radio" asp-for="HeroType" value="/img/hero1.png"
+                               style="visibility: hidden;"><span style="background: url(/img/hero1.png) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span></label>
                 </div>
                 <div class="hero-check">
                     <label style="display: block; position: relative"></label><br/>
                     <label style="display: block; position: relative">
-                        <input type="checkbox" asp-for="HeroType" value="2"
-                               style="display: none;"><span style="background: url(/img/hero2.png) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span></label>
+                        <input type="radio" asp-for="HeroType" value="/img/hero2.png"
+                               style="visibility: hidden;"><span style="background: url(/img/hero2.png) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span></label>
                 </div>
                 <div class="hero-check2">
                     <label style="display: block; position: relative"></label><br/>
                     <label style="display: block; position: relative">
-                        <input type="checkbox" asp-for="HeroType" value="3"
-                               style="display: none;"><span style="background: url(/img/hero3.png) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span></label>
+                        <input type="radio" asp-for="HeroType" value="/img/hero3.png"
+                               style="visibility: hidden;"><span style="background: url(/img/hero3.png) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span></label>
                 </div>
             </div>
             <!-- end of wrapper -->
@@ -56,9 +69,9 @@
                     <span asp-validation-for="Email"></span>
                 </div>
                 <div>
-                    <label asp-for="Nick"></label><br/>
-                    <input asp-for="Nick"/>
-                    <span asp-validation-for="Nick"></span>
+                    <label asp-for="Nickname"></label><br/>
+                    <input asp-for="Nickname"/>
+                    <span asp-validation-for="Nickname"></span>
                 </div>
                 <div>
                     <label asp-for="Password"></label><br/>
