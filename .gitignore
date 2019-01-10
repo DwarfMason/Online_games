@@ -26,10 +26,13 @@
 *.suo
 *.user
 .vs/
-[Bb]in/
-[Oo]bj/
+bin/
+Bin/
+obj/
+Obj/
 _UpgradeReport_Files/
-[Pp]ackages/
+packages/
+Packages/
 
 Thumbs.db
 Desktop.ini

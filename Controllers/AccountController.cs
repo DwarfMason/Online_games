@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using AdministratorProject.Game;
 using AdministratorProject.Game.BaseClasses;
+using Microsoft.AspNetCore.Authorization;
 using WebApplication1.ViewModels;
 using WebApplication1.Models;
 using Microsoft.AspNetCore.Identity;
@@ -95,6 +96,13 @@ namespace WebApplication1.Controllers
                 }
             }
             return View(model);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Profile()
+        {
+            return View();
         }
     }
 }
