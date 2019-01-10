@@ -70,7 +70,7 @@ namespace AdministratorProject.Game
         
         public async Task Update(CCultivator c)
         {
-            await Collection.ReplaceOneAsync(new BsonDocument("PlayerId", c.PlayerId), c);
+            await Collection.ReplaceOneAsync(new BsonDocument("_id", c.PlayerId), c);
         }
     }
 }

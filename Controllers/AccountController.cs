@@ -125,17 +125,11 @@ namespace WebApplication1.Controllers
                 cult.Gold -= 300;
                 cult.Stats.MainStats.Agility++;
                 await cultivatordb.Update(cult);
-                TempData["Nickname"] = cult.Name;
-                TempData["Strength"] = cult.Stats.MainStats.Strength;
-                TempData["Agility"] = cult.Stats.MainStats.Agility;
-                TempData["Gold"] = cult.Gold;
-                TempData["Tier"] = cult.Tier;
-                TempData["HeroType"] = cult.HeroType;
             }
-            return View("~/Views/Account/Profile.cshtml");
+            return RedirectToAction("Profile", "Account");
         }
         
-        public async Task<ActionResult> IncreaseStrength ()
+        public async Task<ActionResult> IncreaseStrength()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
             if (cult.Gold >= 300)
@@ -143,14 +137,8 @@ namespace WebApplication1.Controllers
                 cult.Gold -= 300;
                 cult.Stats.MainStats.Strength++;
                 await cultivatordb.Update(cult);
-                TempData["Nickname"] = cult.Name;
-                TempData["Strength"] = cult.Stats.MainStats.Strength;
-                TempData["Agility"] = cult.Stats.MainStats.Agility;
-                TempData["Gold"] = cult.Gold;
-                TempData["Tier"] = cult.Tier;
-                TempData["HeroType"] = cult.HeroType;
             }
-            return View("~/Views/Account/Profile.cshtml");
+            return RedirectToAction("Profile", "Account");
         }
         
         public IActionResult Profile()
