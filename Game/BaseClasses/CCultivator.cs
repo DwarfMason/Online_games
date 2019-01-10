@@ -56,19 +56,20 @@ namespace AdministratorProject.Game.BaseClasses
 
         }
 
-        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-
+        
+        [BsonId]
         public string PlayerId { get; set; }
         public string Name { get; set; }
 
         public int Tier { get; set; } = 0;
 
         public CStats Stats { get; set; } = new CStats();
+        public string HeroType { get; set; }
 
         public int Gold { get; set; } = 10;
         public int LocationId { get; set; } = 0;
-        public CInventory Inventory { get; set; }
+        public CInventory Inventory { get; set; } = new CInventory();
 
 
     }

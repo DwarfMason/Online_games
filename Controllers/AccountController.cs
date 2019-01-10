@@ -1,3 +1,5 @@
+using System;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using AdministratorProject.Game;
@@ -74,7 +76,7 @@ namespace WebApplication1.Controllers
         {
             if(ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email, Nickname = model.Nickname};
+                User user = new User { Email = model.Email, UserName = model.Email, Nickname = model.Nickname, HeroType = model.HeroType};
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -82,9 +84,10 @@ namespace WebApplication1.Controllers
                     // установка куки
                     await _signInManager.SignInAsync(user, false);
                     CCultivator newCultivator = new CCultivator();
-                    newCultivator.PlayerId = user.UserName;
+                    newCultivator.PlayerId = getHex(user.UserName);
                     newCultivator.Name = user.Nickname;
                     newCultivator.Inventory = new CCultivator.CInventory();
+                    newCultivator.HeroType = user.HeroType; 
                     await cultivatordb.Create(newCultivator);
                     return RedirectToAction("Profile", "Account");
                 }
@@ -101,16 +104,34 @@ namespace WebApplication1.Controllers
 
         [HttpGet]
         [Authorize]
+        public async Task<ActionResult> Profile(string id)
+        {
+            var cult = await cultivatordb.GetCultivator(getHex(User.Identity.Name));
+            TempData["Nickname"] = cult.Name;
+            TempData["Strength"] = cult.Stats.MainStats.Strength;
+            TempData["Agility"] = cult.Stats.MainStats.Agility;
+            TempData["Gold"] = cult.Gold;
+            TempData["Tier"] = cult.Tier;
+            TempData["HeroType"] = cult.HeroType;
+            //TempData["Inventory"] = cult.Inventory;
+            return View();
+        }
+
         public IActionResult Profile()
         {
-            
-            var cult = cultivatordb.GetCultivator(User.Identity.Name);
-            TempData["Nickname"] = cult.Result.Name;
-            TempData["Strength"] = cult.Result.Stats.MainStats.Strength;
-            TempData["Agility"] = cult.Result.Stats.MainStats.Agility;
-            TempData["Gold"] = cult.Result.Gold;
-            TempData["Inventory"] = cult.Result.Inventory;
             return View();
+        }
+
+        private string getHex(String s)
+        {
+            char[] chars = s.ToCharArray();
+            StringBuilder stringBuilder =  new StringBuilder();
+            foreach(char c in chars)
+            {
+                stringBuilder.Append(((Int16)c).ToString("x"));
+            }
+            String textAsHex = stringBuilder.ToString();
+            return textAsHex;
         }
     }
 }

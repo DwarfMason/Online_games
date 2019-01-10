@@ -10,7 +10,6 @@ namespace AdministratorProject.Game
     using BaseClasses;
     public class CultivatorContext : DbContext
     {
-        private static CultivatorContext instance;
         private static object syncRoot = new Object();
 
 
@@ -43,7 +42,10 @@ namespace AdministratorProject.Game
 
         public async Task<CCultivator> GetCultivator(string id)
         {
-            return await Collection.Find(new BsonDocument("_id", new ObjectId(id))).FirstOrDefaultAsync();
+            var filter = Builders<CCultivator>.Filter.Eq("PlayerId", id);
+            return await Collection
+                .Find(filter)
+                .FirstOrDefaultAsync();
         }
     }
 }
