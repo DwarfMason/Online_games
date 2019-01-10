@@ -1,13 +1,21 @@
 ﻿﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+ using AdministratorProject.Game;
+ using Microsoft.AspNetCore.Identity;
+ using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
-
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly UserManager<User> _userManager;
+        private CultivatorContext cultivatordb = new CultivatorContext();
+        
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                TempData["Nickname"] = cultivatordb.GetName(User.Identity.Name);
+            }
             return View();
         }
         
