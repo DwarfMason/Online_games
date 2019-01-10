@@ -24,16 +24,40 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <p>Strength</p>
-                        <div class="progress" style="height: 20px;">
-                            <div class="progress-bar" role="progressbar"
-                                 style="width: @TempData["Strength"]%;" aria-valuenow=@TempData["Strength"] aria-valuemin="0" aria-valuemax="100">@TempData["Strength"]</div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="progress" style="height: 32px;">
+                                    <div class="progress-bar" role="progressbar"
+                                         style="width: @TempData["Strength"]%;">@TempData["Strength"]</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-success">+</button>
+                                    <a class="btn btn-light">
+                                        <img src="/img/shekel.png" width="16" height="16"/> 300
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <p>Agility</p>
-                        <div class="progress" style="height: 20px;">
-                            <div class="progress-bar" role="progressbar"
-                                 style="width: @TempData["Agility"]%;" aria-valuenow=@TempData["Agility"] aria-valuemin="0" aria-valuemax=@TempData["Agility"]>@TempData["Strength"]</div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="progress" style="height: 32px;">
+                                    <div class="progress-bar" role="progressbar"
+                                         style="width: @TempData["Agility"]%;">@TempData["Agility"]</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-success">+</button>
+                                    <a class="btn btn-light">
+                                        <img src="/img/shekel.png" width="16" height="16"/> 300
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item">
