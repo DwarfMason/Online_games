@@ -107,6 +107,7 @@ namespace WebApplication1.Controllers
         [Authorize]
         public async Task<ActionResult> Profile(string id)
         {
+            GWorld.init();
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
             TempData["Nickname"] = cult.Name;
             TempData["Strength"] = cult.Stats.MainStats.Strength;

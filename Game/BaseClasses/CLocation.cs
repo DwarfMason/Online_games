@@ -20,7 +20,7 @@ namespace WebApplication1.Game.BaseClasses
             LocationsNameList.Add(i.Name, i);
             LocationsIdList.Add(i.Id, i);
         }
-        public static CLocation GetId(int id)
+        public static CLocation GetById(int id)
         {
             return LocationsIdList[id];
         }
@@ -56,7 +56,7 @@ namespace WebApplication1.Game.BaseClasses
             Name = name;
             GLocationsList.Add(this);
             if (parentLoc!=null)
-                ParentLoc = GLocationsList.GetId((int)parentLoc);
+                ParentLoc = GLocationsList.GetById((int)parentLoc);
             else
                 ParentLoc = this;
 
