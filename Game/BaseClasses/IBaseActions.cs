@@ -1,10 +1,10 @@
-﻿using AdministratorProject.Game.BaseClasses;
+﻿using WebApplication1.Game.BaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AdministratorProject.Game.BaseClasses
+namespace WebApplication1.Game.BaseClasses
 {
     public abstract class IBaseActions
     {

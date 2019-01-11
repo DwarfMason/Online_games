@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AdministratorProject.Game.BaseClasses;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using System.Collections.Generic;
+using WebApplication1.Game.BaseClasses;
+using WebApplication1.Game.UpdateClasses.NPC;
 
-namespace AdministratorProject.Game.UpdateClasses.NPC
+namespace WebApplication1.Game.UpdateClasses.NPC
 {
-    public class DealerList
-    {
-        public DealerList()
-        {
-        }
-    }
     public class CDealer:CNPC
     {
        
@@ -37,7 +27,7 @@ namespace AdministratorProject.Game.UpdateClasses.NPC
         {
             CItemInventory Item { get; set; }
             public int Prise { get; set; }
-            DealerAction(CItemInventory item, int price)
+            public DealerAction(CItemInventory item, int price)
             {
                 Item = item;
                 Prise = price;

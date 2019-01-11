@@ -3,23 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AdministratorProject.Game.BaseClasses
+namespace WebApplication1.Game.BaseClasses
 {
-    public class GItemsList
-    {
-        public static SortedList<int,CItemDescription> ItemsList = new SortedList<int, CItemDescription>();
-        public static CItemDescription Get(int id)
-        {
-            return ItemsList[id];
-        }
-        public static void Add(CItemDescription i)
-        {
-            ItemsList.Add(i.Id,i);
-        }
-    }
     public class CItemDescription
     {
-        CItemDescription(int id, string name, string description)
+        public CItemDescription(int id, string name, string description)
         {
             if (GItemsList.ItemsList.ContainsKey(id))
             {

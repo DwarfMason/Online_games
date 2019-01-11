@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AdministratorProject.Game.BaseClasses
+namespace WebApplication1.Game.BaseClasses
 {
     public class CEvents
     {
