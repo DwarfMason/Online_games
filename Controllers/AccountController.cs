@@ -116,7 +116,7 @@ namespace WebApplication1.Controllers
             TempData["Gold"] = cult.Gold;
             TempData["Tier"] = cult.Tier;
             TempData["HeroType"] = cult.HeroType;
-            //TempData["Inventory"] = cult.Inventory;
+            //TempData["Inventory"] = cult.Inventory.Items;
             return View();
         }
 

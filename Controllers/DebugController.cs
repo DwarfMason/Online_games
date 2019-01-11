@@ -13,8 +13,12 @@ namespace WebApplication1.Controllers
         private CultivatorContext cultivatordb = new CultivatorContext();
         
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                TempData["Nickname"] = await cultivatordb.GetName(User.Identity.Name);
+            }
             return View();
         }
         

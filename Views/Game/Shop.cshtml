@@ -19,6 +19,9 @@
         </p>
     </div>
 </div>
+<div class="text-center">
+    <b>Баланс:</b> <img src="/img/shekel.png" width="16" height="16"/> @TempData["Gold"]
+</div>
 <div class="row">    
     <div class="col-4">
         <div class="text-center">
@@ -27,7 +30,6 @@
         </div>
     </div>
     <div class="col-8">
-        Your gold : @TempData["Gold"]
         <h5>Палка</h5>
         <p>Палка, покрытая золотой пылью. Ничего необычного, если бы пыль не была ангельской.</p>
         <a class="btn btn-light" asp-controller="Game" asp-action="Buy">
