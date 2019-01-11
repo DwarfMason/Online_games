@@ -9,19 +9,34 @@ namespace WebApplication1.Controllers
     {
         private CultivatorContext cultivatordb = new CultivatorContext();
         
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Town()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
             var location = GLocationsList.GetById(cult.LocationId);
-            //var seller = location.SubLocations
-            TempData["Name"] = location.Name;
+            var seller = location.SubLocations[0];
+            TempData["Nickname"] = cult.Name;
+            TempData["Gold"] = cult.Gold;
             return
-            View("~/Views/Game/Town.cshtml");
+            View();
         }
 
-        public IActionResult Shop()
+        public async Task<IActionResult> Shop()
         {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            TempData["Gold"] = cult.Gold;
+            TempData["Nickname"] = cult.Name;
             return View();
+        }
+
+        public async Task<IActionResult> Buy()
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            var location = GLocationsList.GetById(cult.LocationId);
+            var seller = location.SubLocations[0].SubLocations[0];
+            seller.Actions[0].Do(cult);
+            await cultivatordb.Update(cult);
+            TempData["Gold"] = cult.Gold;
+            return RedirectToAction("Shop");
         }
     }
 }

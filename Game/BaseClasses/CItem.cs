@@ -28,6 +28,7 @@ namespace WebApplication1.Game.BaseClasses
         {
             Id = id;
             Rang = rang;
+            Count = 1;
         }
 
         public int Id { get; set; }

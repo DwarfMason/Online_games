@@ -5,6 +5,13 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        
+        <li class="nav-item" style=" alignment: center">
+            <a class="nav-link text-dark" asp-controller="Game" asp-action="Town" title="Town">
+                Town
+            </a>
+        </li>
+        
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="Account" asp-action="Profile" title="Manage">
                  @TempData["Nickname"]

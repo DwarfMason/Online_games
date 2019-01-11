@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Options;
 
 namespace WebApplication1.Game.BaseClasses
 {
@@ -42,16 +43,34 @@ namespace WebApplication1.Game.BaseClasses
 
         public class CInventory
         {
-            public List<CItemInventory> Items = new List<CItemInventory>();
+            [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
+            public SortedDictionary<int ,CItemInventory> Items = new SortedDictionary<int, CItemInventory>();
             public void AddItem(CItemInventory item)
             {
-                throw new NotImplementedException();//todo
+                if (Items.ContainsKey(item.Id))
+                {
+                    Items[item.Id].Count+=item.Count;
+                }
+                else
+                {
+                    Items.Add(item.Id,item);
+                }
             }
 
 
             public void DeleteItem(CItemInventory item)
             {
-                throw new NotImplementedException();//todo
+                if (Items.ContainsKey(item.Id))
+                {
+                    if (Items[item.Id].Count > 1)
+                    {
+                        Items[item.Id].Count--;
+                    }
+                    else
+                    {
+                        Items.Remove(item.Id);
+                    }
+                }
             }
 
         }
