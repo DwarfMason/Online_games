@@ -18,5 +18,10 @@ namespace WebApplication1.Controllers
             return
             View("~/Views/Game/Town.cshtml");
         }
+
+        public IActionResult Shop()
+        {
+            return View();
+        }
     }
 }
