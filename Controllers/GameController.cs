@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
             var location = GLocationsList.GetById(cult.LocationId);
-            var seller = location.SubLocations
+            //var seller = location.SubLocations
             TempData["Name"] = location.Name;
             return
             View("~/Views/Game/Town.cshtml");
