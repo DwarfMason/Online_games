@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using AdministratorProject.Game;
+using WebApplication1.Game;
 
 namespace WebApplication1.ViewModels
 {

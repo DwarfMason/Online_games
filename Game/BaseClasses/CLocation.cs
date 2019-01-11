@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace AdministratorProject.Game.BaseClasses
+namespace WebApplication1.Game.BaseClasses
 {
     public class GLocationsList
     {
@@ -57,7 +57,8 @@ namespace AdministratorProject.Game.BaseClasses
             GLocationsList.Add(this);
             if (parentLoc!=null)
                 ParentLoc = GLocationsList.GetId((int)parentLoc);
-            ParentLoc = this;
+            else
+                ParentLoc = this;
 
         }
         public int Id { get; set; }

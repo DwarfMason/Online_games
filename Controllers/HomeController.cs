@@ -1,6 +1,6 @@
 ﻿﻿using System.Diagnostics;
  using System.Threading.Tasks;
- using AdministratorProject.Game;
+ using WebApplication1.Game;
  using Microsoft.AspNetCore.Identity;
  using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;

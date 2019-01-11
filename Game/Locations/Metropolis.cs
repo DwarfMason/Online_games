@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AdminictratorProject.Game.UpdateClasses.Buildings;
-using AdministratorProject.Game;
-using AdministratorProject.Game.BaseClasses;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using WebApplication1.Game;
+using WebApplication1.Game.BaseClasses;
+using WebApplication1.Game.Locations.Metropolic;
+using WebApplication1.Game.Locations.Metropolic.MetropolisMarketTraders;
 
-namespace AdministratorProject.Game.Locations
+
+namespace WebApplication1.Game.Locations
 {
+    
     public class Metropolis: CLocation
     {
         /*
@@ -23,10 +25,10 @@ namespace AdministratorProject.Game.Locations
         public List<LCMob> LegendaryMobs { get; set; }
         public List<IBaseActions> Actions { get; set; }
         */
-        Metropolis(GInt counter,int? p) :base(counter, "Метрополис",p)
+        public Metropolis(GInt counter,int? p) :base(counter, "Метрополис",p)
         {
             Description = "Стартовый город для новичков";
-            SubLocations = new List<CLocation> { new Metropolis_Market(counter, this.Id) };
+            SubLocations = new List<CLocation> { new TestTrader(counter, Id) };
             Directions = new List<LCLocation>();
             foreach (var i in SubLocations)
             {
@@ -38,14 +40,7 @@ namespace AdministratorProject.Game.Locations
             }
 
         }
-        public class Metropolis_Market : CMarket
-        {
-            public Metropolis_Market(GInt gInt, int? p) : base(gInt, "Рынок Метрополиса",p)
-            {
-                Description = "Пока есть только торговец палками";
-
-            }
-        }
+        
     }
 
     
