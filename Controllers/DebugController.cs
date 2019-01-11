@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
-using AdministratorProject.Game;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Game;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
