@@ -21,7 +21,6 @@ namespace WebApplication1.Game
         {
             SubLocations=new List<CLocation>{
                 new Metropolis(id,Id)
-                
             };
         }
         public void updateNow()

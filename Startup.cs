@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
- using WebApplication1.Game;
- using Microsoft.AspNetCore.Builder;
+using WebApplication1.Game;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
@@ -72,6 +72,7 @@ namespace WebApplication1
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            GWorld.init();
         }
     }
 }

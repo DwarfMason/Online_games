@@ -16,7 +16,7 @@ namespace WebApplication1.Game.UpdateClasses.NPC
             }
             public override float IsSatisfied(CCultivator c)
             {
-                if ((c.Gold >= Price))
+                if (c.Gold >= Price)
                     return 1;
                 else
                     return 0;
@@ -26,11 +26,11 @@ namespace WebApplication1.Game.UpdateClasses.NPC
         public class DealerAction : IBaseActions
         {
             CItemInventory Item { get; set; }
-            public int Prise { get; set; }
+            public int Price { get; set; }
             public DealerAction(CItemInventory item, int price)
             {
                 Item = item;
-                Prise = price;
+                Price = price;
                 Requirements = new List<IBaseRequirement> { new DealerRequirement(price)};
 
             }
@@ -38,6 +38,7 @@ namespace WebApplication1.Game.UpdateClasses.NPC
             {
                 if (CanDo(c)>0)
                 {
+                    c.Gold -= Price;
                     c.Inventory.AddItem(Item);
                 }
             }

@@ -7,8 +7,9 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+ using WebApplication1.Game;
 
-namespace WebApplication1
+ namespace WebApplication1
 {
     public class Program
     {

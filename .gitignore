@@ -259,3 +259,43 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 .pyc
+
+
+# Common IntelliJ Platform excludes
+
+.idea
+
+# User specific
+**/.idea/**/workspace.xml
+**/.idea/**/tasks.xml
+**/.idea/shelf/*
+**/.idea/dictionaries
+
+# Sensitive or high-churn files
+**/.idea/**/dataSources/
+**/.idea/**/dataSources.ids
+**/.idea/**/dataSources.xml
+**/.idea/**/dataSources.local.xml
+**/.idea/**/sqlDataSources.xml
+**/.idea/**/dynamic.xml
+
+# Rider
+# Rider auto-generates .iml files, and contentModel.xml
+**/.idea/**/*.iml
+**/.idea/**/contentModel.xml
+**/.idea/**/modules.xml
+
+*.suo
+*.user
+.vs/
+bin/
+Bin/
+obj/
+Obj/
+_UpgradeReport_Files/
+packages/
+Packages/
+
+Thumbs.db
+Desktop.ini
+.DS_Store

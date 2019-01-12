@@ -24,14 +24,11 @@ namespace WebApplication1.Game.BaseClasses
     }
     public class CItemInventory
     {
-        public CItemInventory()
-        {
-            Id = -1;
-        }
         public CItemInventory(int id, int rang)
         {
             Id = id;
             Rang = rang;
+            Count = 1;
         }
 
         public int Id { get; set; }
