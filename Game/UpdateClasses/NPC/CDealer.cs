@@ -25,7 +25,7 @@ namespace WebApplication1.Game.UpdateClasses.NPC
         }
         public class DealerAction : IBaseActions
         {
-            CItemInventory Item { get; set; }
+            public CItemInventory Item { get; set; }
             public int Price { get; set; }
             public DealerAction(CItemInventory item, int price)
             {
@@ -54,7 +54,7 @@ namespace WebApplication1.Game.UpdateClasses.NPC
         public List<LCMob> LegendaryMobs { get; set; }
         public List<IBaseActions> Actions { get; set; }
         */
-        public CDealer(GInt gInt, string name,int? p,List<IBaseActions> products) : base(gInt, name,p)
+        public CDealer(GInt gInt, string name,int? p,List<IBaseActions> products, string por) : base(gInt, name,p,por)
         {
             Actions = products;
         }

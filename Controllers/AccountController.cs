@@ -84,7 +84,10 @@ namespace WebApplication1.Controllers
                 {
                     // установка куки
                     await _signInManager.SignInAsync(user, false);
-                    CCultivator newCultivator = new CCultivator();
+                    CCultivator newCultivator = new CCultivator()
+                    {
+                        LocationId = GWorld.World.SubLocations[0].Id
+                    };
                     newCultivator.PlayerId = CultivatorContext.getHex(user.UserName);
                     newCultivator.Name = user.Nickname;
                     newCultivator.Inventory = new CCultivator.CInventory();

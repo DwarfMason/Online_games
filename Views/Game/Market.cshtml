@@ -1,6 +1,5 @@
-@model WebApplication1.Game.UpdateClasses.Buildings.CTown
+@model WebApplication1.Game.UpdateClasses.Buildings.CMarket
 @using WebApplication1.Game.BaseClasses;
-@using WebApplication1.Game.UpdateClasses.Buildings
 
 @{
     ViewData["Title"] = "Metropolis";
@@ -16,15 +15,19 @@
 <div class="row">
     <div class="col-md-6">
         <div class="row">
+            <div class="col-4">
+                <div>Список торговцев</div>
+            </div>
             @foreach (var locs in Model.Directions)
             {
-                CBuilding l = (CBuilding) GLocationsList.GetById(locs.LocationId);
                 <div class="col-8">
                     <a a asp-controller="Game"
                        asp-action="go" 
-                       asp-route-id="@l.Id" >
-                        <h5>@l.Name</h5>
-                        <img src="@l.SmallPicture" class="img-thumbnail img-fluid" style="height: 128px; width: 128px;"/>
+                       asp-route-id="@locs.LocationId" >
+                        <h5>@GLocationsList.GetById(locs.LocationId).Name</h5>
+                    @{
+                        //тут типа можно еще описаний напихать
+                    }
                     </a>
                 </div>
             }

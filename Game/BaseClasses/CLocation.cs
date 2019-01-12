@@ -41,8 +41,13 @@ namespace WebApplication1.Game.BaseClasses
         }
         public class LCLocation
         {
-            public int LocationId { get; set; }
-            public int Time { get; set; }
+            public LCLocation()
+            {
+                
+            }
+
+            public int LocationId { get; set; } = 0;
+            public int Time { get; set; } = 10000;
         }
         public class LCItems
         {

@@ -10,8 +10,10 @@ namespace WebApplication1.Game.UpdateClasses.NPC
 {
     public class CNPC:CLocation
     {
-        public CNPC(GInt gInt, string name, int? p) : base(gInt, name,p)
+        public string Portret;
+        public CNPC(GInt gInt, string name, int? p, string portret) : base(gInt, name,p)
         {
+            Portret = portret;
             //todo Хз что но можно
         }
     }

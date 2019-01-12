@@ -1,7 +1,10 @@
+using System;
 using System.Threading.Tasks;
+using WebApplication1.Game.UpdateClasses.Buildings;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Game;
 using WebApplication1.Game.BaseClasses;
+using WebApplication1.Game.UpdateClasses.NPC;
 
 namespace WebApplication1.Controllers
 {
@@ -9,34 +12,69 @@ namespace WebApplication1.Controllers
     {
         private CultivatorContext cultivatordb = new CultivatorContext();
         
-        public async Task<IActionResult> Town()
+        public async Task<IActionResult> go(int? Id)
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            if (Id != null)
+            {
+                cult.LocationId = (int)Id;
+                await cultivatordb.Update(cult);
+            }
+            
             var location = GLocationsList.GetById(cult.LocationId);
-            var seller = location.SubLocations[0];
-            TempData["Nickname"] = cult.Name;
-            TempData["Gold"] = cult.Gold;
-            return
-            View();
+            if (location is CBuilding)
+            {
+                if (location is CTown)
+                {
+                    return RedirectToAction("Town", cult);
+                }
+
+                if (location is CMarket)
+                {
+                    return RedirectToAction("Market", cult);
+                }
+            }
+
+            if (location is CNPC)
+            {
+                if (location is CDealer)
+                {
+                    return RedirectToAction("Shop", cult);
+                }
+            }
+
+            throw new Exception("This Location is unknown");
+        }   
+        
+        public async Task<IActionResult> Town(CCultivator cult)
+        {
+            CTown location = (CTown)GLocationsList.GetById(cult.LocationId);
+            return View(location);
+        }
+        
+        public async Task<IActionResult> Market(CCultivator cult)
+        {
+            CMarket location = (CMarket)GLocationsList.GetById(cult.LocationId);
+            return View(location);
         }
 
-        public async Task<IActionResult> Shop()
+        public async Task<IActionResult> Shop(CCultivator cult)
         {
-            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
             TempData["Gold"] = cult.Gold;
             TempData["Nickname"] = cult.Name;
-            return View();
+            return View((CDealer)GLocationsList.GetById(cult.LocationId));
         }
-
-        public async Task<IActionResult> Buy()
+        
+        [HttpPost]
+        public async Task<IActionResult> Shop(int slot)
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
-            var location = GLocationsList.GetById(cult.LocationId);
-            var seller = location.SubLocations[0].SubLocations[0];
-            seller.Actions[0].Do(cult);
+            var seller = GLocationsList.GetById(cult.LocationId);
+            seller.Actions[slot].Do(cult);
             await cultivatordb.Update(cult);
             TempData["Gold"] = cult.Gold;
-            return RedirectToAction("Shop");
+            TempData["Nickname"] = cult.Name;
+            return View((CDealer)GLocationsList.GetById(cult.LocationId));
         }
     }
 }
