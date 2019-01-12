@@ -1,0 +1,53 @@
+@model WebApplication1.Game.UpdateClasses.NPC.CDealer
+@using WebApplication1.Game.UpdateClasses.NPC
+
+
+@{
+    //ViewData["Title"] = "Metropolis";
+}
+<div class="text-center">
+    <h2>@Model.Name</h2>
+</div>
+<div class="row">
+    <div class="col-4">
+        <div class="text-center">
+            <img src="@Model.Portret" class="img-thumbnail img-fluid"
+                 style="width: 300px;"/>
+        </div>
+    </div>
+    <div class="col-8">
+        <p>
+            @Model.Description
+        </p>
+    </div>
+</div>
+<div class="text-center">
+    <b>Баланс:</b> <img src="/img/shekel.png" width="16" height="16"/> @TempData["Gold"]
+</div>
+<div class="row">    
+    @for (int i = 0; i < Model.Actions.Count; i++)
+    {
+        var tovar = (CDealer.DealerAction) Model.Actions[i];
+        <div class="col-4">
+            <div class="text-center">
+                <img src="@tovar.Item.Description().Picture" class="img-thumbnail img-fluid"
+                     style="height: 128px; width: 128px;"/>
+            </div>
+        </div>
+        <div class="col-8">
+            <h5>@tovar.Item.Description().Name</h5>
+            <p>@tovar.Item.Description().Description</p>
+            
+            <form asp-action="Shop">
+                <input name="slot" type="hidden" value="@i" />
+                <button type="submit" class="btn btn-light">
+                    <img src="/img/shekel.png" width="16" height="16"/> @tovar.Price
+                </button>                
+            </form>
+            
+          
+        </div>
+    }
+   
+</div>
+

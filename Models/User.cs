@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
 namespace WebApplication1.Models

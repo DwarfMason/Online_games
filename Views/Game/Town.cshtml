@@ -1,0 +1,33 @@
+@model WebApplication1.Game.UpdateClasses.Buildings.CTown
+@using WebApplication1.Game.BaseClasses;
+@using WebApplication1.Game.UpdateClasses.Buildings
+
+@{
+    ViewData["Title"] = "Metropolis";
+}
+<div class="text-center">
+    <h2>@Model.Name</h2>
+</div>
+<div class="row">
+    <div class="col">
+        <img src="@Model.BigPicture" class="img-fluid" style="width: 100%;">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            @foreach (var locs in Model.Directions)
+            {
+                CBuilding l = (CBuilding) GLocationsList.GetById(locs.LocationId);
+                <div class="col-8">
+                    <a a asp-controller="Game"
+                       asp-action="go" 
+                       asp-route-id="@l.Id" >
+                        <h5>@l.Name</h5>
+                        <img src="@l.SmallPicture" class="img-thumbnail img-fluid" style="height: 128px; width: 128px;"/>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

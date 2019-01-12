@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using System;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
@@ -40,12 +41,36 @@ namespace WebApplication1.Game
             await Collection.InsertOneAsync(c);
         }
 
+        public static string getHex(String s)
+        {
+            char[] chars = s.ToCharArray();
+            StringBuilder stringBuilder =  new StringBuilder();
+            foreach(char c in chars)
+            {
+                stringBuilder.Append(((Int16)c).ToString("x"));
+            }
+            String textAsHex = stringBuilder.ToString();
+            return textAsHex;
+        }
+
+        public async Task<string> GetName(string id)
+        {
+            var cult = await GetCultivator(id);
+            return cult.Name;
+        }
+        
         public async Task<CCultivator> GetCultivator(string id)
         {
+            id = getHex(id);
             var filter = Builders<CCultivator>.Filter.Eq("PlayerId", id);
             return await Collection
                 .Find(filter)
                 .FirstOrDefaultAsync();
+        }
+        
+        public async Task Update(CCultivator c)
+        {
+            await Collection.ReplaceOneAsync(new BsonDocument("_id", c.PlayerId), c);
         }
     }
 }

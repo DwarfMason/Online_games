@@ -26,7 +26,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
-            return View(new LoginViewModel() {ReturnUrl = returnUrl});
+            return View(new LoginViewModel {ReturnUrl = returnUrl});
         }
 
         [HttpPost]
@@ -84,8 +84,11 @@ namespace WebApplication1.Controllers
                 {
                     // установка куки
                     await _signInManager.SignInAsync(user, false);
-                    CCultivator newCultivator = new CCultivator();
-                    newCultivator.PlayerId = getHex(user.UserName);
+                    CCultivator newCultivator = new CCultivator()
+                    {
+                        LocationId = GWorld.World.SubLocations[0].Id
+                    };
+                    newCultivator.PlayerId = CultivatorContext.getHex(user.UserName);
                     newCultivator.Name = user.Nickname;
                     newCultivator.Inventory = new CCultivator.CInventory();
                     newCultivator.HeroType = user.HeroType; 
@@ -107,32 +110,70 @@ namespace WebApplication1.Controllers
         [Authorize]
         public async Task<ActionResult> Profile(string id)
         {
-            var cult = await cultivatordb.GetCultivator(getHex(User.Identity.Name));
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
             TempData["Nickname"] = cult.Name;
             TempData["Strength"] = cult.Stats.MainStats.Strength;
             TempData["Agility"] = cult.Stats.MainStats.Agility;
+            TempData["Intelligence"] = cult.Stats.MainStats.Intelligence;
+            TempData["Endurance"] = cult.Stats.MainStats.Endurance;
             TempData["Gold"] = cult.Gold;
             TempData["Tier"] = cult.Tier;
             TempData["HeroType"] = cult.HeroType;
-            //TempData["Inventory"] = cult.Inventory;
             return View();
         }
 
+        public async Task<ActionResult> IncreaseAgility ()
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            if (cult.Gold >= 300) 
+            {
+                cult.Gold -= 300;
+                cult.Stats.MainStats.Agility++;
+                await cultivatordb.Update(cult);
+            }
+            return RedirectToAction("Profile", "Account");
+        }
+        public async Task<ActionResult> IncreaseStrength()
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            if (cult.Gold >= 300)
+            {
+                cult.Gold -= 300;
+                cult.Stats.MainStats.Strength++;
+                await cultivatordb.Update(cult);
+            }
+            return RedirectToAction("Profile", "Account");
+        }
+        
+        public async Task<ActionResult> IncreaseIntelligence()
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            if (cult.Gold >= 300)
+            {
+                cult.Gold -= 300;
+                cult.Stats.MainStats.Intelligence++;
+                await cultivatordb.Update(cult);
+            }
+            return RedirectToAction("Profile", "Account");
+        }
+        
+        public async Task<ActionResult> IncreaseEndurance()
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            if (cult.Gold >= 300)
+            {
+                cult.Gold -= 300;
+                cult.Stats.MainStats.Endurance++;
+                await cultivatordb.Update(cult);
+            }
+            return RedirectToAction("Profile", "Account");
+        }
+        
         public IActionResult Profile()
         {
             return View();
         }
 
-        private string getHex(String s)
-        {
-            char[] chars = s.ToCharArray();
-            StringBuilder stringBuilder =  new StringBuilder();
-            foreach(char c in chars)
-            {
-                stringBuilder.Append(((Int16)c).ToString("x"));
-            }
-            String textAsHex = stringBuilder.ToString();
-            return textAsHex;
-        }
+        
     }
 }

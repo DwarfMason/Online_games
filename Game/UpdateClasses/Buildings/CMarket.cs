@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AdminictratorProject.Game.UpdateClasses.Buildings
+namespace WebApplication1.Game.UpdateClasses.Buildings
 {
     public class CMarket:CBuilding
     {
-        public CMarket(GInt gInt, string name, int? p) : base(gInt, name,p)
+        public CMarket(GInt gInt, string name, int? p, string BigP, string SmallP) : base(gInt, name, p, BigP, SmallP)
         {
-            //todo Хз что но можно
         }
     }
 }
