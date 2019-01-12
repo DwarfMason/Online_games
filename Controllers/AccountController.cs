@@ -116,14 +116,13 @@ namespace WebApplication1.Controllers
             TempData["Gold"] = cult.Gold;
             TempData["Tier"] = cult.Tier;
             TempData["HeroType"] = cult.HeroType;
-            //TempData["Inventory"] = cult.Inventory.Items;
             return View();
         }
 
         public async Task<ActionResult> IncreaseAgility ()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
-            if (cult.Gold >= 300)
+            if (cult.Gold >= 300) 
             {
                 cult.Gold -= 300;
                 cult.Stats.MainStats.Agility++;
