@@ -1,5 +1,6 @@
 @model WebApplication1.Game.UpdateClasses.Buildings.CMarket
 @using WebApplication1.Game.BaseClasses;
+@using WebApplication1.Game.UpdateClasses.NPC
 
 @{
     ViewData["Title"] = "Metropolis";
@@ -20,14 +21,13 @@
             </div>
             @foreach (var locs in Model.Directions)
             {
+                CNPC trader = (CNPC) GLocationsList.GetById(locs.LocationId);
                 <div class="col-8">
                     <a a asp-controller="Game"
                        asp-action="go" 
                        asp-route-id="@locs.LocationId" >
                         <h5>@GLocationsList.GetById(locs.LocationId).Name</h5>
-                    @{
-                        //тут типа можно еще описаний напихать
-                    }
+                        <img src="@trader.Portret" class="img-fluid" style="width: 100%;">
                     </a>
                 </div>
             }
