@@ -1,5 +1,6 @@
 @model WebApplication1.ViewModels.ProfileViewModel;
 @using Microsoft.AspNetCore.Identity
+@using MongoDB.Bson
 @using WebApplication1.Game
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
@@ -14,6 +15,20 @@
      var cdb = new CultivatorContext();
      var cult = await cdb.GetCultivator(User.Identity.Name);
      var items = cult.Inventory.Items;
+
+    int StatPrice(float stat)
+    {
+        var a = (int)Math.Pow(10, stat.ToString().Length) + (int)stat * 4;
+        var b = 0;
+        for (int i = 1; i < stat; i++)
+        {
+            b += i.ToString().Length * 10;
+        }
+
+        return (a + b);
+    }
+
+    ;
     
     <h2>Profile of <i>@TempData["Nickname"]</i></h2>
     <div class="container">
@@ -40,7 +55,7 @@
                                 <div class="btn-group btn-group-sm" role="group">
                                     <a class="btn btn-success" asp-controller="Account" asp-action="IncreaseStrength" asp-route-returnUrl="@Url.Action("Profile", "Account")">+</a>
                                     <a class="btn btn-light">
-                                        <img src="/img/shekel.png" width="16" height="16"/> 300
+                                        <img src="/img/shekel.png" width="16" height="16"/> @StatPrice((int)cult.Stats.MainStats.Strength)
                                     </a>
                                 </div>
                             </div>
@@ -59,7 +74,7 @@
                                 <div class="btn-group btn-group-sm" role="group">
                                     <a class="btn btn-success" asp-controller="Account" asp-action="IncreaseAgility" asp-route-returnUrl="@Url.Action("Profile", "Account")">+</a>
                                     <a class="btn btn-light">
-                                        <img src="/img/shekel.png" width="16" height="16"/> 300
+                                        <img src="/img/shekel.png" width="16" height="16"/> @StatPrice((int)cult.Stats.MainStats.Agility)
                                     </a>
                                 </div>
                             </div>
@@ -78,7 +93,7 @@
                                 <div class="btn-group btn-group-sm" role="group">
                                     <a class="btn btn-success" asp-controller="Account" asp-action="IncreaseIntelligence" asp-route-returnUrl="@Url.Action("Profile", "Account")">+</a>
                                     <a class="btn btn-light">
-                                        <img src="/img/shekel.png" width="16" height="16"/> 300
+                                        <img src="/img/shekel.png" width="16" height="16"/> @StatPrice((int)cult.Stats.MainStats.Intelligence)
                                     </a>
                                 </div>
                             </div>
@@ -97,7 +112,7 @@
                                 <div class="btn-group btn-group-sm" role="group">
                                     <a class="btn btn-success" asp-controller="Account" asp-action="IncreaseEndurance" asp-route-returnUrl="@Url.Action("Profile", "Account")">+</a>
                                     <a class="btn btn-light">
-                                        <img src="/img/shekel.png" width="16" height="16"/> 300
+                                        <img src="/img/shekel.png" width="16" height="16"/> @StatPrice((int)cult.Stats.MainStats.Endurance)
                                     </a>
                                 </div>
                             </div>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
@@ -39,6 +40,19 @@ namespace WebApplication1.Game.BaseClasses
                 public float Intelligence { get; set; } = 1;
                 public float Endurance { get; set; } = 1;
             }
+
+        }
+
+        public static int GetStatPrice(float stat)
+        {
+            var a = (int)Math.Pow(10, stat.ToString().Length) + (int)stat * 4;
+            var b = 0;
+            for (int i = 1; i < stat; i++)
+            {
+                b += i.ToString().Length * 10;
+            }
+
+            return (a + b);
         }
 
         public class CInventory
@@ -80,7 +94,7 @@ namespace WebApplication1.Game.BaseClasses
         [BsonId]
         public string PlayerId { get; set; }
         public string Name { get; set; }
-
+        
         public int Tier { get; set; } = 0;
 
         public CStats Stats { get; set; } = new CStats();

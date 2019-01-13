@@ -125,9 +125,10 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> IncreaseAgility ()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
-            if (cult.Gold >= 300) 
+            var statPrice = CCultivator.GetStatPrice(cult.Stats.MainStats.Agility);
+            if (cult.Gold >= statPrice) 
             {
-                cult.Gold -= 300;
+                cult.Gold -= statPrice;
                 cult.Stats.MainStats.Agility++;
                 await cultivatordb.Update(cult);
             }
@@ -136,9 +137,10 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> IncreaseStrength()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
-            if (cult.Gold >= 300)
+            var statPrice = CCultivator.GetStatPrice(cult.Stats.MainStats.Strength);
+            if (cult.Gold >= statPrice)
             {
-                cult.Gold -= 300;
+                cult.Gold -= statPrice;
                 cult.Stats.MainStats.Strength++;
                 await cultivatordb.Update(cult);
             }
@@ -148,9 +150,10 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> IncreaseIntelligence()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
-            if (cult.Gold >= 300)
+            var statPrice = CCultivator.GetStatPrice(cult.Stats.MainStats.Intelligence);
+            if (cult.Gold >= statPrice)
             {
-                cult.Gold -= 300;
+                cult.Gold -= statPrice;
                 cult.Stats.MainStats.Intelligence++;
                 await cultivatordb.Update(cult);
             }
@@ -160,9 +163,10 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> IncreaseEndurance()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
-            if (cult.Gold >= 300)
+            var statPrice = CCultivator.GetStatPrice(cult.Stats.MainStats.Endurance);
+            if (cult.Gold >= statPrice)
             {
-                cult.Gold -= 300;
+                cult.Gold -= statPrice;
                 cult.Stats.MainStats.Endurance++;
                 await cultivatordb.Update(cult);
             }

@@ -7,7 +7,7 @@ using WebApplication1.Game;
 using WebApplication1.Game.BaseClasses;
 using WebApplication1.Game.UpdateClasses.NPC;
 
-namespace WebApplication1.Game.Locations.NecropolicBuildings.MetropolisMarketTraders
+namespace WebApplication1.Game.Locations.NecropolisBuildings.MetropolisMarketTraders
 {
     public class TestTrader:CDealer
     {
