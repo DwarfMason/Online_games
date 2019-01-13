@@ -37,7 +37,7 @@ namespace WebApplication1.Game
         {
             new CItemDescription(0, "Палка", 
                 "Палка, покрытая золотой пылью. Ничего необычного, если бы пыль не была ангельской.",
-                "/img/shekel.png");
+                "/img/stick.png");
         }
     }
 }

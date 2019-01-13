@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using WebApplication1.Game.UpdateClasses.Buildings;
 using WebApplication1.Game;
 using WebApplication1.Game.BaseClasses;
-using WebApplication1.Game.Locations.NecropolicBuildings.MetropolisMarketTraders;
+using WebApplication1.Game.Locations.NecropolisBuildings.MetropolisMarketTraders;
 
-namespace WebApplication1.Game.Locations.NecropolicBuildings
+namespace WebApplication1.Game.Locations.NecropolisBuildings
 {
     public class NecropolisMarket : CMarket
     {

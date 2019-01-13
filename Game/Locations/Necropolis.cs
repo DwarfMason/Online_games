@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 using WebApplication1.Game.UpdateClasses.Buildings;
 using WebApplication1.Game;
 using WebApplication1.Game.BaseClasses;
-using WebApplication1.Game.Locations.NecropolicBuildings;
-using WebApplication1.Game.Locations.NecropolicBuildings.MetropolisMarketTraders;
+using WebApplication1.Game.Locations.NecropolisBuildings;
+using WebApplication1.Game.Locations.NecropolisBuildings.MetropolisMarketTraders;
 
 
 namespace WebApplication1.Game.Locations
 {
     
-    public class Necropolic: CTown
+    public class Necropolis: CTown
     {
         /*
         public string Description { get; set; }
@@ -25,7 +25,7 @@ namespace WebApplication1.Game.Locations
         public List<LCMob> LegendaryMobs { get; set; }
         public List<IBaseActions> Actions { get; set; }
         */
-        public Necropolic(GInt counter,int? p) :base(counter, "Метрополис",p,
+        public Necropolis(GInt counter,int? p) :base(counter, "Метрополис",p,
             "/img/necropolis.jpg","")
         {
             Description = "Стартовый город для новичков";

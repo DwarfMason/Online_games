@@ -20,7 +20,7 @@ namespace WebApplication1.Game
         public CWorld(GInt id) : base(id, "Элдария",0)
         {
             SubLocations=new List<CLocation>{
-                new Necropolic(id,Id)
+                new Necropolis(id,Id)
             };
         }
         public void updateNow()
