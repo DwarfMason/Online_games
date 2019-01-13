@@ -27,19 +27,27 @@ namespace WebApplication1.Game.BaseClasses
     public class CItemInventory
     {
         
-        public CItemInventory(int id, int rang)
+        public CItemInventory(int id)
         {
             Id = id;
-            Rang = rang;
             Count = 1;
         }
+        public CItemInventory()
+        {
+        }
 
+        public virtual CItemInventory Copy()
+        {
+            CItemInventory out_ = new CItemInventory();
+            out_.Count = Count;
+            out_.Id = Id;
+            return out_;
+        }
         public CItemDescription Description()
         {
             return GItemsList.Get(this.Id);
         }
         public int Id { get; set; }
-        public int Rang { get; set; }
         public int Count { get; set; }
     }
 
