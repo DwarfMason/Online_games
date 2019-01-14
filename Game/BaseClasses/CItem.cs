@@ -36,7 +36,7 @@ namespace WebApplication1.Game.BaseClasses
         {
         }
 
-        public virtual CItemInventory Copy()
+        public CItemInventory Copy()
         {
             CItemInventory out_ = new CItemInventory();
             out_.Count = Count;

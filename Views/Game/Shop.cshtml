@@ -30,13 +30,13 @@
         var tovar = (CDealer.DealerAction) Model.Actions[i];
         <div class="col-4">
             <div class="text-center">
-                <img src="@tovar.Item.Description().Picture" class="img-thumbnail img-fluid"
+                <img src="@tovar.ItemInventory.Description().Picture" class="img-thumbnail img-fluid"
                      style="height: 128px; width: 128px;"/>
             </div>
         </div>
         <div class="col-8">
-            <h5>@tovar.Item.Description().Name</h5>
-            <p>@tovar.Item.Description().Description</p>
+            <h5>@tovar.ItemInventory.Description().Name</h5>
+            <p>@tovar.ItemInventory.Description().Description</p>
             
             <form asp-action="Shop">
                 <input name="slot" type="hidden" value="@i" />

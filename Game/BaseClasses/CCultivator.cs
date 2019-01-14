@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
+using WebApplication1.Game.BaseClasses.Equipment;
 
 namespace WebApplication1.Game.BaseClasses
 {
@@ -26,8 +27,6 @@ namespace WebApplication1.Game.BaseClasses
                 public float Agility { get; set; } = 5;
                 public float Intelligence { get; set; } = 5;
                 public float Endurance { get; set; } = 5;
-
-                public float Undistributed { get; set; } = 5;
             }
 
             public class CSubStats
@@ -35,7 +34,6 @@ namespace WebApplication1.Game.BaseClasses
                 public float Luck { get; set; } = 5;
                 public float Charisma { get; set; } = 5;
                 public float Perception { get; set; } = 5;
-                public float Undistributed { get; set; } = 10;
             }
 
             public class CScales
@@ -44,6 +42,23 @@ namespace WebApplication1.Game.BaseClasses
                 public float Agility { get; set; } = 1;
                 public float Intelligence { get; set; } = 1;
                 public float Endurance { get; set; } = 1;
+            }
+
+            public CStats Copy()
+            {
+                CStats out_=new CStats();
+                out_.MainStats.Agility = MainStats.Agility;
+                out_.MainStats.Endurance = MainStats.Endurance;
+                out_.MainStats.Intelligence = MainStats.Intelligence;
+                out_.MainStats.Strength = MainStats.Strength;
+                out_.SubStats.Charisma = SubStats.Charisma;
+                out_.SubStats.Luck = SubStats.Luck;
+                out_.SubStats.Perception = SubStats.Perception;
+                out_.Scales.Agility = Scales.Agility;
+                out_.Scales.Endurance = Scales.Endurance;
+                out_.Scales.Intelligence = Scales.Intelligence;
+                out_.Scales.Strength = Scales.Strength;
+                return out_;
             }
         }
 
@@ -61,54 +76,39 @@ namespace WebApplication1.Game.BaseClasses
 
         public class CInventory
         {
-            public int CurentItems { get; set; } = 0;
-            public List<CItemInventory> Items = new List<CItemInventory>(36);
+            public List<CItemInventory> Items = new List<CItemInventory>();
 
-            public void AddItem(CItemInventory item)
+            public void AddItem(CItemInventory itemInventory)
             {
                 bool f = true;
-                for (int i = 0; i < CurentItems; i++)
+                for (int i = 0; i < Items.Count; i++)
                 {
-                    if (Items[i].Id == item.Id)
+                    if (Items[i].Id == itemInventory.Id)
                     {
-                        Items[item.Id].Count += item.Count;
+                        Items[itemInventory.Id].Count += itemInventory.Count;
                         f = false;
                         break;
                     }
                 }
 
-                if (f && (CurentItems != 36))
+                if (f)
                 {
-                    CurentItems++;
-                    Items.Add(item.Copy());
+                    Items.Add(itemInventory.Copy());
                 }
             }
 
-            public bool CanAddItem(CItemInventory item)
+            public bool CanAddItem(CItemInventory itemInventory)
             {
-                for (int i = 0; i < CurentItems; i++)
-                {
-                    if (Items[i].Id == item.Id)
-                    {
-                        return true;
-                    }
-                }
-
-                if (CurentItems != 36)
-                {
-                    return true;
-                }
-
-                return false;
+                return true;
             }
 
-            public bool ExistItem(CItemInventory item)
+            public bool ExistItem(CItemInventory itemInventory)
             {
-                for (int i = 0; i < CurentItems; i++)
+                for (int i = 0; i < Items.Count; i++)
                 {
-                    if (Items[i].Id == item.Id)
+                    if (Items[i].Id == itemInventory.Id)
                     {
-                        if (Items[i].Count >= item.Count)
+                        if (Items[i].Count >= itemInventory.Count)
                         return true;
                         else
                         return false;
@@ -117,20 +117,20 @@ namespace WebApplication1.Game.BaseClasses
                 return false;
             }
 
-            public void DeleteItem(CItemInventory item)
+            public void DeleteItem(CItemInventory itemInventory)
             {
-                for (int i = 0; i < CurentItems; i++)
+                for (int i = 0; i < Items.Count; i++)
                 {
-                    if (Items[i].Id == item.Id)
+                    if (Items[i].Id == itemInventory.Id)
                     {
-                        Items[i].Count -= item.Count;
+                        Items[i].Count -= itemInventory.Count;
                         if (Items[i].Count == 0)
                         {
-                            for (int j = i; j < CurentItems-1; j++)
+                            for (int j = i; j < Items.Count-1; j++)
                             {
                                 Items[j] = Items[j + 1];
                             }
-                            CurentItems--;
+                            Items.RemoveAt(Items.Count-1);
                         }
                         break;                     
                     }
@@ -139,6 +139,74 @@ namespace WebApplication1.Game.BaseClasses
             }
         }
 
+        public class CEquipments
+        {
+            public int? CurentHelmet = null;
+            public List<CHelmet> Helmets = new List<CHelmet>{};
+            
+            public int? CurentPlate= null;
+            public List<CPlate> Plates = new List<CPlate>{};
+            
+            public int? CurentLeggins= null;
+            public List<CLeggins> Leggins = new List<CLeggins>{};
+            
+            public int? CurentBoots= null;
+            public List<CBoots> Boots = new List<CBoots>{};
+            
+            public int? CurentAmulet= null;
+            public List<CAmulet> Amulets = new List<CAmulet>{};
+
+            public void AddEquip(CEquipmentInventory in_)
+            {
+                if (in_ is CHelmet)
+                {
+                    Helmets.Add((CHelmet)in_);
+                } 
+                if (in_ is CAmulet)
+                {
+                    Amulets.Add((CAmulet)in_);
+                }
+                if (in_ is CPlate)
+                {
+                    Plates.Add((CPlate)in_);
+                } 
+                if (in_ is CBoots)
+                {
+                    Boots.Add((CBoots)in_);
+                }
+                if (in_ is CLeggins)
+                {
+                    Leggins.Add((CLeggins)in_);
+                }
+            }
+            
+        }
+        
+        public CStats RealStats()
+        {
+            CStats out_ = Stats.Copy();
+            if (Equipments.CurentAmulet != null)
+            {
+                Equipments.Amulets[Equipments.CurentAmulet.Value].PutOn(out_);
+            }
+            if (Equipments.CurentBoots != null)
+            {
+                Equipments.Boots[Equipments.CurentBoots.Value].PutOn(out_);
+            }
+            if (Equipments.CurentHelmet != null)
+            {
+                Equipments.Helmets[Equipments.CurentHelmet.Value].PutOn(out_);
+            }
+            if (Equipments.CurentPlate != null)
+            {
+                Equipments.Plates[Equipments.CurentPlate.Value].PutOn(out_);
+            }
+            if (Equipments.CurentLeggins != null)
+            {
+                Equipments.Leggins[Equipments.CurentLeggins.Value].PutOn(out_);
+            }
+            return out_;
+        }
         public string Id { get; set; }
 
         [BsonId] public string PlayerId { get; set; }
@@ -152,5 +220,6 @@ namespace WebApplication1.Game.BaseClasses
         public int Gold { get; set; } = 10;
         public int LocationId { get; set; } = 0;
         public CInventory Inventory { get; set; } = new CInventory();
+        public CEquipments Equipments { get; set; } = new CEquipments();
     }
 }

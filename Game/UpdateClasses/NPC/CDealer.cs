@@ -25,11 +25,11 @@ namespace WebApplication1.Game.UpdateClasses.NPC
         }
         public class DealerAction : IBaseActions
         {
-            public CItemInventory Item { get; set; }
+            public CItemInventory ItemInventory { get; set; }
             public int Price { get; set; }
-            public DealerAction(CItemInventory item, int price)
+            public DealerAction(CItemInventory itemInventory, int price)
             {
-                Item = item;
+                ItemInventory = itemInventory;
                 Price = price;
                 Requirements = new List<IBaseRequirement> { new DealerRequirement(price)};
 
@@ -39,7 +39,7 @@ namespace WebApplication1.Game.UpdateClasses.NPC
                 if (CanDo(c)>0)
                 {
                     c.Gold -= Price;
-                    c.Inventory.AddItem(Item);
+                    c.Inventory.AddItem(ItemInventory);
                 }
             }
         }
