@@ -10,7 +10,7 @@
 </div>
 <div class="row">
     <div class="col">
-        <img src="@Model.BigPicture" class="img-fluid" style="width: 100%;">
+        <img src="@Model.BigPicture" class="img-fluid" width="50%" style="margin-left: 300px">
     </div>
 </div>
 <div class="row">
@@ -27,7 +27,7 @@
                        asp-action="go" 
                        asp-route-id="@locs.LocationId" >
                         <h5>@GLocationsList.GetById(locs.LocationId).Name</h5>
-                        <img src="@trader.Portret" class="img-fluid" style="width: 100%;">
+                        <img src="@trader.Portret" class="img-fluid" style="width: 50%;">
                     </a>
                 </div>
             }

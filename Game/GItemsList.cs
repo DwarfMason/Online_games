@@ -38,6 +38,7 @@ namespace WebApplication1.Game
             new CItemDescription(0, "Палка", 
                 "Палка, покрытая золотой пылью. Ничего необычного, если бы пыль не была ангельской.",
                 "/img/stick.png");
+            new CItemDescription(1, "Говно", "отлично совмещается с палками", "/img/govno.png");
         }
     }
 }
