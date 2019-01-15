@@ -1,0 +1,158 @@
+@model WebApplication1.ViewModels.ProfileViewModel;
+@using Microsoft.AspNetCore.Identity
+@using MongoDB.Bson
+@using WebApplication1.Game
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<style type="text/css">
+    #inv td {
+        padding: 0;
+    }
+</style>
+@if (SignInManager.IsSignedIn(User))
+{
+     var cdb = new CultivatorContext();
+     var cult = await cdb.GetCultivator(User.Identity.Name);
+     var items = cult.Inventory.Items;
+
+    int StatPrice(float stat)
+    {
+        var a = (int)Math.Pow(10, stat.ToString().Length) + (int)stat * 4;
+        var b = 0;
+        for (int i = 1; i < stat; i++)
+        {
+            b += i.ToString().Length * 10;
+        }
+
+        return (a + b);
+    }
+
+    ;
+    
+    <h2>Profile of <i>@TempData["Nickname"]</i></h2>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>Your hero</h4>
+                <span style="background: url(@TempData["HeroType"]) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span>
+            </div>
+            <div class="col">
+                <p><b>Tier:</b> @TempData["Tier"]</p>
+                <br/>
+                <h4>Stats:</h4>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p>Strength</p>
+                        <div class="row">
+                            <div class="col">
+                                <div class="progress" style="height: 32px;">
+                                    <div class="progress-bar" role="progressbar"
+                                         style="width: @TempData["Strength"]%;">@TempData["Strength"]</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a class="btn btn-success" asp-controller="Account" asp-action="IncreaseStrength" asp-route-returnUrl="@Url.Action("Profile", "Account")">+</a>
+                                    <a class="btn btn-light">
+                                        <img src="/img/shekel.png" width="16" height="16"/> @StatPrice((int)cult.Stats.MainStats.Strength)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p>Agility</p>
+                        <div class="row">
+                            <div class="col">
+                                <div class="progress" style="height: 32px;">
+                                    <div class="progress-bar" role="progressbar"
+                                         style="width: @TempData["Agility"]%;">@TempData["Agility"]</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a class="btn btn-success" asp-controller="Account" asp-action="IncreaseAgility" asp-route-returnUrl="@Url.Action("Profile", "Account")">+</a>
+                                    <a class="btn btn-light">
+                                        <img src="/img/shekel.png" width="16" height="16"/> @StatPrice((int)cult.Stats.MainStats.Agility)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p>Intelligence</p>
+                        <div class="row">
+                            <div class="col">
+                                <div class="progress" style="height: 32px;">
+                                    <div class="progress-bar" role="progressbar"
+                                         style="width: @TempData["Intelligence"]%;">@TempData["Intelligence"]</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a class="btn btn-success" asp-controller="Account" asp-action="IncreaseIntelligence" asp-route-returnUrl="@Url.Action("Profile", "Account")">+</a>
+                                    <a class="btn btn-light">
+                                        <img src="/img/shekel.png" width="16" height="16"/> @StatPrice((int)cult.Stats.MainStats.Intelligence)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p>Endurance</p>
+                        <div class="row">
+                            <div class="col">
+                                <div class="progress" style="height: 32px;">
+                                    <div class="progress-bar" role="progressbar"
+                                         style="width: @TempData["Endurance"]%;">@TempData["Endurance"]</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a class="btn btn-success" asp-controller="Account" asp-action="IncreaseEndurance" asp-route-returnUrl="@Url.Action("Profile", "Account")">+</a>
+                                    <a class="btn btn-light">
+                                        <img src="/img/shekel.png" width="16" height="16"/> @StatPrice((int)cult.Stats.MainStats.Endurance)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <br/>
+                <h4>Inventory:</h4>
+                <p><img src="/img/shekel.png" width="16" height="16" style="margin-bottom: 3px;"/> <b>Gold:</b>@TempData["Gold"]</p>
+                <div style="width: calc(48px * 6 + 5px); height: calc(48px * 6 + 5px);">
+                    <table class="table table-bordered" id="inv">
+                        
+                            @for (int i = 0; i < 6; i++)
+                            {
+                                <tr>
+                                    @for (int j = 0; j < 6; j++)
+                                    {
+                                        if (items.Count > i * 6 + j)
+                                        {
+                                            <td style="width: 48px; height: 48px;">
+                                                <img src="@GItemsList.Get(items.ToList()[i * 6 + j].Value.Id).Picture" width="48" height="48"/>
+                                                <p style="z-index: 3; margin-top: -48px;">
+                                                    <font face="segoe script" size="2px">@items.ToList()[i * 6 + j].Value.Count</font>
+                                                </p>
+                                            </td>            
+                                        }
+                                        else
+                                        {
+                                            <td style="width: 48px; height: 48px;"></td>
+                                        }
+                                    }
+                                </tr>
+                            }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    @Url.Action("Index", "Home", new { area = "" })
+}

@@ -1,0 +1,92 @@
+@model WebApplication1.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+<style>
+    h1, h2 , h3 {
+        alignment: center;
+    }
+    
+    input[type="radio"]:hover + span {
+        border:2px solid #999;
+    }
+    
+    input[type="radio"]:checked + span {
+        border:2px solid #000;
+    }
+    input[type="radio"]:checked:hover + span {
+        border:2px solid #000;
+    }
+    
+    .wrapper {
+        display: inline-block;
+    }
+    
+    .hero-check {
+        margin-top : -55px;
+        margin-left: 400px;
+    }
+    .hero-check2 {
+        margin-top: -55px;
+        margin-left: 800px;
+    }
+</style>
+<h1>CHOOSE YOUR HERO</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-controller="Account" asp-action="Register">
+            <div asp-validation-summary="ModelOnly"></div>
+            <!--wrapper on hero chooser-->
+            <div class="wrapper">
+                <div >
+                    <label style="display: block; position: relative"></label><br/>
+                    <label style="display: block; position: relative">
+                        <input type="radio" asp-for="HeroType" value="/img/hero1.png"
+                               style="visibility: hidden;"><span style="background: url(/img/hero1.png) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span></label>
+                </div>
+                <div class="hero-check">
+                    <label style="display: block; position: relative"></label><br/>
+                    <label style="display: block; position: relative">
+                        <input type="radio" asp-for="HeroType" value="/img/hero2.png"
+                               style="visibility: hidden;"><span style="background: url(/img/hero2.png) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span></label>
+                </div>
+                <div class="hero-check2">
+                    <label style="display: block; position: relative"></label><br/>
+                    <label style="display: block; position: relative">
+                        <input type="radio" asp-for="HeroType" value="/img/hero3.png"
+                               style="visibility: hidden;"><span style="background: url(/img/hero3.png) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span></label>
+                </div>
+            </div>
+            <!-- end of wrapper -->
+
+            <div style="margin-top: 500px;">
+                <div>
+                    <label asp-for="Email"></label><br/>
+                    <input asp-for="Email"/>
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div>
+                    <label asp-for="Nickname"></label><br/>
+                    <input asp-for="Nickname"/>
+                    <span asp-validation-for="Nickname"></span>
+                </div>
+                <div>
+                    <label asp-for="Password"></label><br/>
+                    <input asp-for="Password"/>
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div>
+                    <label asp-for="PasswordConfirm"></label><br/>
+                    <input asp-for="PasswordConfirm"/>
+                    <span asp-validation-for="PasswordConfirm"></span>
+                </div>
+                <div>
+                    <input type="submit" value="Register"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
