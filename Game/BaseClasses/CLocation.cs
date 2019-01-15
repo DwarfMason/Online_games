@@ -26,10 +26,12 @@ namespace WebApplication1.Game.BaseClasses
         }
 
     }
+    
     public class GInt
     {
         public int counter = 0;
     }
+    
     public class CLocation
     {
 
@@ -37,7 +39,6 @@ namespace WebApplication1.Game.BaseClasses
         {
             public string Id { get; set; }
             public float Chance { get; set; }
-            public float Known { get; set; } //todo
         }
         public class LCLocation
         {
