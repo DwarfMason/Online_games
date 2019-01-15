@@ -32,6 +32,11 @@ namespace WebApplication1.Game.BaseClasses
             Id = id;
             Count = 1;
         }
+        public CItemInventory(int id,int c)
+        {
+            Id = id;
+            Count = c;
+        }
         public CItemInventory()
         {
         }

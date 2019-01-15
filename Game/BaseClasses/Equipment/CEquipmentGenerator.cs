@@ -6,6 +6,8 @@ namespace WebApplication1.Game.BaseClasses.Equipment
     public abstract class IEquipmentGenerator
     {
         public abstract CEquipmentInventory Generate();
+        public abstract CEquipmentInventory GenerateMax();
+        public abstract CEquipmentInventory GenerateMin();
     }
 
     public class CEquipmentGenerator<T>:IEquipmentGenerator where T:CEquipmentInventory,new()
@@ -102,6 +104,25 @@ namespace WebApplication1.Game.BaseClasses.Equipment
             return new T
             {
                 Bonus = out_,
+                Count = 1,
+                Id = Id
+            };
+        }
+
+        public override CEquipmentInventory GenerateMax()
+        {
+            return new T
+            {
+                Bonus = MinStats.Copy(),
+                Count = 1,
+                Id = Id
+            };
+        }
+        public override CEquipmentInventory GenerateMin()
+        {
+            return new T
+            {
+                Bonus = MaxStats.Copy(),
                 Count = 1,
                 Id = Id
             };

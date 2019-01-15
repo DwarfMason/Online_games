@@ -6,29 +6,14 @@ namespace WebApplication1.Game.UpdateClasses.NPC.Traders
 {
     public class CDealer:CBaseTrader
     {
-        public class DealerRequirement:IBaseRequirement
-        {
-            private int Price;
-            public DealerRequirement(int price)
-            {
-                Price = price; 
-            }
-            public override float IsSatisfied(CCultivator c)
-            {
-                if (c.Gold >= Price)
-                    return 1;
-                else
-                    return 0;
-            }
 
-        }
         public class DealerAction : CTraderAction
         {
-            public DealerAction(CItemInventory itemInventory, int price)
+            public DealerAction(List<CItemInventory> items, int price)
             {
-                ItemInventory = itemInventory;
+                TraderItems = items;
                 Price = price;
-                Requirements = new List<IBaseRequirement> { new DealerRequirement(price)};
+                Requirements = new List<IBaseRequirement> { new BaseTraderRequirement(price)};
 
             }
             public override void Do(CCultivator c)
@@ -36,7 +21,11 @@ namespace WebApplication1.Game.UpdateClasses.NPC.Traders
                 if (CanDo(c)>0)
                 {
                     c.Gold -= Price;
-                    c.Inventory.AddItem(ItemInventory);
+                    foreach (var item in TraderItems)
+                    {
+                        c.Inventory.AddItem(item);
+                    }
+                   
                 }
             }
         }

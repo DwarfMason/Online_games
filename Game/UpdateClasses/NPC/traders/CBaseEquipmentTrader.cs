@@ -6,22 +6,7 @@ namespace WebApplication1.Game.UpdateClasses.NPC.Traders
 {
     public class CBaseEquipmentTrader:CBaseTrader
     {
-        public class  EquipmentTraderRequirement:IBaseRequirement
-        {
-            private int Price;
-            public EquipmentTraderRequirement(int price)
-            {
-                Price = price; 
-            }
-            public override float IsSatisfied(CCultivator c)
-            {
-                if (c.Gold >= Price)
-                    return 1;
-                else
-                    return 0;
-            }
-
-        }
+        
         public class EquipmentTraderAction : CTraderAction
         {
             public IEquipmentGenerator EquipGenerator { get; set; }
@@ -29,8 +14,8 @@ namespace WebApplication1.Game.UpdateClasses.NPC.Traders
             {
                 EquipGenerator = E;
                 Price = price;
-                Requirements = new List<IBaseRequirement> { new EquipmentTraderRequirement(price)};
-                ItemInventory = E.Generate();
+                Requirements = new List<IBaseRequirement> { new  BaseTraderRequirement(price)};
+                TraderItems = new List<CItemInventory> {E.GenerateMin(), E.GenerateMin()};
             }
             public override void Do(CCultivator c)
             {
