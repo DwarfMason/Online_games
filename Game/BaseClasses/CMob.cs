@@ -40,9 +40,9 @@ namespace WebApplication1.Game.BaseClasses
         public string Description { get; set; }
         public string Picture { get; set; }
         public int Gold;
-        public float Strength { get; set; }
-        public float Agility { get; set; }
-        public float Intelligence { get; set; }
-        public float Endurance { get; set; }
+        public double Strength { get; set; }
+        public double Agility { get; set; }
+        public double Intelligence { get; set; }
+        public double Endurance { get; set; }
     }
 }
