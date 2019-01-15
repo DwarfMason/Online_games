@@ -17,31 +17,48 @@ namespace WebApplication1.Game.BaseClasses
     {
         public class CStats
         {
+            public CStats(){}
+
+            public CStats(int S, int A, int I, int E, int L, int C, int P,
+                double S_S, double S_A, double S_I, double S_E)
+            {
+                MainStats.Endurance = E;
+                MainStats.Strength = S;
+                MainStats.Intelligence = I;
+                MainStats.Agility = A;
+                SubStats.Luck = L;
+                SubStats.Charisma = C;
+                SubStats.Perception = P;
+                Scales.Endurance = S_E;
+                Scales.Agility = S_A;
+                Scales.Intelligence = S_I;
+                Scales.Strength = S_S;
+            }
             public CMainStats MainStats { get; set; } = new CMainStats();
             public CSubStats SubStats { get; set; } = new CSubStats();
             public CScales Scales { get; set; } = new CScales();
 
             public class CMainStats
             {
-                public float Strength { get; set; } = 5;
-                public float Agility { get; set; } = 5;
-                public float Intelligence { get; set; } = 5;
-                public float Endurance { get; set; } = 5;
+                public double Strength { get; set; } = 5;
+                public double Agility { get; set; } = 5;
+                public double Intelligence { get; set; } = 5;
+                public double Endurance { get; set; } = 5;
             }
 
             public class CSubStats
             {
-                public float Luck { get; set; } = 5;
-                public float Charisma { get; set; } = 5;
-                public float Perception { get; set; } = 5;
+                public double Luck { get; set; } = 5;
+                public double Charisma { get; set; } = 5;
+                public double Perception { get; set; } = 5;
             }
 
             public class CScales
             {
-                public float Strength { get; set; } = 1;
-                public float Agility { get; set; } = 1;
-                public float Intelligence { get; set; } = 1;
-                public float Endurance { get; set; } = 1;
+                public double Strength { get; set; } = 1;
+                public double Agility { get; set; } = 1;
+                public double Intelligence { get; set; } = 1;
+                public double Endurance { get; set; } = 1;
             }
 
             public CStats Copy()
@@ -62,7 +79,7 @@ namespace WebApplication1.Game.BaseClasses
             }
         }
 
-        public static int GetStatPrice(float stat)
+        public static int GetStatPrice(double stat)
         {
             var a = (int) Math.Pow(10, stat.ToString().Length) + (int) stat * 4;
             var b = 0;

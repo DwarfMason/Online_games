@@ -1,4 +1,4 @@
-@model WebApplication1.Game.UpdateClasses.NPC.CDealer
+@model WebApplication1.Game.UpdateClasses.NPC.CBaseTrader
 @using WebApplication1.Game.UpdateClasses.NPC
 
 
@@ -27,7 +27,7 @@
 <div class="row">    
     @for (int i = 0; i < Model.Actions.Count; i++)
     {
-        var tovar = (CDealer.DealerAction) Model.Actions[i];
+        var tovar = (CBaseTrader.CTraderAction) Model.Actions[i];
         <div class="col-4">
             <div class="text-center">
                 <img src="@tovar.ItemInventory.Description().Picture" class="img-thumbnail img-fluid"

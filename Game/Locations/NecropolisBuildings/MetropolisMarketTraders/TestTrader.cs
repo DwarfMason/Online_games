@@ -6,6 +6,7 @@ using WebApplication1.Game.UpdateClasses;
 using WebApplication1.Game;
 using WebApplication1.Game.BaseClasses;
 using WebApplication1.Game.UpdateClasses.NPC;
+using WebApplication1.Game.UpdateClasses.NPC.Traders;
 
 namespace WebApplication1.Game.Locations.NecropolisBuildings.MetropolisMarketTraders
 {

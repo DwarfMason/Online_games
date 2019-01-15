@@ -2,11 +2,10 @@
 using WebApplication1.Game.BaseClasses;
 using WebApplication1.Game.UpdateClasses.NPC;
 
-namespace WebApplication1.Game.UpdateClasses.NPC
+namespace WebApplication1.Game.UpdateClasses.NPC.Traders
 {
-    public class CDealer:CNPC
+    public class CDealer:CBaseTrader
     {
-       
         public class DealerRequirement:IBaseRequirement
         {
             private int Price;
@@ -23,10 +22,8 @@ namespace WebApplication1.Game.UpdateClasses.NPC
             }
 
         }
-        public class DealerAction : IBaseActions
+        public class DealerAction : CTraderAction
         {
-            public CItemInventory ItemInventory { get; set; }
-            public int Price { get; set; }
             public DealerAction(CItemInventory itemInventory, int price)
             {
                 ItemInventory = itemInventory;

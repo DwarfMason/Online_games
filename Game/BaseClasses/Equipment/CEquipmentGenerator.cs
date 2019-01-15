@@ -65,7 +65,7 @@ namespace WebApplication1.Game.BaseClasses.Equipment
         public CCultivator.CStats MinStats { get; set; }
         public CCultivator.CStats MaxStats { get; set; }
         // G - переменная от 0 до 10,по сути величина, выпадающая чаще всего
-        CEquipmentGenerator(int id, CCultivator.CStats min, CCultivator.CStats max,double G)
+        public CEquipmentGenerator(int id, CCultivator.CStats min, CCultivator.CStats max,double G)
         {
             Id = id;
             MinStats = min;
@@ -76,18 +76,29 @@ namespace WebApplication1.Game.BaseClasses.Equipment
         public override CEquipmentInventory Generate()
         {
             CCultivator.CStats out_ = MinStats.Copy();
-            float scale = Gaus.Next() / 10;
-            out_.MainStats.Agility = (float)Math.Round(out_.MainStats.Agility + (MaxStats.MainStats.Agility-out_.MainStats.Agility)*scale);
-            out_.MainStats.Endurance += (float)Math.Round((MaxStats.MainStats.Endurance - out_.MainStats.Endurance) * scale);
-            out_.MainStats.Intelligence += (float)Math.Round((MaxStats.MainStats.Intelligence - out_.MainStats.Intelligence) * scale);
-            out_.MainStats.Strength += (float)Math.Round((MaxStats.MainStats.Strength - out_.MainStats.Strength) * scale);
-            out_.SubStats.Charisma += (float)Math.Round((MaxStats.SubStats.Charisma - out_.SubStats.Charisma) * scale);
-            out_.SubStats.Luck += (float)Math.Round((MaxStats.SubStats.Luck - out_.SubStats.Luck) * scale);
-            out_.SubStats.Perception += (float)Math.Round((MaxStats.SubStats.Perception - out_.SubStats.Perception) * scale);
-            out_.Scales.Agility *= (MaxStats.Scales.Agility - out_.Scales.Agility) * scale;
-            out_.Scales.Endurance *= (MaxStats.Scales.Endurance - out_.Scales.Endurance) * scale;
-            out_.Scales.Intelligence *= (MaxStats.Scales.Intelligence - out_.Scales.Intelligence) * scale;
-            out_.Scales.Strength *= (MaxStats.Scales.Strength - out_.Scales.Strength) * scale;
+            double scale = Gaus.NextDouble() ;
+            scale /= 10;
+            out_.MainStats.Agility = Math.Round(out_.MainStats.Agility + (MaxStats.MainStats.Agility-out_.MainStats.Agility)*scale);
+            scale = Gaus.NextDouble() / 10;
+            out_.MainStats.Endurance += Math.Round((MaxStats.MainStats.Endurance - out_.MainStats.Endurance) * scale);
+            scale = Gaus.NextDouble() / 10;
+            out_.MainStats.Intelligence += Math.Round((MaxStats.MainStats.Intelligence - out_.MainStats.Intelligence) * scale);
+            scale = Gaus.NextDouble() / 10;
+            out_.MainStats.Strength += Math.Round((MaxStats.MainStats.Strength - out_.MainStats.Strength) * scale);
+            scale = Gaus.NextDouble() / 10;
+            out_.SubStats.Charisma += Math.Round((MaxStats.SubStats.Charisma - out_.SubStats.Charisma) * scale);
+            scale = Gaus.NextDouble() / 10;
+            out_.SubStats.Luck += Math.Round((MaxStats.SubStats.Luck - out_.SubStats.Luck) * scale);
+            scale = Gaus.NextDouble() / 10;
+            out_.SubStats.Perception += Math.Round((MaxStats.SubStats.Perception - out_.SubStats.Perception) * scale);
+            scale = Gaus.NextDouble() / 10;
+            out_.Scales.Agility += (MaxStats.Scales.Agility - out_.Scales.Agility) * scale;
+            scale = Gaus.NextDouble() / 10;
+            out_.Scales.Endurance += (MaxStats.Scales.Endurance - out_.Scales.Endurance) * scale;
+            scale = Gaus.NextDouble() / 10;
+            out_.Scales.Intelligence += (MaxStats.Scales.Intelligence - out_.Scales.Intelligence) * scale;
+            scale = Gaus.NextDouble() / 10;
+            out_.Scales.Strength += (MaxStats.Scales.Strength - out_.Scales.Strength) * scale;
             return new T
             {
                 Bonus = out_,
