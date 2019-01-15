@@ -30,6 +30,21 @@
 
     ;
     
+    <script type="text/javascript">
+        var itemDescriptions = {
+            @foreach (var item in items)
+            {
+                @Html.Raw("'" + item.Id + "': '" + item.Description().Description + "',")
+            }
+        };
+        var itemNames = {
+            @foreach (var item in items)
+            {
+                @Html.Raw("'" + item.Id + "': '" + item.Description().Name + "',")
+            }
+        };
+    </script>
+    
     <h2>Profile of <i>@TempData["Nickname"]</i></h2>
     <div class="container">
         <div class="row">
@@ -132,7 +147,7 @@
                                     {
                                         if (items.Count > i * 6 + j)
                                         {
-                                            <td style="width: 48px; height: 48px;">
+                                            <td class="with-item" item-id="@items.ToList()[i * 6 + j].Id" style="width: 48px; height: 48px;">
                                                 <img src="@GItemsList.Get(items.ToList()[i * 6 + j].Id).Picture" width="48" height="48"/>
                                                 <p style="z-index: 3; margin-top: -48px;">
                                                     <font face="serif" size="2px">@items.ToList()[i * 6 + j].Count</font>
@@ -151,6 +166,28 @@
             </div>
         </div>
     </div>
+    <script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>
+    <script type="text/javascript">
+        tippy('.with-item',
+            {
+                trigger: "mouseenter",
+                followCursor: true,
+                content(reference) {
+                    var itemId = reference.getAttribute('item-id');
+                    var container = document.createElement('div');
+                    var itemName = itemNames[itemId];
+                    var itemDesc = itemDescriptions[itemId];
+                    var title = document.createElement("h5");
+                    title.innerText = itemName;
+                    var desc = document.createElement("p");
+                    desc.innerText = itemDesc;
+                    container.appendChild(title);
+                    container.appendChild(desc);
+                    return container;
+                }
+            });
+        
+    </script>
 }
 else
 {
