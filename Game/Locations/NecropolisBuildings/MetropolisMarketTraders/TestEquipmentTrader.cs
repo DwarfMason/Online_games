@@ -14,7 +14,7 @@ namespace WebApplication1.Game.Locations.NecropolisBuildings.MetropolisMarketTra
             new EquipmentTraderAction(new CEquipmentGenerator<CLeggins>(1000,
                 new CCultivator.CStats(0,0,0,0,0,0,0,0.5,0.5,0.5,0.5),
                 new CCultivator.CStats(3,3,3,3,3,3,3,2,2,2,2)
-                , 0)// Матожидание распределения
+                , 5)// Матожидание распределения
                 , 1)////Цена
             },  "/img/baryga.jpg")
         {

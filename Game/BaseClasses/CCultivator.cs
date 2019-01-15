@@ -158,20 +158,23 @@ namespace WebApplication1.Game.BaseClasses
 
         public class CEquipments
         {
-            public int? CurentHelmet = null;
+            public int? CurrentHelmet = null;
             public List<CHelmet> Helmets = new List<CHelmet>{};
             
-            public int? CurentPlate= null;
+            public int? CurrentPlate= null;
             public List<CPlate> Plates = new List<CPlate>{};
             
-            public int? CurentLeggins= null;
+            public int? CurrentLeggins= null;
             public List<CLeggins> Leggins = new List<CLeggins>{};
             
-            public int? CurentBoots= null;
+            public int? CurrentBoots= null;
             public List<CBoots> Boots = new List<CBoots>{};
             
-            public int? CurentAmulet= null;
-            public List<CAmulet> Amulets = new List<CAmulet>{};
+            public int? CurrentAmulet= null;
+            public List<CAmulet> Amulets = new List<CAmulet>{}; 
+            
+            public int? CurrentSword = null;
+            public List<CSword> Swords = new List<CSword>{};
 
             public void AddEquip(CEquipmentInventory in_)
             {
@@ -195,6 +198,10 @@ namespace WebApplication1.Game.BaseClasses
                 {
                     Leggins.Add((CLeggins)in_);
                 }
+                if (in_ is CSword)
+                {
+                    Swords.Add((CSword)in_);
+                }
             }
             
         }
@@ -202,25 +209,29 @@ namespace WebApplication1.Game.BaseClasses
         public CStats RealStats()
         {
             CStats out_ = Stats.Copy();
-            if (Equipments.CurentAmulet != null)
+            if (Equipments.CurrentAmulet != null)
             {
-                Equipments.Amulets[Equipments.CurentAmulet.Value].PutOn(out_);
+                Equipments.Amulets[Equipments.CurrentAmulet.Value].PutOn(out_);
             }
-            if (Equipments.CurentBoots != null)
+            if (Equipments.CurrentBoots != null)
             {
-                Equipments.Boots[Equipments.CurentBoots.Value].PutOn(out_);
+                Equipments.Boots[Equipments.CurrentBoots.Value].PutOn(out_);
             }
-            if (Equipments.CurentHelmet != null)
+            if (Equipments.CurrentHelmet != null)
             {
-                Equipments.Helmets[Equipments.CurentHelmet.Value].PutOn(out_);
+                Equipments.Helmets[Equipments.CurrentHelmet.Value].PutOn(out_);
             }
-            if (Equipments.CurentPlate != null)
+            if (Equipments.CurrentPlate != null)
             {
-                Equipments.Plates[Equipments.CurentPlate.Value].PutOn(out_);
+                Equipments.Plates[Equipments.CurrentPlate.Value].PutOn(out_);
             }
-            if (Equipments.CurentLeggins != null)
+            if (Equipments.CurrentLeggins != null)
             {
-                Equipments.Leggins[Equipments.CurentLeggins.Value].PutOn(out_);
+                Equipments.Leggins[Equipments.CurrentLeggins.Value].PutOn(out_);
+            } 
+            if (Equipments.CurrentSword != null)
+            {
+                Equipments.Swords[Equipments.CurrentSword.Value].PutOn(out_);
             }
             return out_;
         }
