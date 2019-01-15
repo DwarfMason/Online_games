@@ -18,8 +18,11 @@
         
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="Account" asp-action="Profile" title="Manage">
-                 @TempData["Nickname"]
+                @TempData["Nickname"]
             </a>
+            <div class="text-center">
+                <img src="/img/shekel.png" width="16" height="16" style="margin-bottom: 3px;"/> @TempData["Gold"]
+            </div>
         </li>
         <li class="nav-item">
             <form class="form-inline" asp-controller="Account" asp-action="LogOff" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">

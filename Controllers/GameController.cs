@@ -89,6 +89,7 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Beastiary()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            TempData["Gold"] = cult.Gold;
             TempData["Nickname"] = cult.Name;
             return View();
         }

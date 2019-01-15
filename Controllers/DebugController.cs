@@ -17,7 +17,9 @@ namespace WebApplication1.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                TempData["Nickname"] = await cultivatordb.GetName(User.Identity.Name);
+                var c = await cultivatordb.GetCultivator(User.Identity.Name);
+                TempData["Nickname"] = c.Name;
+                TempData["Gold"] = c.Gold;
             }
             return View();
         }
