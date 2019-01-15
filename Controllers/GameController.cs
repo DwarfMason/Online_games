@@ -20,7 +20,12 @@ namespace WebApplication1.Controllers
                 cult.LocationId = (int)Id;
                 await cultivatordb.Update(cult);
             }
-            
+
+            if (cult.LocationId == 0)
+            {
+                cult.LocationId = 1;
+                await cultivatordb.Update(cult);
+            }
             var location = GLocationsList.GetById(cult.LocationId);
             if (location is CBuilding)
             {
@@ -37,7 +42,7 @@ namespace WebApplication1.Controllers
 
             if (location is CNPC)
             {
-                if (location is CDealer)
+                if (location is CBaseTrader)
                 {
                     return RedirectToAction("Shop", cult);
                 }
@@ -62,7 +67,7 @@ namespace WebApplication1.Controllers
         {
             TempData["Gold"] = cult.Gold;
             TempData["Nickname"] = cult.Name;
-            return View((CDealer)GLocationsList.GetById(cult.LocationId));
+            return View((CBaseTrader)GLocationsList.GetById(cult.LocationId));
         }
         
         [HttpPost]
@@ -74,7 +79,7 @@ namespace WebApplication1.Controllers
             await cultivatordb.Update(cult);
             TempData["Gold"] = cult.Gold;
             TempData["Nickname"] = cult.Name;
-            return View((CDealer)GLocationsList.GetById(cult.LocationId));
+            return View((CBaseTrader)GLocationsList.GetById(cult.LocationId));
         }
         
         public async Task<IActionResult> Beastiary()

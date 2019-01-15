@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using WebApplication1.Game.BaseClasses;
+using WebApplication1.Game.BaseClasses.Equipment;
 
 namespace WebApplication1.Game
 {
@@ -36,6 +37,7 @@ namespace WebApplication1.Game
                 "Палка, покрытая золотой пылью. Ничего необычного, если бы пыль не была ангельской.",
                 "/img/stick.png");
             new CItemDescription(1, "Говно", "отлично совмещается с палками", "/img/govno.png");
+            new CEquipmentDescription(1000, "легинсы", "Картинку надог поменять", "/img/govno.png");
         }
     }
 }

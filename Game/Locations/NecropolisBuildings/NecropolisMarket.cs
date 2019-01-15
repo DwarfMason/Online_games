@@ -15,7 +15,11 @@ namespace WebApplication1.Game.Locations.NecropolisBuildings
             "/img/shop-icon.png","/img/shop-icon.png")
         {
             Description = "Пока есть только торговец палками";
-            SubLocations = new List<CLocation>{new TestTrader(gInt,Id)};
+            SubLocations = new List<CLocation>
+            {
+                new TestTrader(gInt,Id),
+                new TestEquipmentTrader(gInt,Id)
+            };
             Directions=new List<LCLocation>();
             foreach (var i in SubLocations)
             {

@@ -6,6 +6,7 @@ using WebApplication1.Game.UpdateClasses;
 using WebApplication1.Game;
 using WebApplication1.Game.BaseClasses;
 using WebApplication1.Game.UpdateClasses.NPC;
+using WebApplication1.Game.UpdateClasses.NPC.Traders;
 
 namespace WebApplication1.Game.Locations.NecropolisBuildings.MetropolisMarketTraders
 {
@@ -14,8 +15,23 @@ namespace WebApplication1.Game.Locations.NecropolisBuildings.MetropolisMarketTra
         public TestTrader(GInt gInt, int? p) : base(gInt, "Торговец С. О. Лями", p,
             new List<IBaseActions>
             {
-                new DealerAction(new CItemInventory(GItemsList.GetId("Палка"),1),10),
-                new DealerAction(new CItemInventory(GItemsList.GetId("Говно"),1),20)
+                new DealerAction(new List<CItemInventory>
+                    {
+                        new CItemInventory(GItemsList.GetId("Палка")),                       
+                    }
+                    ,10)
+                        ,
+                new DealerAction(new List<CItemInventory>
+                    { 
+                        new CItemInventory(GItemsList.GetId("Говно"))                   
+                    }
+                    ,20),
+                new DealerAction(new List<CItemInventory>
+                    { 
+                        new CItemInventory(GItemsList.GetId("Палка")),                   
+                        new CItemInventory(GItemsList.GetId("Говно"))                   
+                    }
+                    ,300)
             },
             "/img/baryga.jpg"
         )
