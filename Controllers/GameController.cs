@@ -77,8 +77,10 @@ namespace WebApplication1.Controllers
             return View((CDealer)GLocationsList.GetById(cult.LocationId));
         }
         
-        public IActionResult Beastiary()
+        public async Task<IActionResult> Beastiary()
         {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            TempData["Nickname"] = cult.Name;
             return View();
         }
     }
