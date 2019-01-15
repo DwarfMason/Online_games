@@ -133,7 +133,7 @@
                                         if (items.Count > i * 6 + j)
                                         {
                                             <td style="width: 48px; height: 48px;">
-                                                <img src="/img/stick.png" width="48" height="48"/>
+                                                <img src="@GItemsList.Get(items.ToList()[i * 6 + j].Id).Picture" width="48" height="48"/>
                                                 <p style="z-index: 3; margin-top: -48px;">
                                                     <font face="segoe script" size="2px">@items.ToList()[i * 6 + j].Count</font>
                                                 </p>

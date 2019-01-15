@@ -14,7 +14,8 @@ namespace WebApplication1.Game.Locations.NecropolisBuildings.MetropolisMarketTra
         public TestTrader(GInt gInt, int? p) : base(gInt, "Торговец С. О. Лями", p,
             new List<IBaseActions>
             {
-                new DealerAction(new CItemInventory(GItemsList.GetId("Палка")),10)
+                new DealerAction(new CItemInventory(GItemsList.GetId("Палка")),10),
+                new DealerAction(new CItemInventory(GItemsList.GetId("Говно")),20)
             },
             "/img/baryga.jpg"
         )
