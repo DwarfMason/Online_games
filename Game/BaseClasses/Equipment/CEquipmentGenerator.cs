@@ -2,7 +2,13 @@ using System;
 
 namespace WebApplication1.Game.BaseClasses.Equipment
 {
-    public class CEquipmentGenerator
+
+    public abstract class IEquipmentGenerator
+    {
+        public abstract CEquipmentInventory Generate();
+    }
+
+    public class CEquipmentGenerator<T>:IEquipmentGenerator where T:CEquipmentInventory,new()
     {
         public class NormalRandom : Random
         {
@@ -67,22 +73,27 @@ namespace WebApplication1.Game.BaseClasses.Equipment
             Gaus = new NormalRandom(2.2,G);
         }
 
-        public CEquipmentInventory Generate()
+        public override CEquipmentInventory Generate()
         {
             CCultivator.CStats out_ = MinStats.Copy();
             float scale = Gaus.Next() / 10;
-            out_.MainStats.Agility += (MaxStats.MainStats.Agility-out_.MainStats.Agility)*scale;
-            out_.MainStats.Endurance += (MaxStats.MainStats.Endurance - out_.MainStats.Endurance) * scale;
-            out_.MainStats.Intelligence += (MaxStats.MainStats.Intelligence - out_.MainStats.Intelligence) * scale;
-            out_.MainStats.Strength += (MaxStats.MainStats.Strength - out_.MainStats.Strength) * scale;
-            out_.SubStats.Charisma += (MaxStats.SubStats.Charisma - out_.SubStats.Charisma) * scale;
-            out_.SubStats.Luck += (MaxStats.SubStats.Luck - out_.SubStats.Luck) * scale;;
-            out_.SubStats.Perception += (MaxStats.SubStats.Perception - out_.SubStats.Perception) * scale;
+            out_.MainStats.Agility = (float)Math.Round(out_.MainStats.Agility + (MaxStats.MainStats.Agility-out_.MainStats.Agility)*scale);
+            out_.MainStats.Endurance += (float)Math.Round((MaxStats.MainStats.Endurance - out_.MainStats.Endurance) * scale);
+            out_.MainStats.Intelligence += (float)Math.Round((MaxStats.MainStats.Intelligence - out_.MainStats.Intelligence) * scale);
+            out_.MainStats.Strength += (float)Math.Round((MaxStats.MainStats.Strength - out_.MainStats.Strength) * scale);
+            out_.SubStats.Charisma += (float)Math.Round((MaxStats.SubStats.Charisma - out_.SubStats.Charisma) * scale);
+            out_.SubStats.Luck += (float)Math.Round((MaxStats.SubStats.Luck - out_.SubStats.Luck) * scale);
+            out_.SubStats.Perception += (float)Math.Round((MaxStats.SubStats.Perception - out_.SubStats.Perception) * scale);
             out_.Scales.Agility *= (MaxStats.Scales.Agility - out_.Scales.Agility) * scale;
             out_.Scales.Endurance *= (MaxStats.Scales.Endurance - out_.Scales.Endurance) * scale;
             out_.Scales.Intelligence *= (MaxStats.Scales.Intelligence - out_.Scales.Intelligence) * scale;
             out_.Scales.Strength *= (MaxStats.Scales.Strength - out_.Scales.Strength) * scale;
-            return new CEquipmentInventory(Id,out_);
+            return new T
+            {
+                Bonus = out_,
+                Count = 1,
+                Id = Id
+            };
         }
     }
 }
