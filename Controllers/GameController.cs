@@ -53,12 +53,16 @@ namespace WebApplication1.Controllers
         
         public async Task<IActionResult> Town(CCultivator cult)
         {
+            TempData["Gold"] = cult.Gold;
+            TempData["Nickname"] = cult.Name;
             CTown location = (CTown)GLocationsList.GetById(cult.LocationId);
             return View(location);
         }
         
         public async Task<IActionResult> Market(CCultivator cult)
         {
+            TempData["Gold"] = cult.Gold;
+            TempData["Nickname"] = cult.Name;
             CMarket location = (CMarket)GLocationsList.GetById(cult.LocationId);
             return View(location);
         }
