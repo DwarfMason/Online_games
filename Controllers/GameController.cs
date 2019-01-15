@@ -76,5 +76,10 @@ namespace WebApplication1.Controllers
             TempData["Nickname"] = cult.Name;
             return View((CDealer)GLocationsList.GetById(cult.LocationId));
         }
+        
+        public IActionResult Beastiary()
+        {
+            return View();
+        }
     }
 }

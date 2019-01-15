@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Threading.Tasks;
 using WebApplication1.Game.BaseClasses;
 
 namespace WebApplication1.Game
