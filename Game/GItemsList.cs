@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Threading.Tasks;
 using WebApplication1.Game.BaseClasses;
+using WebApplication1.Game.BaseClasses.Equipment;
 
 namespace WebApplication1.Game
 {
@@ -38,6 +39,8 @@ namespace WebApplication1.Game
             new CItemDescription(0, "Палка", 
                 "Палка, покрытая золотой пылью. Ничего необычного, если бы пыль не была ангельской.",
                 "/img/stick.png");
+            new CItemDescription(1, "Говно", "отлично совмещается с палками", "/img/govno.png");
+            new CEquipmentDescription(1000, "легинсы", "Картинку надог поменять", "/img/govno.png");
         }
     }
 }
