@@ -164,7 +164,7 @@ namespace WebApplication1.Game.BaseClasses
             public int? CurrentPlate= null;
             public List<CPlate> Plates = new List<CPlate>{};
             
-            public int? CurrentLeggins= null;
+            public int? CurrentLeggins = null;
             public List<CLeggins> Leggins = new List<CLeggins>{};
             
             public int? CurrentBoots= null;

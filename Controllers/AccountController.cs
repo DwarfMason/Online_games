@@ -121,7 +121,98 @@ namespace WebApplication1.Controllers
             TempData["HeroType"] = cult.HeroType;
             return View();
         }
+        
+        public async Task<ActionResult> SetBoots(int id)
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            //var statPrice = CCultivator.GetStatPrice(cult.Stats.MainStats.Agility);
+            if (id == cult.Equipments.CurrentBoots)
+            {
+                cult.Equipments.CurrentBoots = null;
+            }
+            else
+            {
+                cult.Equipments.CurrentBoots = id;
+            }
+            await cultivatordb.Update(cult);
+            return RedirectToAction("Profile", "Account");
+        }
+        
+        public async Task<ActionResult> SetPlate(int id)
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            if (id == cult.Equipments.CurrentPlate)
+            {
+                cult.Equipments.CurrentPlate = null;
+            }
+            else
+            {
+                cult.Equipments.CurrentPlate = id;
+            }
+            await cultivatordb.Update(cult);
+            return RedirectToAction("Profile", "Account");
+        }
 
+        public async Task<ActionResult> SetSword(int id)
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            if (id == cult.Equipments.CurrentSword)
+            {
+                cult.Equipments.CurrentSword = null;
+            }
+            else
+            {
+                cult.Equipments.CurrentSword = id;
+            }
+            await cultivatordb.Update(cult);
+            return RedirectToAction("Profile", "Account");
+        }
+        
+        public async Task<ActionResult> SetAmulet(int id)
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            if (id == cult.Equipments.CurrentAmulet)
+            {
+                cult.Equipments.CurrentAmulet = null;
+            }
+            else
+            {
+                cult.Equipments.CurrentAmulet = id;
+            }
+            await cultivatordb.Update(cult);
+            return RedirectToAction("Profile", "Account");
+        }
+        
+        public async Task<ActionResult> SetHelmet(int id)
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            if (id == cult.Equipments.CurrentHelmet)
+            {
+                cult.Equipments.CurrentHelmet = null;
+            }
+            else
+            {
+                cult.Equipments.CurrentHelmet = id;
+            }
+            await cultivatordb.Update(cult);
+            return RedirectToAction("Profile", "Account");
+        }
+        
+        public async Task<ActionResult> SetLeggins(int id)
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            if (id == cult.Equipments.CurrentLeggins)
+            {
+                cult.Equipments.CurrentLeggins = null;
+            }
+            else
+            {
+                cult.Equipments.CurrentLeggins = id;
+            }
+            await cultivatordb.Update(cult);
+            return RedirectToAction("Profile", "Account");
+        }
+        
         public async Task<ActionResult> IncreaseAgility ()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
@@ -134,6 +225,7 @@ namespace WebApplication1.Controllers
             }
             return RedirectToAction("Profile", "Account");
         }
+        
         public async Task<ActionResult> IncreaseStrength()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
