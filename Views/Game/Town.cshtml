@@ -5,6 +5,7 @@
 @{
     ViewData["Title"] = "Metropolis";
 }
+<partial name="_Back" />
 <div class="text-center">
     <h2>@Model.Name</h2>
 </div>
@@ -14,12 +15,12 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6" style="margin: 0 auto;">
         <div class="row">
             @foreach (var locs in Model.Directions)
             {
                 CBuilding l = (CBuilding) GLocationsList.GetById(locs.LocationId);
-                <div class="col-8">
+                <div class="col-6">
                     <a a asp-controller="Game"
                        asp-action="go" 
                        asp-route-id="@l.Id" >

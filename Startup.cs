@@ -72,6 +72,7 @@ namespace WebApplication1
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            GMobsList.init();
             GItemsList.init();
             GWorld.init();
         }

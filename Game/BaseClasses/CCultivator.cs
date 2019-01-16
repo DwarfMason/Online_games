@@ -240,6 +240,7 @@ namespace WebApplication1.Game.BaseClasses
         [BsonId] public string PlayerId { get; set; }
         public string Name { get; set; }
 
+        public int Points { get; set; } = 0;
         public int Tier { get; set; } = 0;
 
         public CStats Stats { get; set; } = new CStats();

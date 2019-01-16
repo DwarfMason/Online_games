@@ -1,0 +1,27 @@
+@using WebApplication1.Game
+@using WebApplication1.Game.BaseClasses
+
+@{
+    ViewData["Title"] = "Beastiary";
+    
+    Random rnd = new Random();
+    CMob mob = GMobsList.Get(rnd.Next(0, GMobsList.MobsList.Count));
+}
+
+<div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>Тварь дня: @mob.Name</h4>
+                <span style="background: url(@mob.Picture) no-repeat; position: absolute; width: 300px; height: 500px; cursor: pointer"></span>
+            </div>
+            <div class="col">
+                <h2>@mob.Description</h2>
+                <br>
+                <p class="text-info">
+                    Сложность: @mob.Difficulty;
+                    <br>
+                    Деньги: Как повезет
+                </p>
+            </div>
+        </div>
+    </div>
