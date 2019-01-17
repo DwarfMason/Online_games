@@ -18,27 +18,27 @@
             <tr>
                 @for (int j = 0; j < width; j++)
                 {
-                    if (items.Count > i * height + j)
+                    if (items.Count > i * width + j)
                     {
-                        <td class="@cssClass" item-index="@(i * height + j)" item-id="@items.ToList()[i * height + j].Id" style="width: 48px; height: 48px;">
+                        <td class="@cssClass" item-index="@(i * width + j)" item-id="@items.ToList()[i * width + j].Id" style="width: 48px; height: 48px;">
                              <a @if (action != null)
                                 {
                                     <text>
                                      href="@Url.Action(action, new
                                            {
-                                             id = i * height + j
+                                             id = i * width + j
                                            })"
                                     </text>
                                 }>
-                            <img src="@GItemsList.Get(items.ToList()[i * height + j].Id).Picture" width="48" height="48"
-                                 @if (selection != null && (i * height + j) == selection)
+                            <img src="@GItemsList.Get(items.ToList()[i * width + j].Id).Picture" width="48" height="48"
+                                 @if (selection != null && (i * width + j) == selection)
                                  {
                                      <text>
                                  style='border: 2px solid #c11'
                                      </text>
                                  }>
                             <p style="z-index: 3; margin-top: -48px;">
-                                <font face="serif" size="2px">@items.ToList()[i * height + j].Count</font>
+                                <font face="serif" size="2px">@(i * width + j)</font>
                             </p>
                              </a> 
                         </td>            
