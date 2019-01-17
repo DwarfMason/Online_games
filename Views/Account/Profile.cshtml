@@ -73,7 +73,8 @@
             @foreach (var item in eqs.Leggins)
             {
                 <text>
-                    '@item.Id': '@Html.Raw(item.Description().Description)',
+                    '@item.Id': 'Сила: @Html.Raw(item.Bonus.MainStats.Strength)\nЛовкость:\
+                    @Html.Raw(item.Bonus.MainStats.Agility)\nИнтеллект: @Html.Raw(item.Bonus.MainStats.Intelligence)\nВыносливость: @Html.Raw(item.Bonus.MainStats.Endurance)',
                 </text>
             }
         };
