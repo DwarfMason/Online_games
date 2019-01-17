@@ -29,34 +29,79 @@
 
     @for (int i = 0; i < Model.Actions.Count; i++)
     {
-        <tl>
+        <tr>
             @{
                 var tovar = (CBaseTrader.CTraderAction) Model.Actions[i];
 
-                foreach (var item in tovar.TraderItems)
+                for (var j = 0; j < tovar.TraderItems.Count; ++j)
                 {
-                    <tr>
-                        <img src="@item.Description().Picture" class="img-thumbnail img-fluid"
+                    var item = tovar.TraderItems[j];
+                    <td @if (item.Description().Bonus != null)
+                        {
+                            <text>
+                                class="show-stats"
+                                actions-index="@i"
+                                action-equips-index="@j"
+                            </text>
+                        }>
+                        <img src="@item.Description().Picture" class="img-thumbnail img-fluid" 
                              style="height: 128px; width: 128px;"/>
-                    </tr>
+                    </td>
                 }
 
 
-                <tr>
-                    <div class="col-8">
-
-                        <form asp-action="Shop">
-                            <input name="slot" type="hidden" value="@i"/>
-                            <button type="submit" class="btn btn-light">
-                                <img src="/img/shekel.png" width="16" height="16"/> @tovar.Price
-                            </button>
-                        </form>
-
-
-                    </div>
-                </tr>
+                <td>
+                    <form asp-action="Shop">
+                        <input name="slot" type="hidden" value="@i"/>
+                        <button type="submit" class="btn btn-light">
+                            <img src="/img/shekel.png" width="16" height="16"/> @tovar.Price
+                        </button>
+                    </form>
+                </td>
             }
-        </tl>
+        </tr>
     }
 
 </table>
+
+<script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>
+<script type="text/javascript">
+    var equipsStats = [
+        @foreach (var i in Model.Actions)
+        {
+        var tovar = (CBaseTrader.CTraderAction) i;
+        <text>
+            [
+                @foreach (var j in tovar.TraderItems)
+                {
+                    if (j.Description().Bonus != null)
+                    {
+                        var bonus = j.Description().Bonus;
+                        <text>
+                        'Сила: @Html.Raw(bonus.MainStats.Strength)\n\
+                        Ловкость:@Html.Raw(bonus.MainStats.Agility)\n\
+                        Интеллект: @Html.Raw(bonus.MainStats.Intelligence)\n\
+                        Выносливость: @Html.Raw(bonus.MainStats.Endurance)',
+                        </text>
+                    }
+                }
+            ],
+        </text>
+        }
+    ];
+    tippy('.show-stats',
+        {
+            trigger: "mouseenter",
+            followCursor: true,
+            content(reference) {
+                var actionIndex = reference.getAttribute('actions-index');
+                var equipIndex = reference.getAttribute('action-equips-index');
+                var container = document.createElement('div');
+                var equipStats = equipsStats[+actionIndex][+equipIndex];
+                var desc = document.createElement("p");
+                desc.innerText = equipStats;
+                container.appendChild(desc);
+                return container;
+            }
+        });
+</script>
