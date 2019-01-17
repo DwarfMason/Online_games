@@ -1,0 +1,55 @@
+@using WebApplication1.Game
+@using WebApplication1.Game.BaseClasses
+@model ItemGridParams
+
+@{
+    var items = Model.Items;
+    var width = Model.width;
+    var height = Model.height;
+    var cssClass = Model.ItemCssClass;
+    var selection = Model.SelectionId;
+    var action = Model.Action;
+}
+
+<div style="width: calc(48px * @Model.width + 5px); height: calc(48px * @Model.height + 5px);">
+    <table class="table table-bordered" id="inv">
+                        
+        @for (int i = 0; i < height; i++)
+        {
+            <tr>
+                @for (int j = 0; j < width; j++)
+                {
+                    if (items.Count > i * height + j)
+                    {
+                        <td class="@cssClass" item-id="@items.ToList()[i * height + j].Id" style="width: 48px; height: 48px;">
+                            <a @if (action != null)
+                               {
+                                   <text>
+                                    href="@Url.Action(action, new
+                                          {
+                                              id = i * height + j
+                                          })"
+                                   </text>
+                               }>
+                            <img src="@GItemsList.Get(items.ToList()[i * height + j].Id).Picture" width="48" height="48"
+                                 @if (selection != null && (i * height + j) == selection)
+                                 {
+                                     <text>
+                                 style='border: 2px solid #c11'
+                                     </text>
+                                 }>
+                            <p style="z-index: 3; margin-top: -48px;">
+                                <font face="serif" size="2px">@items.ToList()[i * height + j].Count</font>
+                            </p>
+                            </a>
+                        </td>            
+                    }
+                    else
+                    {
+                        <td style="width: 48px; height: 48px;"></td>
+                    }
+                }
+            </tr>
+        }
+    </table>
+</div>
