@@ -13,7 +13,6 @@
 
 <div style="width: calc(48px * @Model.width + 5px); height: calc(48px * @Model.height + 5px);">
     <table class="table table-bordered" id="inv">
-                        
         @for (int i = 0; i < height; i++)
         {
             <tr>
@@ -21,7 +20,7 @@
                 {
                     if (items.Count > i * height + j)
                     {
-                        <td class="@cssClass" item-id="@items.ToList()[i * height + j].Id" style="width: 48px; height: 48px;">
+                        <td class="@cssClass" item-index="@(i * height + j)" item-id="@items.ToList()[i * height + j].Id" style="width: 48px; height: 48px;">
                              <a @if (action != null)
                                 {
                                     <text>

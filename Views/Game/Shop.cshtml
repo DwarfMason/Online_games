@@ -33,7 +33,7 @@
             @{
                 var tovar = (CBaseTrader.CTraderAction) Model.Actions[i];
 
-                foreach (var item in @tovar.TraderItems)
+                foreach (var item in tovar.TraderItems)
                 {
                     <tr>
                         <img src="@item.Description().Picture" class="img-thumbnail img-fluid"
