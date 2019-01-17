@@ -1,0 +1,10 @@
+@if (Model.Id != 1)
+{
+    <div>
+        <a class="btn btn-primary"
+           asp-action="go"
+           asp-route-id="@Model.ParentLoc.Id">
+            Назад
+        </a>
+    </div>
+}

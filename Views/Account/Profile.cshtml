@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.Identity
 @using MongoDB.Bson
 @using WebApplication1.Game
+@using WebApplication1.Game.BaseClasses
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
@@ -15,6 +16,7 @@
      var cdb = new CultivatorContext();
      var cult = await cdb.GetCultivator(User.Identity.Name);
      var items = cult.Inventory.Items;
+    var eqs = cult.Equipments;
 
     int StatPrice(float stat)
     {
@@ -29,6 +31,98 @@
     }
 
     ;
+    
+    <script type="text/javascript">
+        var itemDescriptions = {
+            @foreach (var item in items)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Description)',
+                </text>
+            }
+            @foreach (var item in eqs.Boots)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Description)',
+                </text>
+            }
+            @foreach (var item in eqs.Plates)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Description)',
+                </text>
+            }
+            @foreach (var item in eqs.Swords)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Description)',
+                </text>
+            }
+            @foreach (var item in eqs.Amulets)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Description)',
+                </text>
+            }
+            @foreach (var item in eqs.Helmets)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Description)',
+                </text>
+            }
+            @foreach (var item in eqs.Leggins)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Description)',
+                </text>
+            }
+        };
+        var itemNames = {
+            @foreach (var item in items)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Name)',
+                </text>
+            }
+            @foreach (var item in eqs.Boots)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Name)',
+                </text>
+            }
+            @foreach (var item in eqs.Plates)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Name)',
+                </text>
+            }
+            @foreach (var item in eqs.Swords)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Name)',
+                </text>
+            }
+            @foreach (var item in eqs.Amulets)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Name)',
+                </text>
+            }
+            @foreach (var item in eqs.Helmets)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Name)',
+                </text>
+            }
+            @foreach (var item in eqs.Leggins)
+            {
+                <text>
+                    '@item.Id': '@Html.Raw(item.Description().Name)',
+                </text>
+            }
+        };
+        
+    </script>
     
     <h2>Profile of <i>@TempData["Nickname"]</i></h2>
     <div class="container">
@@ -122,35 +216,120 @@
                 <br/>
                 <h4>Inventory:</h4>
                 <p><img src="/img/shekel.png" width="16" height="16" style="margin-bottom: 3px;"/> <b>Gold:</b>@TempData["Gold"]</p>
-                <div style="width: calc(48px * 6 + 5px); height: calc(48px * 6 + 5px);">
-                    <table class="table table-bordered" id="inv">
-                        
-                            @for (int i = 0; i < 6; i++)
-                            {
-                                <tr>
-                                    @for (int j = 0; j < 6; j++)
-                                    {
-                                        if (items.Count > i * 6 + j)
-                                        {
-                                            <td style="width: 48px; height: 48px;">
-                                                <img src="@GItemsList.Get(items.ToList()[i * 6 + j].Value.Id).Picture" width="48" height="48"/>
-                                                <p style="z-index: 3; margin-top: -48px;">
-                                                    <font face="segoe script" size="2px">@items.ToList()[i * 6 + j].Value.Count</font>
-                                                </p>
-                                            </td>            
-                                        }
-                                        else
-                                        {
-                                            <td style="width: 48px; height: 48px;"></td>
-                                        }
-                                    }
-                                </tr>
-                            }
-                    </table>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-items-tab" data-toggle="tab" href="#nav-items" role="tab">Items</a>
+                        <a class="nav-item nav-link" id="nav-eqs-tab" data-toggle="tab" href="#nav-eqs" role="tab">Equipments</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-items" role="tabpanel">
+                        @Html.Partial("_ItemGrid", new ItemGridParams
+                        {
+                            Items = items
+                        })
+                    </div>
+                    <div class="tab-pane fade" id="nav-eqs" role="tabpanel">
+                        <p><strong>Boots:</strong></p>
+                        @Html.Partial("_ItemGrid", new ItemGridParams
+                        {
+                            Items = eqs.Boots.ConvertAll(x => (CItemInventory) x),
+                            height = 2,
+                            ItemCssClass = "with-equip",
+                            SelectionId = eqs.CurrentBoots,
+                            Action = "SetBoots"
+                        })
+                        <p><strong>Plates:</strong></p>
+                        @Html.Partial("_ItemGrid", new ItemGridParams
+                        {
+                            Items = eqs.Plates.ConvertAll(x => (CItemInventory) x),
+                            height = 2,
+                            ItemCssClass = "with-equip",
+                            SelectionId = eqs.CurrentPlate,
+                            Action = "SetPlate"
+                        })
+                        <p><strong>Swords:</strong></p>
+                        @Html.Partial("_ItemGrid", new ItemGridParams
+                        {
+                            Items = eqs.Swords.ConvertAll(x => (CItemInventory) x),
+                            height = 2,
+                            ItemCssClass = "with-equip",
+                            SelectionId = eqs.CurrentSword,
+                            Action = "SetSword"
+                        })
+                        <p><strong>Amulets:</strong></p>
+                        @Html.Partial("_ItemGrid", new ItemGridParams
+                        {
+                            Items = eqs.Amulets.ConvertAll(x => (CItemInventory) x),
+                            height = 2,
+                            ItemCssClass = "with-equip",
+                            SelectionId = eqs.CurrentAmulet,
+                            Action = "SetAmulet"
+                        })
+                        <p><strong>Helmets:</strong></p>
+                        @Html.Partial("_ItemGrid", new ItemGridParams
+                        {
+                            Items = eqs.Helmets.ConvertAll(x => (CItemInventory) x),
+                            height = 2,
+                            ItemCssClass = "with-equip",
+                            SelectionId = eqs.CurrentHelmet,
+                            Action = "SetHelmet"
+                        })
+                        <p><strong>Leggins:</strong></p>
+                        @Html.Partial("_ItemGrid", new ItemGridParams
+                        {
+                            Items = eqs.Leggins.ConvertAll(x => (CItemInventory) x),
+                            height = 2,
+                            ItemCssClass = "with-equip",
+                            SelectionId = eqs.CurrentLeggins,
+                            Action = "SetLeggins"
+                        })
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>
+    <script type="text/javascript">
+        tippy('.with-item',
+            {
+                trigger: "mouseenter",
+                followCursor: true,
+                content(reference) {
+                    var itemId = reference.getAttribute('item-id');
+                    var container = document.createElement('div');
+                    var itemName = itemNames[itemId];
+                    var itemDesc = itemDescriptions[itemId];
+                    var title = document.createElement("h5");
+                    title.innerText = itemName;
+                    var desc = document.createElement("p");
+                    desc.innerText = itemDesc;
+                    container.appendChild(title);
+                    container.appendChild(desc);
+                    return container;
+                }
+            });
+        tippy('.with-equip',
+            {
+                trigger: "mouseenter",
+                followCursor: true,
+                content(reference) {
+                    var itemId = reference.getAttribute('item-id');
+                    var container = document.createElement('div');
+                    var itemName = itemNames[itemId];
+                    var itemDesc = itemDescriptions[itemId];
+                    var title = document.createElement("h5");
+                    title.innerText = itemName;
+                    var desc = document.createElement("p");
+                    desc.innerText = itemDesc;
+                    container.appendChild(title);
+                    container.appendChild(desc);
+                    // TODO stats
+                    // because dzyuba pidor and don't save stats somewhere I can fetch them easily
+                    return container;
+                }
+            });
+    </script>
 }
 else
 {

@@ -1,10 +1,11 @@
-@model WebApplication1.Game.UpdateClasses.NPC.CDealer
+@model WebApplication1.Game.UpdateClasses.NPC.CBaseTrader
 @using WebApplication1.Game.UpdateClasses.NPC
 
 
 @{
     //ViewData["Title"] = "Metropolis";
 }
+<partial name="_Back" />
 <div class="text-center">
     <h2>@Model.Name</h2>
 </div>
@@ -24,30 +25,38 @@
 <div class="text-center">
     <b>Баланс:</b> <img src="/img/shekel.png" width="16" height="16"/> @TempData["Gold"]
 </div>
-<div class="row">    
+<table>
+
     @for (int i = 0; i < Model.Actions.Count; i++)
     {
-        var tovar = (CDealer.DealerAction) Model.Actions[i];
-        <div class="col-4">
-            <div class="text-center">
-                <img src="@tovar.Item.Description().Picture" class="img-thumbnail img-fluid"
-                     style="height: 128px; width: 128px;"/>
-            </div>
-        </div>
-        <div class="col-8">
-            <h5>@tovar.Item.Description().Name</h5>
-            <p>@tovar.Item.Description().Description</p>
-            
-            <form asp-action="Shop">
-                <input name="slot" type="hidden" value="@i" />
-                <button type="submit" class="btn btn-light">
-                    <img src="/img/shekel.png" width="16" height="16"/> @tovar.Price
-                </button>                
-            </form>
-            
-          
-        </div>
-    }
-   
-</div>
+        <tl>
+            @{
+                var tovar = (CBaseTrader.CTraderAction) Model.Actions[i];
 
+                foreach (var item in @tovar.TraderItems)
+                {
+                    <tr>
+                        <img src="@item.Description().Picture" class="img-thumbnail img-fluid"
+                             style="height: 128px; width: 128px;"/>
+                    </tr>
+                }
+
+
+                <tr>
+                    <div class="col-8">
+
+                        <form asp-action="Shop">
+                            <input name="slot" type="hidden" value="@i"/>
+                            <button type="submit" class="btn btn-light">
+                                <img src="/img/shekel.png" width="16" height="16"/> @tovar.Price
+                            </button>
+                        </form>
+
+
+                    </div>
+                </tr>
+            }
+        </tl>
+    }
+
+</table>
