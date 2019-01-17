@@ -25,7 +25,7 @@
 <div class="text-center">
     <b>Баланс:</b> <img src="/img/shekel.png" width="16" height="16"/> @TempData["Gold"]
 </div>
-<table>
+<table class="table table-striped">
 
     @for (int i = 0; i < Model.Actions.Count; i++)
     {
@@ -48,7 +48,11 @@
                              style="height: 128px; width: 128px;"/>
                     </td>
                 }
-
+                
+                <td>
+                    <h5>@tovar.TraderItems[0].Description().Name</h5>
+                    <p>@tovar.TraderItems[0].Description().Description</p>
+                </td>
 
                 <td>
                     <form asp-action="Shop">
