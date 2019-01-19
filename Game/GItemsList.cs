@@ -37,12 +37,10 @@ namespace WebApplication1.Game
                 "Палка, покрытая золотой пылью. Ничего необычного, если бы пыль не была ангельской.",
                 "/img/stick.png");
             new CItemDescription(1, "Говно", "отлично совмещается с палками", "/img/govno.png");
-            new CEquipmentDescription(1000, "Легинсы", "Тот, кто придумал логику - урод. " +
-                                                       "Хер получишь статы. Мы же дескриптион передаем", "/img/leggins.png");
-            new CEquipmentDescription(1001, "Подштанники", "Тот, кто придумал логику - урод. " +
-                                                       "Хер получишь статы. Мы же дескриптион передаем", "/img/underpants.jpg");
-            new CEquipmentDescription(1010, "Рубашка", "Тот, кто придумал логику - урод. " +
-                                                       "Хер получишь статы. Мы же дескриптион передаем", "/img/shirt.png");
+            new CItemDescription(2, "Металл", "О! Вот это уже кому-нибудь нужно!", "/img/metall.png");
+            new CEquipmentDescription(1000, "Легинсы", "Нет, это не колготки. На кольчугу денег нет!", "/img/leggins.png");
+            new CEquipmentDescription(1001, "Подштанники", "И это тоже не колготки! Зато  у меня дети будут!", "/img/underpants.jpg");
+            new CEquipmentDescription(1010, "Рубашка", "Возможно сюда впихнем даже адекватное описание", "/img/shirt.png");
         }
     }
 }
