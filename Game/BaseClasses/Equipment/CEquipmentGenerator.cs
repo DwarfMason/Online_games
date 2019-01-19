@@ -113,7 +113,7 @@ namespace WebApplication1.Game.BaseClasses.Equipment
         {
             return new T
             {
-                Bonus = MinStats.Copy(),
+                Bonus = MaxStats.Copy(),
                 Count = 1,
                 Id = Id
             };
@@ -122,7 +122,7 @@ namespace WebApplication1.Game.BaseClasses.Equipment
         {
             return new T
             {
-                Bonus = MaxStats.Copy(),
+                Bonus = MinStats.Copy(),
                 Count = 1,
                 Id = Id
             };

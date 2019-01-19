@@ -16,11 +16,25 @@ namespace WebApplication1.Game
         public List<CEvents> EventNow;
         public List<CEvents> Event5Sec;
         public List<CEvents> Event5Min;
-       
+        public Dictionary<int, List<CLocation>> Map; 
         public CWorld(GInt id) : base(id, "Элдария",0)
         {
             SubLocations=new List<CLocation>{
-                new Necropolis(id,Id)
+                new Necropolis(id,Id),
+                new NewTown(id,Id),
+            };
+            // Ну и типа описываем наш граф.
+            // Можно потом карту отображать в зависимости от 
+            // текущей позиции героя. Хз как.
+            // 
+            Map = new Dictionary<int, List<CLocation>>();
+            Map[SubLocations[0].Id]= new List<CLocation>
+            {
+                SubLocations[1],
+            };
+            Map[SubLocations[1].Id]= new List<CLocation>
+            {
+                SubLocations[2],
             };
         }
         public void updateNow()
