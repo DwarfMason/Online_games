@@ -1,4 +1,5 @@
-﻿﻿using System.Diagnostics;
+﻿﻿using System.Collections.Generic;
+ using System.Diagnostics;
  using System.Threading.Tasks;
  using WebApplication1.Game;
  using Microsoft.AspNetCore.Identity;
@@ -39,6 +40,18 @@ namespace WebApplication1.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+        }
+
+        public async Task<IActionResult> RecordList()
+        {
+            var cultivators = await cultivatordb.GetAllCults();
+            var enumerator = cultivators.GetEnumerator();
+            List<CCultivator> topList = new List<CCultivator>();
+            topList = new List<CCultivator>();
+            for(;enumerator.MoveNext();)
+                topList.Add(enumerator.Current);
+            ViewBag.TopList = topList;
+            return View();
         }
     }
 }

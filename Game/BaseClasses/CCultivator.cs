@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
@@ -261,6 +262,7 @@ namespace WebApplication1.Game.BaseClasses
 
         public int Gold { get; set; } = 10;
         public int LocationId { get; set; } = 0;
+        [DataMember]
         public LastEvent Event = new LastEvent();
         public CInventory Inventory { get; set; } = new CInventory();
         public CEquipments Equipments { get; set; } = new CEquipments();

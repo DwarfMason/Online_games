@@ -1,0 +1,57 @@
+@page
+@using WebApplication1.Game.BaseClasses
+@model List<CCultivator>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Top List</title>
+    <style type="text/css">
+        table {
+            border-spacing: 0 10px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+        }
+        th {
+            padding: 10px 20px;
+            background: #56433D;
+            color: #F9C941;
+            border-right: 2px solid; 
+            font-size: 0.9em;
+        }
+        th:first-child {
+            text-align: left;
+        }
+        td {
+            vertical-align: middle;
+            padding: 10px;
+            font-size: 14px;
+            text-align: center;
+            border-top: 2px solid #56433D;
+            border-left: 2px solid #56433D;
+            border-bottom: 2px solid #56433D;
+            border-right: 2px solid #56433D;
+        }
+    </style>
+</head>
+<body>
+<div>
+    
+    <table>
+        <tr>
+            <th>Player</th>
+            <th>Points</th>
+        </tr>    
+        @{
+        foreach (var cult in ViewBag.TopList)
+        {
+            <tr>
+            <td>@cult.Name</td>
+            <td>@cult.Points</td>
+            </tr>
+        }
+    }
+    </table>
+</div>
+</body>
+</html>
