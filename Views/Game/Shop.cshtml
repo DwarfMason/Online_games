@@ -1,4 +1,5 @@
 @model WebApplication1.Game.UpdateClasses.NPC.CBaseTrader
+@using WebApplication1.Game.BaseClasses.Equipment
 @using WebApplication1.Game.UpdateClasses.NPC
 
 
@@ -81,12 +82,24 @@
                     if (j.Description().Bonus != null)
                     {
                         var bonus = j.Description().Bonus;
-                        <text>
-                        'Сила: @Html.Raw(bonus.MainStats.Strength)\n\
-                        Ловкость:@Html.Raw(bonus.MainStats.Agility)\n\
-                        Интеллект: @Html.Raw(bonus.MainStats.Intelligence)\n\
-                        Выносливость: @Html.Raw(bonus.MainStats.Endurance)',
-                        </text>
+                        if (j is CAmulet)
+                        {
+                            <text>
+                                'Сила: @Html.Raw(-(1-bonus.Scales.Strength)*100)%\n\
+                                Ловкость:@Html.Raw(-(1-bonus.Scales.Agility)*100)%\n\
+                                Интеллект: @Html.Raw(-(1-bonus.Scales.Intelligence)*100)%\n\
+                                Выносливость: @Html.Raw(-(1-bonus.Scales.Endurance)*100)%',
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                                'Сила: @Html.Raw(bonus.MainStats.Strength)\n\
+                                Ловкость:@Html.Raw(bonus.MainStats.Agility)\n\
+                                Интеллект: @Html.Raw(bonus.MainStats.Intelligence)\n\
+                                Выносливость: @Html.Raw(bonus.MainStats.Endurance)',
+                            </text>
+                        }
                     }
                 }
             ],

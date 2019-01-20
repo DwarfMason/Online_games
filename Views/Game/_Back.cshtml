@@ -1,10 +1,28 @@
-@if (Model.Id != 1)
-{
-    <div>
-        <a class="btn btn-primary"
-           asp-action="go"
-           asp-route-id="@Model.ParentLoc.Id">
-            Назад
-        </a>
-    </div>
+@using WebApplication1.Game.BaseClasses
+@{
+    if (Model is CLocation)
+    {
+        if (Model.ParentLoc.Id != 0)
+        {
+            <div>
+                <a class="btn btn-primary"
+                   asp-action="go"
+                   asp-route-id="@Model.ParentLoc.Id">
+                    Назад
+                </a>
+            </div>
+        }
+        else
+        {
+            <div>
+                <a class="btn btn-primary"
+                   asp-action="go"
+                   asp-route-id="@Model.ParentLoc.Id">
+                    Выйти из города
+                </a>
+            </div>
+                
+            
+        }
+    }
 }

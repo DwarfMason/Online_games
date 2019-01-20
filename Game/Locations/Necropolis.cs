@@ -26,7 +26,7 @@ namespace WebApplication1.Game.Locations
         public List<IBaseActions> Actions { get; set; }
         */
         public Necropolis(GInt counter,int? p) :base(counter, "Метрополис",p,
-            "/img/necropolis.jpg","")
+            "/img/necropolis.jpg","/img/Necropolissmall.png")
         {
             Description = "Стартовый город для новичков";
             SubLocations = new List<CLocation> { new NecropolisMarket(counter, Id) };
