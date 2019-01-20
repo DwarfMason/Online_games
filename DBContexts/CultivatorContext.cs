@@ -1,5 +1,7 @@
 ﻿using MongoDB.Driver;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -66,6 +68,12 @@ namespace WebApplication1.Game
             return await Collection
                 .Find(filter)
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<CCultivator>> GetAllCults()
+        {
+            var cults = await Collection.Find(new FilterDefinitionBuilder<CCultivator>().Empty).ToListAsync();
+            return cults;
         }
         
         public async Task Update(CCultivator c)
