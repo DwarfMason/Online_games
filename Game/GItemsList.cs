@@ -41,6 +41,19 @@ namespace WebApplication1.Game
             new CEquipmentDescription(1000, "Легинсы", "Нет, это не колготки. На кольчугу денег нет!", "/img/leggins.png");
             new CEquipmentDescription(1001, "Подштанники", "И это тоже не колготки! Зато  у меня дети будут!", "/img/underpants.jpg");
             new CEquipmentDescription(1010, "Рубашка", "Возможно сюда впихнем даже адекватное описание", "/img/shirt.png");
+
+            {//swords
+                new CEquipmentDescription(1200, "Деревяный меч", "Слабый деревяный меч",
+                    "/img/Equipment/Swords/woodsword.png");
+                new CEquipmentDescription(1201, "Золотой меч", "Неплохой золотой меч",
+                    "/img/Equipment/Swords/goldsword.png");
+                new CEquipmentDescription(1202, "Железный меч", "Отличный железный меч",
+                    "/img/Equipment/Swords/ironsword.png");
+                new CEquipmentDescription(1203, "Каменный меч", "Тяжелый каменный меч",
+                    "/img/Equipment/Swords/stoneswords.jpg");
+                new CEquipmentDescription(1204, "Алмазный меч", "Невероятно острый алмазный меч",
+                    "/img/Equipment/Swords/diamondsword.jpg");
+            }
         }
     }
 }

@@ -6,29 +6,54 @@ using WebApplication1.Game.UpdateClasses.NPC.Traders;
 
 namespace WebApplication1.Game.Locations.NecropolisBuildings.MetropolisMarketTraders
 {
-    public class TestEquipmentTrader:CBaseEquipmentTrader
+    public class SwordTrader:CBaseEquipmentTrader
     {
-        public TestEquipmentTrader(GInt gInt, int? p) :
-            base(gInt, "В. О. Лоеб", p,new List<IBaseActions> 
+        public SwordTrader(GInt gInt, int? p) :
+            base(gInt, "Торговец мечами", p,new List<IBaseActions> 
             {
-            new EquipmentTraderAction(new CEquipmentGenerator<CLeggins>(1000,
-                new CCultivator.CStats(0,0,0,0,0,0,0,1,1,1,1),
-                new CCultivator.CStats(3,3,3,3,3,3,3,1,1,1,1)
-                , 3)// Матожидание распределения
-                , 1),//Цена
-                new EquipmentTraderAction(new CEquipmentGenerator<CLeggins>(1001,
-                        new CCultivator.CStats(1,1,1,1,0,0,0,1,1,1,1),
-                        new CCultivator.CStats(5,5,5,5,3,3,3,1,1,1,1)
-                        , 4)
-                    , 30),
-                new EquipmentTraderAction(new CEquipmentGenerator<CPlate>(1010,
-                        new CCultivator.CStats(0,0,0,0,0,0,0,1,1,1,1),
-                        new CCultivator.CStats(3,3,3,3,3,3,3,1,1,1,1)
-                        , 7)// Матожидание распределения
-                    , 1)////Цена
+                new EquipmentTraderAction(
+                    new CEquipmentGenerator<CSword>(
+                        1200,
+                        new CCultivator.CStats(1,1,1,1,1,1,1,1,1,1,1),
+                        new CCultivator.CStats(2,2,2,2,2,2,2,1,1,1,1),
+                        5
+                        ),10 
+                    ),
+                new EquipmentTraderAction(
+                    new CEquipmentGenerator<CSword>(
+                        1201,
+                        new CCultivator.CStats(1,1,1,1,1,1,1,1,1,1,1),
+                        new CCultivator.CStats(10,10,10,10,10,10,10,1,1,1,1),
+                        3
+                        ),100
+                    ), 
+                new EquipmentTraderAction(
+                    new CEquipmentGenerator<CSword>(
+                        1202,
+                        new CCultivator.CStats(4,4,4,4,4,4,4,1,1,1,1),
+                        new CCultivator.CStats(5,5,5,5,5,5,5,1,1,1,1),
+                        6
+                        ),75
+                    ), 
+                new EquipmentTraderAction(
+                    new CEquipmentGenerator<CSword>(
+                        1203,
+                        new CCultivator.CStats(2,2,2,2,2,2,2,1,1,1,1),
+                        new CCultivator.CStats(4,4,4,4,4,4,4,1,1,1,1),
+                        4
+                        ),25
+                    ), 
+                new EquipmentTraderAction(
+                    new CEquipmentGenerator<CSword>(
+                        1204,
+                        new CCultivator.CStats(9,9,9,9,9,9,9,1,1,1,1),
+                        new CCultivator.CStats(15,15,15,15,15,15,15,1,1,1,1),
+                        4
+                        ),200
+                    ),
             },  "/img/weapon_trader.png")
         {
-            Description="Я вас категорически приветствую.\nНет, мы раньше не виделись.\n Что значит видел такое тело?\nЛибо покупай товар, либо выметывайся!";
+            Description="Я вас категорически приветствую.\nНет, мы раньше не виделись.\n Что значит видел такое тело?\nЛибо покупай мечи, либо выметывайся!";
         }
     }
 }

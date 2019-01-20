@@ -18,7 +18,8 @@ namespace WebApplication1.Game.Locations.NecropolisBuildings
             SubLocations = new List<CLocation>
             {
                 new TestTrader(gInt,Id),
-                new TestEquipmentTrader(gInt,Id)
+                new TestEquipmentTrader(gInt,Id),
+                new SwordTrader(gInt,Id),
             };
             Directions=new List<LCLocation>();
             foreach (var i in SubLocations)
