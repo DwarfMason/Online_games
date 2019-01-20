@@ -109,7 +109,7 @@ namespace WebApplication1.Game.BaseClasses.Equipment
             };
         }
 
-        public override CEquipmentInventory GenerateMax()
+        public override CEquipmentInventory GenerateMin()
         {
             return new T
             {
@@ -118,7 +118,7 @@ namespace WebApplication1.Game.BaseClasses.Equipment
                 Id = Id
             };
         }
-        public override CEquipmentInventory GenerateMin()
+        public override CEquipmentInventory GenerateMax()
         {
             return new T
             {
