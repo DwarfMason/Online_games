@@ -91,7 +91,20 @@ namespace WebApplication1.Controllers
                     newCultivator.PlayerId = CultivatorContext.getHex(user.UserName);
                     newCultivator.Name = user.Nickname;
                     newCultivator.Inventory = new CCultivator.CInventory();
-                    newCultivator.HeroType = user.HeroType; 
+                    newCultivator.HeroType = user.HeroType;
+                    switch (user.HeroType)
+                    {
+                        case "/img/hero1.png":
+                            newCultivator.Stats.MainStats.Strength += 5;
+                            break;
+                        case "/img/hero2.png":
+                            newCultivator.Stats.MainStats.Agility += 5;
+                            break;
+                        case "/img/hero3.png":
+                            newCultivator.Stats.MainStats.Intelligence += 5;
+                            break;
+                    }
+
                     await cultivatordb.Create(newCultivator);
                     return RedirectToAction("Profile", "Account");
                 }
