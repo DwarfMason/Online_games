@@ -109,20 +109,20 @@ namespace WebApplication1.Game.BaseClasses.Equipment
             };
         }
 
-        public override CEquipmentInventory GenerateMax()
-        {
-            return new T
-            {
-                Bonus = MinStats.Copy(),
-                Count = 1,
-                Id = Id
-            };
-        }
         public override CEquipmentInventory GenerateMin()
         {
             return new T
             {
                 Bonus = MaxStats.Copy(),
+                Count = 1,
+                Id = Id
+            };
+        }
+        public override CEquipmentInventory GenerateMax()
+        {
+            return new T
+            {
+                Bonus = MinStats.Copy(),
                 Count = 1,
                 Id = Id
             };

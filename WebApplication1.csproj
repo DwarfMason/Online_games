@@ -37,6 +37,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Game\Locations\NewTownBuildings" />
       <Folder Include="Game\UpdateClasses\Forest" />
       <Folder Include="Pages" />
     </ItemGroup>
