@@ -41,19 +41,19 @@
             <div asp-validation-summary="ModelOnly"></div>
             <!--wrapper on hero chooser-->
             <div class="wrapper">
-                <div >
+                <div class="show-hero" heroType="warrior">
                     <label style="display: block; position: relative"></label><br/>
                     <label style="display: block; position: relative">
                         <input type="radio" asp-for="HeroType" value="/img/hero1.png"
                                style="visibility: hidden;"><span style="background: url(/img/hero1.png) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span></label>
                 </div>
-                <div class="hero-check">
+                <div class="hero-check show-hero" heroType="robber">
                     <label style="display: block; position: relative"></label><br/>
                     <label style="display: block; position: relative">
                         <input type="radio" asp-for="HeroType" value="/img/hero2.png"
                                style="visibility: hidden;"><span style="background: url(/img/hero2.png) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span></label>
                 </div>
-                <div class="hero-check2">
+                <div class="hero-check2 show-hero" heroType="crook">
                     <label style="display: block; position: relative"></label><br/>
                     <label style="display: block; position: relative">
                         <input type="radio" asp-for="HeroType" value="/img/hero3.png"
@@ -90,3 +90,39 @@
         </form>
     </div>
 </div>
+
+<script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>
+<script type="text/javascript">
+    var heroDescs = {
+        warrior: {
+            name: "Воин",
+            desc: "В силе воинам этих мест нет равных.\n\nСила +5"
+        },
+        robber: {
+            name: "Разбойник",
+            desc: "Разбойники здешних краёв всегда отличались прыткостью.\n\nЛовкость +5"
+        },
+        crook: {
+            name: "Плут",
+            desc: "Когда-то и его вела дорога приключений...\n\nИнтеллект +5"
+        }
+    }
+    tippy('.show-hero',
+        {
+            trigger: "mouseenter",
+            followCursor: true,
+            content(reference) {
+                var container = document.createElement('div');
+                var actionIndex = reference.getAttribute('heroType');
+                var heroInfo = heroDescs[actionIndex];
+    
+                var name = document.createElement("h5");
+                name.innerText = heroInfo.name;
+                var desc = document.createElement("p");
+                desc.innerText = heroInfo.desc;
+                container.appendChild(name);
+                container.appendChild(desc);
+                return container;
+            }
+        });
+</script>
