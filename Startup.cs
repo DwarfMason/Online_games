@@ -62,8 +62,7 @@ namespace WebApplication1
 
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-
+           
             app.UseAuthentication();
 
             app.UseMvc(routes =>
@@ -72,6 +71,9 @@ namespace WebApplication1
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            
+            app.UseCookiePolicy();
+
             GMobsList.init();
             GItemsList.init();
             GWorld.init();

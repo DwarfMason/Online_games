@@ -213,7 +213,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Profile", "Account");
         }
         
-        public async Task<ActionResult> IncreaseAgility ()
+        public async Task<ActionResult> IncreaseAgility()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
             var statPrice = CCultivator.GetStatPrice(cult.Stats.MainStats.Agility);
@@ -222,6 +222,10 @@ namespace WebApplication1.Controllers
                 cult.Gold -= statPrice;
                 cult.Stats.MainStats.Agility++;
                 await cultivatordb.Update(cult);
+            }
+            else
+            {
+                ViewData["Error"] = "Not enough money!";
             }
             return RedirectToAction("Profile", "Account");
         }
@@ -236,6 +240,10 @@ namespace WebApplication1.Controllers
                 cult.Stats.MainStats.Strength++;
                 await cultivatordb.Update(cult);
             }
+            else
+            {
+                TempData["Error"] = "Not enough money!";
+            }
             return RedirectToAction("Profile", "Account");
         }
         
@@ -249,6 +257,10 @@ namespace WebApplication1.Controllers
                 cult.Stats.MainStats.Intelligence++;
                 await cultivatordb.Update(cult);
             }
+            else
+            {
+                TempData["Error"] = "Not enough money!";
+            }
             return RedirectToAction("Profile", "Account");
         }
         
@@ -261,6 +273,10 @@ namespace WebApplication1.Controllers
                 cult.Gold -= statPrice;
                 cult.Stats.MainStats.Endurance++;
                 await cultivatordb.Update(cult);
+            }
+            else
+            {
+                TempData["Error"] = "Not enough money!";
             }
             return RedirectToAction("Profile", "Account");
         }
