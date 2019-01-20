@@ -12,11 +12,13 @@ namespace WebApplication1.Game.BaseClasses
     public class СEventLocation
     {
         private Stack<CCultivator> PlayersGathering = new Stack<CCultivator>();
+        private static CultivatorContext ccontext = new CultivatorContext();
 
         public void Add(CCultivator cult)
         {
             PlayersGathering.Push(cult);
             cult.IsInAction = true;
+            ccontext.Update(cult);
             Instructions(cult);
             CreateAdventure(cult);
             PlayersGathering.Pop();
@@ -32,6 +34,7 @@ namespace WebApplication1.Game.BaseClasses
                 cult.Tier++;
             }
             cult.IsInAction = false;
+            ccontext.Update(cult);
         }
 
         
@@ -51,6 +54,7 @@ namespace WebApplication1.Game.BaseClasses
                    MobBattle(cult);
                     break;
             }
+            ccontext.Update(cult);
         }
        
         

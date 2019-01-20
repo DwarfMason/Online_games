@@ -108,5 +108,25 @@ namespace WebApplication1.Controllers
             TempData["Nickname"] = cult.Name;
             return View(cult.LocationId);
         }
+       
+        public async Task<IActionResult> Adventure(bool? finished)
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            TempData["Gold"] = cult.Gold;
+            TempData["Nickname"] = cult.Name;
+            TempData["InProcess"] = finished.HasValue;
+            if (finished.HasValue)
+            {
+                TempData["Finished"] = finished.Value;
+                if (!finished.Value)
+                {
+                    GEventLocation.EventLocation.Add(cult);
+                    await cultivatordb.Update(cult);
+                    TempData["Finished"] = true;
+                }
+            }
+            return View();
+        }
+        
     }
 }

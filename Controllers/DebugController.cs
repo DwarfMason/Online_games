@@ -47,8 +47,7 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> Adventure()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
-            СEventLocation location = new СEventLocation();
-            location.Add(cult);
+            GEventLocation.EventLocation.Add(cult);
             await cultivatordb.Update(cult);
             return RedirectToAction("Index", "Debug");
         }

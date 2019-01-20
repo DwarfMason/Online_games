@@ -1,0 +1,53 @@
+@using WebApplication1.Game
+
+@{
+    ViewData["Title"] = "Adventure Mode";
+}
+
+<div class="text-center">
+    <img src="/img/forest.jpg" style="height: 350px; margin-bottom: 5px;" class="img-fluid"/>
+    <p>
+    @if (TempData["InProcess"].Equals(false))
+    {
+        <button class="btn btn-success" id="go-adventure" 
+           href="@Url.Action("Adventure", new
+                 {
+                     finished = false
+                 })" disabled>
+            В приключение
+        </button>
+        <script type="text/javascript" defer>
+            window.onload = function() {
+                $("#go-adventure").removeAttr('disabled');
+                $("#go-adventure").click(function(e) {
+                    e.preventDefault();
+                    $(this).removeClass("btn-success").addClass("btn-light").text("И тут всё заверте...");
+                    $("a").css('cursor', "default").click(function() {
+                        return false;
+                    });
+                    window.location.href = $(this).attr('href');
+                });
+            }
+        </script>
+    }
+    else
+    {
+        if (TempData["Finished"].Equals(false))
+        {
+            <h4>И тут всё заверте...</h4>
+            
+        }
+        else
+        {
+            var ccontext = new CultivatorContext();
+            var cult = await ccontext.GetCultivator(User.Identity.Name);
+
+            var story = cult.Event.LastEventStory;
+            
+            <p>
+                @story
+            </p>
+    }
+    }
+    </p>
+</div>

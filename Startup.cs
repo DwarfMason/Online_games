@@ -77,6 +77,7 @@ namespace WebApplication1
             GMobsList.init();
             GItemsList.init();
             GWorld.init();
+            GEventLocation.init();
         }
     }
 }
