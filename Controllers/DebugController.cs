@@ -42,13 +42,13 @@ namespace WebApplication1.Controllers
             await cultivatordb.Update(cult);
             return RedirectToAction("Index", "Debug");
         }
-        
+
         [Authorize]
-        public async Task<ActionResult> FightMob()
+        public async Task<ActionResult> Adventure()
         {
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
-            var location = new СEventLocation();
-            location.CreateAdventure(cult);
+            СEventLocation location = new СEventLocation();
+            location.Add(cult);
             await cultivatordb.Update(cult);
             return RedirectToAction("Index", "Debug");
         }

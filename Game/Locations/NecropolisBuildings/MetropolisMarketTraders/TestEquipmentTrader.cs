@@ -15,17 +15,17 @@ namespace WebApplication1.Game.Locations.NecropolisBuildings.MetropolisMarketTra
                 new CCultivator.CStats(0,0,0,0,0,0,0,1,1,1,1),
                 new CCultivator.CStats(3,3,3,3,3,3,3,1,1,1,1)
                 , 3)// Матожидание распределения
-                , 1),//Цена
+                , 40),//Цена
                 new EquipmentTraderAction(new CEquipmentGenerator<CLeggins>(1001,
                         new CCultivator.CStats(1,1,1,1,0,0,0,1,1,1,1),
                         new CCultivator.CStats(5,5,5,5,3,3,3,1,1,1,1)
                         , 4)
-                    , 30),
+                    , 60),
                 new EquipmentTraderAction(new CEquipmentGenerator<CPlate>(1010,
                         new CCultivator.CStats(0,0,0,0,0,0,0,1,1,1,1),
                         new CCultivator.CStats(3,3,3,3,3,3,3,1,1,1,1)
                         , 7)// Матожидание распределения
-                    , 1)////Цена
+                    , 70)////Цена
             },  "/img/weapon_trader.png")
         {
             Description="Я вас категорически приветствую.\nНет, мы раньше не виделись.\n Что значит видел такое тело?\nЛибо покупай товар, либо выметывайся!";

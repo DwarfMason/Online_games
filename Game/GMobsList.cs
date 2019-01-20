@@ -35,6 +35,8 @@ namespace WebApplication1.Game
             new CMob(0, 1, "Мышь", "Кродёться", "/img/mouse.jpg");
             new CMob(1, 2, "Слизень", "Когда-то у него не было девушки", "/img/slime.png");
             new CMob(2, 6, "Разрабы", "Надеюсь они не доживут до релиза", "/img/developers.png");
+            new CMob(3, 3, "Тренировочная кукла", "Даже она тебя изобьет", "/img/maniquen.png");
+            new CMob(4, 5, "Страшная книга", "Не, ну а че там буквы", "/img/book.png");
         }
     }
 }
