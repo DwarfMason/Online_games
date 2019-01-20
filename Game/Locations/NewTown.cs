@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using WebApplication1.Game.BaseClasses;
 using WebApplication1.Game.Locations.NecropolisBuildings;
+using WebApplication1.Game.Locations.NewTownBuildings;
 using WebApplication1.Game.UpdateClasses.Buildings;
 
 namespace WebApplication1.Game.Locations
@@ -13,6 +14,7 @@ namespace WebApplication1.Game.Locations
             Description = "новый город для продвинутых игроков";
             SubLocations = new List<CLocation>
             {
+                new NewTownMarket(gInt,Id)
             };
             Directions = new List<LCLocation>();
             foreach (var i in SubLocations)
