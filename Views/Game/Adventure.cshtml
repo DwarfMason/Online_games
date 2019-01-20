@@ -25,6 +25,7 @@
                     $("a").css('cursor', "default").click(function() {
                         return false;
                     });
+                    $(this).attr("disabled", "true");
                     window.location.href = $(this).attr('href');
                 });
             }
