@@ -34,7 +34,7 @@ namespace WebApplication1.Game
             };
             Map[SubLocations[1].Id]= new List<CLocation>
             {
-                SubLocations[2],
+                SubLocations[0],
             };
         }
         public void updateNow()
