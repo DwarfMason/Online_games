@@ -20,9 +20,17 @@
                    asp-route-id="@Model.ParentLoc.Id">
                     Выйти из города
                 </a>
-            </div>
-                
+            </div>         
             
         }
+    }else
+    {
+        <div>
+            <a class="btn btn-primary"
+               asp-action="go"
+               asp-route-id="@Model">
+                Вернуться в город
+            </a>
+        </div>                
     }
 }
