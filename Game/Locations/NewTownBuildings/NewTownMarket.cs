@@ -1,25 +1,20 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebApplication1.Game.UpdateClasses.Buildings;
-using WebApplication1.Game;
 using WebApplication1.Game.BaseClasses;
 using WebApplication1.Game.Locations.NecropolisBuildings.MetropolisMarketTraders;
+using WebApplication1.Game.UpdateClasses.Buildings;
 
-namespace WebApplication1.Game.Locations.NecropolisBuildings
+namespace WebApplication1.Game.Locations.NewTownBuildings
 {
-    public class NecropolisMarket : CMarket
+    public class NewTownMarket: CMarket
     {
-        public NecropolisMarket(GInt gInt, int? p) : base(gInt, "Рынок Метрополиса",p,
+        public NewTownMarket(GInt gInt, int? p) : base(gInt, "Рынок города света",p,
             "/img/shop-icon.png","/img/shop-icon.png")
         {
-            Description = "Пока есть только торговец палками";
+            Description = "";
             SubLocations = new List<CLocation>
             {
-                new TestTrader(gInt,Id),
-                new TestEquipmentTrader(gInt,Id),
-                
+                new SwordTrader(gInt,Id),
+                new AmuletTrader(gInt,Id),
             };
             Directions=new List<LCLocation>();
             foreach (var i in SubLocations)
