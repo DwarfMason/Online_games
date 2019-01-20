@@ -16,6 +16,8 @@ namespace WebApplication1.Game.BaseClasses
             Picture = picture;
             GItemsList.Add(this);
         }
+
+        public virtual CCultivator.CStats Bonus { get; set; } = null;
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

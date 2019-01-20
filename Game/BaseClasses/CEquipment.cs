@@ -5,7 +5,7 @@ namespace WebApplication1.Game.BaseClasses
 {
     public class CEquipmentDescription:CItemDescription
     {
-        public CCultivator.CStats Bonus { get; set; } = new CCultivator.CStats();
+        public override CCultivator.CStats Bonus { get; set; } = new CCultivator.CStats();
         
         public CEquipmentDescription(int id, string name, string description, string picture) : base(id, name, description, picture)
         {         

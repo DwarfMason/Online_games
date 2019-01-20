@@ -40,43 +40,67 @@
                     '@item.Id': '@Html.Raw(item.Description().Description)',
                 </text>
             }
-            @foreach (var item in eqs.Boots)
+        }
+        var bootsDescs = {
+            @for (var i = 0; i < eqs.Boots.Count; ++i)
             {
-                <text>
-                    '@item.Id': '@Html.Raw(item.Description().Description)',
-                </text>
+                var item = eqs.Boots[i];
+                 <text>
+                     '@i': 'Сила: @Html.Raw(item.Bonus.MainStats.Strength)\nЛовкость:\
+                    @Html.Raw(item.Bonus.MainStats.Agility)\nИнтеллект: @Html.Raw(item.Bonus.MainStats.Intelligence)\nВыносливость: @Html.Raw(item.Bonus.MainStats.Endurance)',
+                 </text>
             }
-            @foreach (var item in eqs.Plates)
+        }
+        var plateDescs = {
+            @for (var i = 0; i < eqs.Plates.Count; ++i)
             {
-                <text>
-                    '@item.Id': '@Html.Raw(item.Description().Description)',
-                </text>
+                var item = eqs.Plates[i];
+                 <text>
+                     '@i': 'Сила: @Html.Raw(item.Bonus.MainStats.Strength)\nЛовкость:\
+                    @Html.Raw(item.Bonus.MainStats.Agility)\nИнтеллект: @Html.Raw(item.Bonus.MainStats.Intelligence)\nВыносливость: @Html.Raw(item.Bonus.MainStats.Endurance)',
+                 </text>
             }
-            @foreach (var item in eqs.Swords)
+        }
+        var swordDescs = {
+            @for (var i = 0; i < eqs.Swords.Count; ++i)
             {
-                <text>
-                    '@item.Id': '@Html.Raw(item.Description().Description)',
-                </text>
+                var item = eqs.Swords[i];
+                 <text>
+                     '@i': 'Сила: @Html.Raw(item.Bonus.MainStats.Strength)\nЛовкость:\
+                    @Html.Raw(item.Bonus.MainStats.Agility)\nИнтеллект: @Html.Raw(item.Bonus.MainStats.Intelligence)\nВыносливость: @Html.Raw(item.Bonus.MainStats.Endurance)',
+                 </text>
             }
-            @foreach (var item in eqs.Amulets)
+        }
+        var amuletDescs = {
+            @for (var i = 0; i < eqs.Amulets.Count; ++i)
             {
-                <text>
-                    '@item.Id': '@Html.Raw(item.Description().Description)',
-                </text>
+                var item = eqs.Amulets[i];
+                 <text>
+                     '@i': 'Сила: @Html.Raw(item.Bonus.MainStats.Strength)\nЛовкость:\
+                    @Html.Raw(item.Bonus.MainStats.Agility)\nИнтеллект: @Html.Raw(item.Bonus.MainStats.Intelligence)\nВыносливость: @Html.Raw(item.Bonus.MainStats.Endurance)',
+                 </text>
             }
-            @foreach (var item in eqs.Helmets)
+        }
+        var helmetDescs = {
+            @for (var i = 0; i < eqs.Helmets.Count; ++i)
             {
-                <text>
-                    '@item.Id': '@Html.Raw(item.Description().Description)',
-                </text>
+                var item = eqs.Helmets[i];
+                 <text>
+                     '@i': 'Сила: @Html.Raw(item.Bonus.MainStats.Strength)\nЛовкость:\
+                    @Html.Raw(item.Bonus.MainStats.Agility)\nИнтеллект: @Html.Raw(item.Bonus.MainStats.Intelligence)\nВыносливость: @Html.Raw(item.Bonus.MainStats.Endurance)',
+                 </text>
             }
-            @foreach (var item in eqs.Leggins)
+        }
+        var legginsDescs = {
+            @for (var i = 0; i < eqs.Leggins.Count; ++i)
             {
-                <text>
-                    '@item.Id': '@Html.Raw(item.Description().Description)',
-                </text>
+                var item = eqs.Leggins[i];
+                 <text>
+                     '@i': 'Сила: @Html.Raw(item.Bonus.MainStats.Strength)\nЛовкость:\
+                    @Html.Raw(item.Bonus.MainStats.Agility)\nИнтеллект: @Html.Raw(item.Bonus.MainStats.Intelligence)\nВыносливость: @Html.Raw(item.Bonus.MainStats.Endurance)',
+                 </text>
             }
-        };
+        }
         var itemNames = {
             @foreach (var item in items)
             {
@@ -129,11 +153,82 @@
         <div class="row">
             <div class="col">
                 <h4>Your hero</h4>
-                <span style="background: url(@TempData["HeroType"]) no-repeat; position: absolute; width: 300px; height: 484px; cursor: pointer"></span>
+                <span style="background: url(@TempData["HeroType"]) no-repeat; position: absolute; width: 300px; height: 75%; cursor: pointer"></span>
             </div>
             <div class="col">
                 <p><b>Tier:</b> @TempData["Tier"]</p>
-                <br/>
+                <h4>Inventory:</h4>
+                <p><img src="/img/shekel.png" width="16" height="16" style="margin-bottom: 3px;"/> <b>Gold:</b>@TempData["Gold"]</p>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-items-tab" data-toggle="tab" href="#nav-items" role="tab">Items</a>
+                        <a class="nav-item nav-link" id="nav-eqs-tab" data-toggle="tab" href="#nav-eqs" role="tab">Equipments</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-items" role="tabpanel">
+                        @Html.Partial("_ItemGrid", new ItemGridParams
+                        {
+                            Items = items
+                        })
+                    </div>
+                    <div class="tab-pane fade" id="nav-eqs" role="tabpanel">
+                        <p><strong>Boots:</strong></p>
+                        @Html.Partial("_EquipGrid", new ItemGridParams
+                        {
+                            Items = eqs.Boots.ConvertAll(x => (CItemInventory) x),
+                            height = 2,
+                            ItemCssClass = "with-boots",
+                            SelectionId = eqs.CurrentBoots,
+                            Action = "SetBoots"
+                        })
+                        <p><strong>Plates:</strong></p>
+                        @Html.Partial("_EquipGrid", new ItemGridParams
+                        {
+                            Items = eqs.Plates.ConvertAll(x => (CItemInventory) x),
+                            height = 2,
+                            ItemCssClass = "with-plate",
+                            SelectionId = eqs.CurrentPlate,
+                            Action = "SetPlate"
+                        })
+                        <p><strong>Swords:</strong></p>
+                        @Html.Partial("_EquipGrid", new ItemGridParams
+                        {
+                            Items = eqs.Swords.ConvertAll(x => (CItemInventory) x),
+                            height = 2,
+                            ItemCssClass = "with-sword",
+                            SelectionId = eqs.CurrentSword,
+                            Action = "SetSword"
+                        })
+                        <p><strong>Amulets:</strong></p>
+                        @Html.Partial("_EquipGrid", new ItemGridParams
+                        {
+                            Items = eqs.Amulets.ConvertAll(x => (CItemInventory) x),
+                            height = 2,
+                            ItemCssClass = "with-amulet",
+                            SelectionId = eqs.CurrentAmulet,
+                            Action = "SetAmulet"
+                        })
+                        <p><strong>Helmets:</strong></p>
+                        @Html.Partial("_EquipGrid", new ItemGridParams
+                        {
+                            Items = eqs.Helmets.ConvertAll(x => (CItemInventory) x),
+                            height = 2,
+                            ItemCssClass = "with-helmet",
+                            SelectionId = eqs.CurrentHelmet,
+                            Action = "SetHelmet"
+                        })
+                        <p><strong>Leggins:</strong></p>
+                        @Html.Partial("_EquipGrid", new ItemGridParams
+                        {
+                            Items = eqs.Leggins.ConvertAll(x => (CItemInventory) x),
+                            height = 2,
+                            ItemCssClass = "with-leggins",
+                            SelectionId = eqs.CurrentLeggins,
+                            Action = "SetLeggins"
+                        })
+                    </div>
+                </div>
                 <h4>Stats:</h4>
                 <ul class="list-group">
                     <li class="list-group-item">
@@ -213,79 +308,6 @@
                         </div>
                     </li>
                 </ul>
-                <br/>
-                <h4>Inventory:</h4>
-                <p><img src="/img/shekel.png" width="16" height="16" style="margin-bottom: 3px;"/> <b>Gold:</b>@TempData["Gold"]</p>
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-items-tab" data-toggle="tab" href="#nav-items" role="tab">Items</a>
-                        <a class="nav-item nav-link" id="nav-eqs-tab" data-toggle="tab" href="#nav-eqs" role="tab">Equipments</a>
-                    </div>
-                </nav>
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-items" role="tabpanel">
-                        @Html.Partial("_ItemGrid", new ItemGridParams
-                        {
-                            Items = items
-                        })
-                    </div>
-                    <div class="tab-pane fade" id="nav-eqs" role="tabpanel">
-                        <p><strong>Boots:</strong></p>
-                        @Html.Partial("_ItemGrid", new ItemGridParams
-                        {
-                            Items = eqs.Boots.ConvertAll(x => (CItemInventory) x),
-                            height = 2,
-                            ItemCssClass = "with-equip",
-                            SelectionId = eqs.CurrentBoots,
-                            Action = "SetBoots"
-                        })
-                        <p><strong>Plates:</strong></p>
-                        @Html.Partial("_ItemGrid", new ItemGridParams
-                        {
-                            Items = eqs.Plates.ConvertAll(x => (CItemInventory) x),
-                            height = 2,
-                            ItemCssClass = "with-equip",
-                            SelectionId = eqs.CurrentPlate,
-                            Action = "SetPlate"
-                        })
-                        <p><strong>Swords:</strong></p>
-                        @Html.Partial("_ItemGrid", new ItemGridParams
-                        {
-                            Items = eqs.Swords.ConvertAll(x => (CItemInventory) x),
-                            height = 2,
-                            ItemCssClass = "with-equip",
-                            SelectionId = eqs.CurrentSword,
-                            Action = "SetSword"
-                        })
-                        <p><strong>Amulets:</strong></p>
-                        @Html.Partial("_ItemGrid", new ItemGridParams
-                        {
-                            Items = eqs.Amulets.ConvertAll(x => (CItemInventory) x),
-                            height = 2,
-                            ItemCssClass = "with-equip",
-                            SelectionId = eqs.CurrentAmulet,
-                            Action = "SetAmulet"
-                        })
-                        <p><strong>Helmets:</strong></p>
-                        @Html.Partial("_ItemGrid", new ItemGridParams
-                        {
-                            Items = eqs.Helmets.ConvertAll(x => (CItemInventory) x),
-                            height = 2,
-                            ItemCssClass = "with-equip",
-                            SelectionId = eqs.CurrentHelmet,
-                            Action = "SetHelmet"
-                        })
-                        <p><strong>Leggins:</strong></p>
-                        @Html.Partial("_ItemGrid", new ItemGridParams
-                        {
-                            Items = eqs.Leggins.ConvertAll(x => (CItemInventory) x),
-                            height = 2,
-                            ItemCssClass = "with-equip",
-                            SelectionId = eqs.CurrentLeggins,
-                            Action = "SetLeggins"
-                        })
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -309,23 +331,118 @@
                     return container;
                 }
             });
-        tippy('.with-equip',
+        
+        tippy('.with-boots',
             {
                 trigger: "mouseenter",
                 followCursor: true,
                 content(reference) {
                     var itemId = reference.getAttribute('item-id');
+                    var itemIndex = reference.getAttribute('item-index');
                     var container = document.createElement('div');
                     var itemName = itemNames[itemId];
-                    var itemDesc = itemDescriptions[itemId];
+                    var itemDesc = bootsDescs[itemIndex];
                     var title = document.createElement("h5");
                     title.innerText = itemName;
                     var desc = document.createElement("p");
                     desc.innerText = itemDesc;
                     container.appendChild(title);
                     container.appendChild(desc);
-                    // TODO stats
-                    // because dzyuba pidor and don't save stats somewhere I can fetch them easily
+                    return container;
+                }
+            });
+        tippy('.with-plate',
+            {
+                trigger: "mouseenter",
+                followCursor: true,
+                content(reference) {
+                    var itemId = reference.getAttribute('item-id');
+                    var itemIndex = reference.getAttribute('item-index');
+                    var container = document.createElement('div');
+                    var itemName = itemNames[itemId];
+                    var itemDesc = plateDescs[itemIndex];
+                    var title = document.createElement("h5");
+                    title.innerText = itemName;
+                    var desc = document.createElement("p");
+                    desc.innerText = itemDesc;
+                    container.appendChild(title);
+                    container.appendChild(desc);
+                    return container;
+                }
+            });
+        tippy('.with-sword',
+            {
+                trigger: "mouseenter",
+                followCursor: true,
+                content(reference) {
+                    var itemId = reference.getAttribute('item-id');
+                    var itemIndex = reference.getAttribute('item-index');
+                    var container = document.createElement('div');
+                    var itemName = itemNames[itemId];
+                    var itemDesc = swordDescs[itemIndex];
+                    var title = document.createElement("h5");
+                    title.innerText = itemName;
+                    var desc = document.createElement("p");
+                    desc.innerText = itemDesc;
+                    container.appendChild(title);
+                    container.appendChild(desc);
+                    return container;
+                }
+            });
+        tippy('.with-amulet',
+            {
+                trigger: "mouseenter",
+                followCursor: true,
+                content(reference) {
+                    var itemId = reference.getAttribute('item-id');
+                    var itemIndex = reference.getAttribute('item-index');
+                    var container = document.createElement('div');
+                    var itemName = itemNames[itemId];
+                    var itemDesc = amuletDescs[itemIndex];
+                    var title = document.createElement("h5");
+                    title.innerText = itemName;
+                    var desc = document.createElement("p");
+                    desc.innerText = itemDesc;
+                    container.appendChild(title);
+                    container.appendChild(desc);
+                    return container;
+                }
+            });
+        tippy('.with-helmet',
+            {
+                trigger: "mouseenter",
+                followCursor: true,
+                content(reference) {
+                    var itemId = reference.getAttribute('item-id');
+                    var itemIndex = reference.getAttribute('item-index');
+                    var container = document.createElement('div');
+                    var itemName = itemNames[itemId];
+                    var itemDesc = helmetDescs[itemIndex];
+                    var title = document.createElement("h5");
+                    title.innerText = itemName;
+                    var desc = document.createElement("p");
+                    desc.innerText = itemDesc;
+                    container.appendChild(title);
+                    container.appendChild(desc);
+                    return container;
+                }
+            });
+        tippy('.with-leggins',
+            {
+                trigger: "mouseenter",
+                followCursor: true,
+                content(reference) {
+                    var itemId = reference.getAttribute('item-id');
+                    var itemIndex = reference.getAttribute('item-index');
+                    var container = document.createElement('div');
+                    var itemName = itemNames[itemId];
+                    var itemDesc = legginsDescs[itemIndex];
+                    var title = document.createElement("h5");
+                    title.innerText = itemName;
+                    var desc = document.createElement("p");
+                    desc.innerText = itemDesc;
+                    container.appendChild(title);
+                    container.appendChild(desc);
                     return container;
                 }
             });
