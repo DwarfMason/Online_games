@@ -15,7 +15,7 @@ namespace WebApplication1.Game.BaseClasses
             Random rnd = new Random();
             int gold = rnd.Next(0 + rnd.Next(3, 18) + 100 * cult.Tier);
             CItemDescription item = GItemsList.ItemsList[rnd.Next(0,2)];
-            cult.Event.lastEventStory = "После тщательного обследования каждого уголка локации вы нашли: " + gold + "золота и " + item.Name + "!";
+            cult.Event.LastEventStory = "После тщательного обследования каждого уголка локации вы нашли: " + gold + "золота и " + item.Name + "!";
         }
 
         private CMob MobBattle(CCultivator cult)
@@ -115,7 +115,7 @@ namespace WebApplication1.Game.BaseClasses
             if (cultHp <= 0)
             {
                 cult.Gold = Math.Max(cult.Gold - enemy.Gold, 0);
-                cult.Event.lastEventStory = "Вы проиграли злодею, известному как" + enemy.Name +
+                cult.Event.LastEventStory = "Вы проиграли злодею, известному как" + enemy.Name +
                                  "и он благородно ограбил вас на " + enemy.Gold + " золота. Не плачьте!\n";
                 cult.Points = Math.Max(0, cult.Points - 1);
             }
@@ -123,7 +123,7 @@ namespace WebApplication1.Game.BaseClasses
             {
                 cult.Gold += enemy.Gold;
                 cult.Points += enemy.Difficulty;
-                cult.Event.lastEventStory = "Ну и зачем ты избил малыша" + enemy.Name +
+                cult.Event.LastEventStory = "Ну и зачем ты избил малыша" + enemy.Name +
                                  "\n еще и деньги забрали: " + enemy.Gold + " золота.\nНе злорадствуй, пока не побили!\n";
             }
             return enemy;

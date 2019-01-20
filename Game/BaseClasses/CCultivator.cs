@@ -35,31 +35,31 @@ namespace WebApplication1.Game.BaseClasses
                 Scales.Intelligence = S_I;
                 Scales.Strength = S_S;
             }
-            public CMainStats MainStats  = new CMainStats();
-            public CSubStats SubStats  = new CSubStats();
-            public CScales Scales  = new CScales();
+            public CMainStats MainStats { get; set; } = new CMainStats();
+            public CSubStats SubStats { get; set; } = new CSubStats();
+            public CScales Scales { get; set; } = new CScales();
 
             public class CMainStats
             {
-                public double Strength  = 5;
-                public double Agility  = 5;
-                public double Intelligence  = 5;
-                public double Endurance  = 5;
+                public double Strength { get; set; } = 5;
+                public double Agility { get; set; } = 5;
+                public double Intelligence { get; set; } = 5;
+                public double Endurance { get; set; } = 5;
             }
 
             public class CSubStats
             {
-                public double Luck  = 5;
-                public double Charisma  = 5;
-                public double Perception  = 5;
+                public double Luck { get; set; } = 5;
+                public double Charisma { get; set; } = 5;
+                public double Perception { get; set; } = 5;
             }
 
             public class CScales
             {
-                public double Strength  = 1;
-                public double Agility  = 1;
-                public double Intelligence  = 1;
-                public double Endurance  = 1;
+                public double Strength { get; set; } = 1;
+                public double Agility { get; set; } = 1;
+                public double Intelligence { get; set; } = 1;
+                public double Endurance { get; set; } = 1;
             }
 
             public CStats Copy()
@@ -239,30 +239,30 @@ namespace WebApplication1.Game.BaseClasses
 
         public class LastEvent
         {
-            public string lastEventStory  = "Ничего интересного";
+            public string LastEventStory = "Ничего интересного";
 
-            public int Crits  = 0;
-            public int Heals  = 0;
-            public int TriesHard  = 0;
-        }
+            public int Crits = 0;
+            public int Heals = 0;
+            public int TriesHard = 0;
+        } 
+            
+            
+        public string Id { get; set; }
 
+        [BsonId] public string PlayerId { get; set; }
+        public string Name { get; set; }
 
-        public string Id; 
-
-        [BsonId] public string PlayerId;
-        public string Name;
-
-        public int Points  = 0;
+        public int Points { get; set; } = 0;
         public bool IsInAction = false;
-        public int Tier  = 0;
+        public int Tier { get; set; } = 0;
 
-        public CStats Stats  = new CStats();
-        public string HeroType;
+        public CStats Stats { get; set; } = new CStats();
+        public string HeroType { get; set; }
 
-        public int Gold  = 10;
-        public int LocationId  = 0;
+        public int Gold { get; set; } = 10;
+        public int LocationId { get; set; } = 0;
         public LastEvent Event = new LastEvent();
-        public CInventory Inventory  = new CInventory();
-        public CEquipments Equipments  = new CEquipments();
+        public CInventory Inventory { get; set; } = new CInventory();
+        public CEquipments Equipments { get; set; } = new CEquipments();
     }
 }
