@@ -29,7 +29,7 @@ namespace WebApplication1.Game.BaseClasses
             {
                
             }
-
+            
             if (cultHp <= 0)
             {
                 cult.Gold -= enemy.Gold;

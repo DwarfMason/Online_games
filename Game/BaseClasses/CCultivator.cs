@@ -103,7 +103,7 @@ namespace WebApplication1.Game.BaseClasses
                 {
                     if (Items[i].Id == itemInventory.Id)
                     {
-                        Items[itemInventory.Id].Count += itemInventory.Count;
+                        Items[i].Count += 1;
                         f = false;
                         break;
                     }
