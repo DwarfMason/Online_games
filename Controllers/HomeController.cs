@@ -44,13 +44,20 @@ namespace WebApplication1.Controllers
 
         public async Task<IActionResult> RecordList()
         {
-            var cultivators = await cultivatordb.GetAllCults();
-            var enumerator = cultivators.GetEnumerator();
-            List<CCultivator> topList = new List<CCultivator>();
-            topList = new List<CCultivator>();
-            for(;enumerator.MoveNext();)
-                topList.Add(enumerator.Current);
-            ViewBag.TopList = topList;
+            if (User.Identity.IsAuthenticated)
+            {
+                var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+                TempData["Nickname"] = cult.Name;
+                TempData["Gold"] = cult.Gold;
+                var cultivators = await cultivatordb.GetAllCults();
+                var enumerator = cultivators.GetEnumerator();
+                List<CCultivator> topList = new List<CCultivator>();
+                topList = new List<CCultivator>();
+                for (; enumerator.MoveNext();)
+                    topList.Add(enumerator.Current);
+                ViewBag.TopList = topList;
+            }
+
             return View();
         }
     }

@@ -40,14 +40,14 @@
     <table>
         <tr>
             <th>Player</th>
-            <th>Points</th>
+            <th>Tier</th>
         </tr>    
         @{
         foreach (var cult in ViewBag.TopList)
         {
             <tr>
             <td>@cult.Name</td>
-            <td>@cult.Points</td>
+            <td>@cult.Tier</td>
             </tr>
         }
     }
