@@ -1,0 +1,28 @@
+@model int
+@using WebApplication1.Game
+@using WebApplication1.Game.BaseClasses;
+@using WebApplication1.Game.UpdateClasses.Buildings
+
+@{
+    ViewData["Title"] = "Карта мира";
+}
+
+<partial name="_Back" />
+
+<table>
+    <tr>
+    @foreach (var i in GWorld.World.Map[Model])
+    {
+        <td>
+            <a a asp-controller="Game"
+               asp-action="go"
+               asp-route-id="@i.Id">
+                <div class="text-center">
+                    <h5>@GLocationsList.GetById(i.Id).Name</h5>
+                    <img src="@i.SmallPicture" class="img-fluid" style="width: 50%;">
+                </div>
+            </a>
+        </td>
+    }
+    </tr>
+</table>

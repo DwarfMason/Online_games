@@ -236,12 +236,22 @@ namespace WebApplication1.Game.BaseClasses
             }
             return out_;
         }
+
+        public class LastEvent
+        {
+            public string LastEventStory = "Ничего интересного";
+
+            public int Crits = 0;
+            public int Heals = 0;
+            public int TriesHard = 0;
+        } 
+            
+            
         public string Id { get; set; }
 
         [BsonId] public string PlayerId { get; set; }
         public string Name { get; set; }
 
-        public string LastEvent = "Ничего интересного";
         public int Points { get; set; } = 0;
         public bool IsInAction = false;
         public int Tier { get; set; } = 0;
@@ -251,6 +261,7 @@ namespace WebApplication1.Game.BaseClasses
 
         public int Gold { get; set; } = 10;
         public int LocationId { get; set; } = 0;
+        public LastEvent Event = new LastEvent();
         public CInventory Inventory { get; set; } = new CInventory();
         public CEquipments Equipments { get; set; } = new CEquipments();
     }

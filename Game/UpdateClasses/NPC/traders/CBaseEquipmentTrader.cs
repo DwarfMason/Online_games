@@ -15,7 +15,7 @@ namespace WebApplication1.Game.UpdateClasses.NPC.Traders
                 EquipGenerator = E;
                 Price = price;
                 Requirements = new List<IBaseRequirement> { new  BaseTraderRequirement(price)};
-                TraderItems = new List<CItemInventory> {E.GenerateMin(), E.GenerateMax()};
+                TraderItems = new List<CItemInventory> {E.GenerateMax(), E.GenerateMin()};
             }
             public override void Do(CCultivator c)
             {
