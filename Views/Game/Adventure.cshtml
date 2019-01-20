@@ -9,24 +9,25 @@
     <p>
     @if (TempData["InProcess"].Equals(false))
     {
-        <button class="btn btn-success" id="go-adventure" 
+        <a class="btn btn-success" id="go-adventure" 
            href="@Url.Action("Adventure", new
                  {
                      finished = false
                  })" disabled>
             В приключение
-        </button>
+        </a>
         <script type="text/javascript" defer>
             window.onload = function() {
                 $("#go-adventure").removeAttr('disabled');
-                $("#go-adventure").click(function(e) {
-                    e.preventDefault();
+                $("#go-adventure").one("click", function(e) {
+                    //e.preventDefault();
                     $(this).removeClass("btn-success").addClass("btn-light").text("И тут всё заверте...");
+                    $(this).attr("disabled", "true");
                     $("a").css('cursor', "default").click(function() {
                         return false;
                     });
-                    $(this).attr("disabled", "true");
-                    window.location.href = $(this).attr('href');
+                    
+                    //window.location.href = $(this).attr('href');
                 });
             }
         </script>
