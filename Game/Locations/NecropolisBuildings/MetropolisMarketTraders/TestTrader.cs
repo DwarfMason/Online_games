@@ -31,12 +31,6 @@ namespace WebApplication1.Game.Locations.NecropolisBuildings.MetropolisMarketTra
                         new CItemInventory(GItemsList.GetId("Металл"))                   
                     }
                     ,40),
-                new DealerAction(new List<CItemInventory>
-                    { 
-                        new CItemInventory(GItemsList.GetId("Палка")),                   
-                        new CItemInventory(GItemsList.GetId("Говно"))                   
-                    }
-                    ,300)
             },
             "/img/baryga.jpg"
         )

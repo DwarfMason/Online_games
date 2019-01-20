@@ -1,4 +1,5 @@
 using System.Reflection;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc;
 using WebApplication1.Models;
 
 namespace WebApplication1.Game.BaseClasses
@@ -30,7 +31,7 @@ namespace WebApplication1.Game.BaseClasses
             Bonus = bonus.Copy();
         }
         
-        public new CEquipmentInventory Copy()
+        public CEquipmentInventory Copy()
         {
             CEquipmentInventory out_ = new CEquipmentInventory();
             out_.Bonus = Bonus.Copy();
@@ -56,7 +57,7 @@ namespace WebApplication1.Game.BaseClasses
             
         }
         
-        public new CEquipmentDescription Description()
+        public override CItemDescription Description()
         {
             return ((CEquipmentDescription)GItemsList.Get(Id)).Use(Bonus);
         }

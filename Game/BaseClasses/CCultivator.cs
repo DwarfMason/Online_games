@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -63,7 +64,7 @@ namespace WebApplication1.Game.BaseClasses
 
             public CStats Copy()
             {
-                CStats out_=new CStats();
+                CStats out_= new CStats();
                 out_.MainStats.Agility = MainStats.Agility;
                 out_.MainStats.Endurance = MainStats.Endurance;
                 out_.MainStats.Intelligence = MainStats.Intelligence;
@@ -240,7 +241,9 @@ namespace WebApplication1.Game.BaseClasses
         [BsonId] public string PlayerId { get; set; }
         public string Name { get; set; }
 
+        public string LastEvent = "Ничего интересного";
         public int Points { get; set; } = 0;
+        public bool IsInAction = false;
         public int Tier { get; set; } = 0;
 
         public CStats Stats { get; set; } = new CStats();

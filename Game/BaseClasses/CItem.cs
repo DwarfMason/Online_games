@@ -47,7 +47,7 @@ namespace WebApplication1.Game.BaseClasses
             out_.Id = Id;
             return out_;
         }
-        public CItemDescription Description()
+        public virtual CItemDescription Description()
         {
             return GItemsList.Get(this.Id);
         }
