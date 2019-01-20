@@ -17,10 +17,17 @@ namespace WebApplication1.Controllers
             var cult = await cultivatordb.GetCultivator(User.Identity.Name);
             if (Id != null)
             {
-                cult.LocationId = (int)Id;
-                await cultivatordb.Update(cult);
+                if (Id != 0)
+                {
+                    cult.LocationId = (int) Id;
+                    await cultivatordb.Update(cult);
+                }
+                else
+                {
+                    return RedirectToAction("Map");
+                }
             }
-
+            
             if (cult.LocationId == 0)
             {
                 cult.LocationId = 1;
@@ -92,6 +99,14 @@ namespace WebApplication1.Controllers
             TempData["Gold"] = cult.Gold;
             TempData["Nickname"] = cult.Name;
             return View();
+        }
+        
+        public async Task<IActionResult> Map()
+        {
+            var cult = await cultivatordb.GetCultivator(User.Identity.Name);
+            TempData["Gold"] = cult.Gold;
+            TempData["Nickname"] = cult.Name;
+            return View(cult.LocationId);
         }
     }
 }

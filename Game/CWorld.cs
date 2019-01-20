@@ -6,6 +6,7 @@ using System.Threading;
 using WebApplication1.Game;
 using WebApplication1.Game.BaseClasses;
 using WebApplication1.Game.Locations;
+using WebApplication1.Game.UpdateClasses.Buildings;
 
 namespace WebApplication1.Game
 {
@@ -16,7 +17,7 @@ namespace WebApplication1.Game
         public List<CEvents> EventNow;
         public List<CEvents> Event5Sec;
         public List<CEvents> Event5Min;
-        public Dictionary<int, List<CLocation>> Map; 
+        public Dictionary<int, List<CBuilding>> Map; 
         public CWorld(GInt id) : base(id, "Элдария",0)
         {
             SubLocations=new List<CLocation>{
@@ -27,14 +28,14 @@ namespace WebApplication1.Game
             // Можно потом карту отображать в зависимости от 
             // текущей позиции героя. Хз как.
             // 
-            Map = new Dictionary<int, List<CLocation>>();
-            Map[SubLocations[0].Id]= new List<CLocation>
+            Map = new Dictionary<int, List<CBuilding>>();
+            Map[SubLocations[0].Id]= new List<CBuilding>
             {
-                SubLocations[1],
+                (CBuilding)SubLocations[1],
             };
-            Map[SubLocations[1].Id]= new List<CLocation>
+            Map[SubLocations[1].Id]= new List<CBuilding>
             {
-                SubLocations[0],
+                (CBuilding)SubLocations[0],
             };
         }
         public void updateNow()

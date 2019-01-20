@@ -1,13 +1,28 @@
+using System.Collections.Generic;
 using WebApplication1.Game.BaseClasses;
+using WebApplication1.Game.Locations.NecropolisBuildings;
 using WebApplication1.Game.UpdateClasses.Buildings;
 
 namespace WebApplication1.Game.Locations
 {
     public class NewTown:CTown
     {
-        public NewTown(GInt gInt, int? p) : base(gInt, "Новый город(Вставьте имя)", p, 
-            "здесь ссылка на большую картинку", "здесь ссылка на маленькую картинку")
-        {
+        public NewTown(GInt gInt, int? p) : base(gInt, "Город света", p, 
+            "/img/newtown.jpg", "/img/newtown.jpg")
+        { 
+            Description = "новый город для продвинутых игроков";
+            SubLocations = new List<CLocation>
+            {
+            };
+            Directions = new List<LCLocation>();
+            foreach (var i in SubLocations)
+            {
+                Directions.Add(new LCLocation
+                {
+                    LocationId = i.Id,
+                    Time = 0
+                });
+            }
         }
     }
 }
