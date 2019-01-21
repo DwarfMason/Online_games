@@ -1,4 +1,5 @@
-﻿﻿using System.Collections.Generic;
+﻿﻿using System;
+ using System.Collections.Generic;
  using System.Diagnostics;
  using System.Threading.Tasks;
  using WebApplication1.Game;
@@ -55,6 +56,7 @@ namespace WebApplication1.Controllers
                 topList = new List<CCultivator>();
                 for (; enumerator.MoveNext();)
                     topList.Add(enumerator.Current);
+                topList.Sort(new Comparator());
                 ViewBag.TopList = topList;
             }
 
