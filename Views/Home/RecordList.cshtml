@@ -7,31 +7,13 @@
 <head>
     <title>Top List</title>
     <style type="text/css">
-        table {
-            border-spacing: 0 10px;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: bold;
-        }
-        th {
-            padding: 10px 20px;
-            background: #56433D;
-            color: #F9C941;
-            border-right: 2px solid; 
-            font-size: 0.9em;
-        }
-        th:first-child {
-            text-align: left;
-        }
-        td {
-            vertical-align: middle;
-            padding: 10px;
-            font-size: 14px;
-            text-align: center;
-            border-top: 2px solid #56433D;
-            border-left: 2px solid #56433D;
-            border-bottom: 2px solid #56433D;
-            border-right: 2px solid #56433D;
-        }
+        table {width: 100%; text-align: center; border-bottom: 2px solid #dfdfdf; border-radius: 6px; border-collapse: separate; border-spacing: 0px;}
+        table thead tr {color: #ffffff; font-weight: bold; background: #c83240;}
+        table tr td {border-right: 1px solid #dfdfdf;}
+        table tr td:last-child {border-right: 0px;}
+        table tbody tr:nth-child(1n) {background: #f6f6f6;}
+        table tbody tr:nth-child(2n) {background: #e6e6e6;}
+        table tbody tr:hover {background: #ffe8e8; transition-duration: 0.6s;}
     </style>
 </head>
 <body>
