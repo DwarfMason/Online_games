@@ -16,24 +16,26 @@ namespace WebApplication1.Game.BaseClasses
 
         public void Add(CCultivator cult)
         {
+            Thread.CurrentThread.IsBackground = false;
             PlayersGathering.Push(cult);
             cult.IsInAction = true;
             ccontext.Update(cult);
             Instructions(cult);
-            CreateAdventure(cult);
-            PlayersGathering.Pop();
+            
         }
 
-        static void Instructions(CCultivator cult)
+        void Instructions(CCultivator cult)
         {
-            Thread.CurrentThread.IsBackground = true;
+            Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
             Thread.Sleep(30000);
             if (cult.Points > 10)
             {
                 cult.Points -= 10;
                 cult.Tier++;
             }
+            CreateAdventure(cult);
             cult.IsInAction = false;
+            PlayersGathering.Pop();
             ccontext.Update(cult);
         }
 
@@ -41,7 +43,7 @@ namespace WebApplication1.Game.BaseClasses
         private void CreateAdventure(CCultivator cult)
         {
             Random rnd = new Random();
-            int choice = rnd.Next(0, 2);
+            int choice = rnd.Next(0, 3);
             switch(choice)
             {
                 case 0 :
@@ -52,6 +54,9 @@ namespace WebApplication1.Game.BaseClasses
                     break;
                 case 2 :
                    MobBattle(cult);
+                    break;
+                default: 
+                    CasualEvent(cult);
                     break;
             }
             ccontext.Update(cult);
@@ -79,6 +84,7 @@ namespace WebApplication1.Game.BaseClasses
             int cultHp = (int) (3 + (cult.RealStats().MainStats.Endurance + rnd.Next(3,18)) / 5);
             int enemyHp = (int) (3 + (enemy.Endurance + rnd.Next(3,18)) / 5);
 
+            cult.Event.Monster = enemy;
             int cultStr = (int)cult.RealStats().MainStats.Strength;
             int cultAgility = (int) cult.RealStats().MainStats.Agility;
             int cultInt = (int) cult.RealStats().MainStats.Intelligence;
@@ -90,7 +96,7 @@ namespace WebApplication1.Game.BaseClasses
                 // Agility damage + crit
                 var agilityDamage = cultAgility > enemy.Agility
                     ? (int) (Difference(cultAgility, enemy.Agility) * rnd.Next(3, 18) + rnd.Next(3, 18) - rnd.Next(3, 18))
-                    : (int) (rnd.Next(3, 18) - Difference(cultAgility, enemy.Agility) * rnd.Next(3, 18) + rnd.Next(3, 18));
+                    : (int) (rnd.Next(3, 18) - Difference(cultAgility, enemy.Agility) * rnd.Next(3, 18) - rnd.Next(3, 18));
                 
                 bool crit = rnd.Next(1, 20) > 18;
                 
@@ -101,7 +107,7 @@ namespace WebApplication1.Game.BaseClasses
                 }
                 else
                 {
-                    cultHp -= agilityDamage + agilityDamage * (crit ? 1 : 0);
+                    cultHp -= Math.Abs(agilityDamage) + Math.Abs(agilityDamage) * (crit ? 1 : 0);
                 }
                 
                 if (!IsNotDead(cultHp, enemyHp))
@@ -112,7 +118,7 @@ namespace WebApplication1.Game.BaseClasses
                 // Str scope
                 var strengthDamage = cultStr > enemy.Strength
                     ? (int) (Difference(cultStr, enemy.Strength) * rnd.Next(3, 18) + rnd.Next(3, 18) - rnd.Next(3, 18))
-                    : (int) (rnd.Next(3, 18) - Difference(cultStr, enemy.Strength) * rnd.Next(3, 18) + rnd.Next(3, 18));
+                    : (int) (rnd.Next(3, 18) - Difference(cultStr, enemy.Strength) * rnd.Next(3, 18) - rnd.Next(3, 18));
                 
                 bool overTry = rnd.Next(1, 20) > 18;
                 
@@ -123,7 +129,7 @@ namespace WebApplication1.Game.BaseClasses
                 }
                 else
                 {
-                    cultHp -= strengthDamage * (overTry ? 0 : 1);
+                    cultHp -= Math.Abs(strengthDamage) * (overTry ? 0 : 1);
                 }
                 
                 if (!IsNotDead(cultHp, enemyHp))
@@ -134,7 +140,7 @@ namespace WebApplication1.Game.BaseClasses
                 //Int scope
                 var intDamage = cultInt > enemy.Intelligence
                     ? (int) (Difference(cultInt, enemy.Intelligence) * rnd.Next(3, 18) + rnd.Next(3, 18) - rnd.Next(3, 18))
-                    : (int) (rnd.Next(3, 18) - Difference(cultInt, enemy.Intelligence) * rnd.Next(3, 18) + rnd.Next(3, 18));
+                    : (int) (rnd.Next(3, 18) - Difference(cultInt, enemy.Intelligence) * rnd.Next(3, 18) - rnd.Next(3, 18));
                 
                 bool heal = rnd.Next(1, 20) > 18;
                 
@@ -154,11 +160,11 @@ namespace WebApplication1.Game.BaseClasses
                 {
                     if (heal)
                     {
-                        enemyHp += intDamage;
+                        enemyHp += Math.Abs(intDamage);
                     }
                     else
                     {
-                        cultHp -= intDamage;
+                        cultHp -= Math.Abs(intDamage);
                     }
                 }
             }
@@ -176,6 +182,7 @@ namespace WebApplication1.Game.BaseClasses
                 cult.Points += enemy.Difficulty;
                 cult.Event.LastEventStory = "Ну и зачем ты избил малыша " + enemy.Name +
                                  "\n еще и деньги забрали: " + enemy.Gold + " золота.\nНе злорадствуй, пока не побили!\n";
+                cult.Event.IsWin = true;
             }
             return enemy;
         }
@@ -185,7 +192,7 @@ namespace WebApplication1.Game.BaseClasses
         private void PvPBattle(CCultivator cult1)
         {
             cult1.Event = new CCultivator.LastEvent();
-            if (PlayersGathering.Count < 1)
+            if (PlayersGathering.Count <= 1)
             {
                 cult1.Event.LastEventStory = "Никого нет, увы.";
             }
@@ -217,7 +224,7 @@ namespace WebApplication1.Game.BaseClasses
                     var agilityDamage = cult1Agility > cult2Agility
                         ? (int) (Difference(cult1Agility, cult2Agility) * rnd.Next(3, 18) + rnd.Next(3, 18) -
                                  rnd.Next(3, 18))
-                        : (int) (rnd.Next(3, 18) - Difference(cult1Agility, cult2Agility) * rnd.Next(3, 18) +
+                        : (int) (rnd.Next(3, 18) - Difference(cult1Agility, cult2Agility) * rnd.Next(3, 18) -
                                  rnd.Next(3, 18));
 
                     bool crit = rnd.Next(1, 20) > 18;
@@ -229,7 +236,7 @@ namespace WebApplication1.Game.BaseClasses
                     }
                     else
                     {
-                        cult1Hp -= agilityDamage + agilityDamage * (crit ? 1 : 0);
+                        cult1Hp -= Math.Abs(agilityDamage) + Math.Abs(agilityDamage * (crit ? 1 : 0));
                         cult2.Event.Crits += crit ? 1 : 0;
                     }
 
@@ -242,7 +249,7 @@ namespace WebApplication1.Game.BaseClasses
                     var strengthDamage = cult1Str > cult2Str
                         ? (int) (Difference(cult1Str, cult2Str) * rnd.Next(3, 18) + rnd.Next(3, 18) -
                                  rnd.Next(3, 18))
-                        : (int) (rnd.Next(3, 18) - Difference(cult1Str, cult2Str) * rnd.Next(3, 18) +
+                        : (int) (rnd.Next(3, 18) - Difference(cult1Str, cult2Str) * rnd.Next(3, 18) -
                                  rnd.Next(3, 18));
 
                     bool overTry = rnd.Next(1, 20) > 18;
@@ -254,7 +261,7 @@ namespace WebApplication1.Game.BaseClasses
                     }
                     else
                     {
-                        cult1Hp -= strengthDamage * (overTry ? 0 : 1);
+                        cult1Hp -= Math.Abs(strengthDamage * (overTry ? 0 : 1));
                         cult2.Event.TriesHard += overTry ? 1 : 0;
                     }
 
@@ -267,7 +274,7 @@ namespace WebApplication1.Game.BaseClasses
                     var intDamage = cult1Int > cult2Int
                         ? (int) (Difference(cult1Int, cult2Int) * rnd.Next(3, 18) + rnd.Next(3, 18) -
                                  rnd.Next(3, 18))
-                        : (int) (rnd.Next(3, 18) - Difference(cult1Int, cult2Int) * rnd.Next(3, 18) +
+                        : (int) (rnd.Next(3, 18) - Difference(cult1Int, cult2Int) * rnd.Next(3, 18) -
                                  rnd.Next(3, 18));
 
                     bool heal = rnd.Next(1, 20) > 18;
@@ -288,12 +295,12 @@ namespace WebApplication1.Game.BaseClasses
                     {
                         if (heal)
                         {
-                            cult2Hp += intDamage;
+                            cult2Hp += Math.Abs(intDamage);
                             cult2.Event.Heals++;
                         }
                         else
                         {
-                            cult1Hp -= intDamage;
+                            cult1Hp -= Math.Abs(intDamage);
                         }
                     }
                 }

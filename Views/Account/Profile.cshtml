@@ -76,8 +76,8 @@
             {
                 var item = eqs.Amulets[i];
                  <text>
-                     '@i': 'Сила: @Html.Raw(item.Bonus.MainStats.Strength)\nЛовкость:\
-                    @Html.Raw(item.Bonus.MainStats.Agility)\nИнтеллект: @Html.Raw(item.Bonus.MainStats.Intelligence)\nВыносливость: @Html.Raw(item.Bonus.MainStats.Endurance)',
+                     '@i': 'Сила скейл: @Html.Raw(item.Bonus.Scales.Strength)\nЛовкость скейл:\
+                    @Html.Raw(item.Bonus.Scales.Agility)\nИнтеллект скейл: @Html.Raw(item.Bonus.Scales.Intelligence)\nВыносливость скейл: @Html.Raw(item.Bonus.Scales.Endurance)',
                  </text>
             }
         }
@@ -237,7 +237,7 @@
                             <div class="col">
                                 <div class="progress" style="height: 32px;">
                                     <div class="progress-bar" role="progressbar"
-                                         style="width: @TempData["Strength"]%;">@TempData["Strength"]</div>
+                                         style="width: @TempData["Strength"]%;">@TempData["Strength"] + @(cult.RealStats().MainStats.Strength - cult.Stats.MainStats.Strength)</div>
                                 </div>
                             </div>
                             <div class="col">
@@ -256,7 +256,7 @@
                             <div class="col">
                                 <div class="progress" style="height: 32px;">
                                     <div class="progress-bar" role="progressbar"
-                                         style="width: @TempData["Agility"]%;">@TempData["Agility"]</div>
+                                         style="width: @TempData["Agility"]%;">@TempData["Agility"] + @(cult.RealStats().MainStats.Agility - cult.Stats.MainStats.Agility)</div>
                                 </div>
                             </div>
                             <div class="col">
@@ -275,7 +275,7 @@
                             <div class="col">
                                 <div class="progress" style="height: 32px;">
                                     <div class="progress-bar" role="progressbar"
-                                         style="width: @TempData["Intelligence"]%;">@TempData["Intelligence"]</div>
+                                         style="width: @TempData["Intelligence"]%;">@TempData["Intelligence"] + @(cult.RealStats().MainStats.Intelligence - cult.Stats.MainStats.Intelligence)</div>
                                 </div>
                             </div>
                             <div class="col">
@@ -294,7 +294,7 @@
                             <div class="col">
                                 <div class="progress" style="height: 32px;">
                                     <div class="progress-bar" role="progressbar"
-                                         style="width: @TempData["Endurance"]%;">@TempData["Endurance"]</div>
+                                         style="width: @TempData["Endurance"]%;">@TempData["Endurance"] + @(cult.RealStats().MainStats.Endurance - cult.Stats.MainStats.Endurance)</div>
                                 </div>
                             </div>
                             <div class="col">

@@ -23,14 +23,14 @@ namespace WebApplication1.Game.BaseClasses
         public void CalcStats(CCultivator character)
         {
             Random rnd = new Random();
-            Strength = Math.Max(character.Stats.MainStats.Strength + rnd.Next(-5,5)*Difficulty + 
-                       rnd.Next(-10, 10) * character.Tier + rnd.Next(-20, 0), 1);
-            Agility = Math.Max(character.Stats.MainStats.Agility + rnd.Next(-5,5)*Difficulty + 
-                               rnd.Next(-10, 10) * character.Tier + rnd.Next(-20, 0), 1);
-            Intelligence = Math.Max(character.Stats.MainStats.Intelligence + rnd.Next(-5, 5) * Difficulty +
-                                    rnd.Next(-10, 10) * character.Tier + rnd.Next(-20, 0), 1);
-            Endurance = Math.Max(character.Stats.MainStats.Endurance + rnd.Next(-5, 5) * Difficulty +
-                                    rnd.Next(-10, 10) * character.Tier, 1);
+            Strength = Math.Max(character.Stats.MainStats.Strength + rnd.Next(0,5)*Difficulty + 
+                       rnd.Next(0, 10) * character.Tier + rnd.Next(-10, 0), 1);
+            Agility = Math.Max(character.Stats.MainStats.Agility + rnd.Next(0,5)*Difficulty + 
+                               rnd.Next(0, 10) * character.Tier + rnd.Next(-10, 0), 1);
+            Intelligence = Math.Max(character.Stats.MainStats.Intelligence + rnd.Next(0, 5) * Difficulty +
+                                    rnd.Next(0, 10) * character.Tier + rnd.Next(-10, 0), 1);
+            Endurance = Math.Max(character.Stats.MainStats.Endurance + rnd.Next(0, 5) * Difficulty +
+                                    rnd.Next(0, 10) * character.Tier, 1);
             Gold = 75 * Difficulty * 2 + character.Tier * 10;
         }
         

@@ -241,10 +241,12 @@ namespace WebApplication1.Game.BaseClasses
         public class LastEvent
         {
             public string LastEventStory = "Ничего интересного";
-
+            
+            public CMob  Monster = null;
             public int Crits = 0;
             public int Heals = 0;
             public int TriesHard = 0;
+            public bool IsWin = false;
         } 
             
             
