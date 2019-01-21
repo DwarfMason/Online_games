@@ -1,4 +1,5 @@
 @using WebApplication1.Game
+@using WebApplication1.Game.BaseClasses
 
 @{
     ViewData["Title"] = "Adventure Mode";
@@ -93,5 +94,6 @@
             <br>
             Внезапно вспомнили о пользе медитации и вылечились: @cultAfter.Event.Heals раз.
         </div>
+        cultAfter.Event = new CCultivator.LastEvent();
     }
 }
