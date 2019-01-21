@@ -235,6 +235,13 @@ namespace WebApplication1.Game.BaseClasses
             {
                 Equipments.Swords[Equipments.CurrentSword.Value].PutOn(out_);
             }
+
+            out_.MainStats.Endurance = (int)(out_.MainStats.Endurance * out_.Scales.Endurance);
+            out_.MainStats.Strength = (int)(out_.MainStats.Strength * out_.Scales.Strength);
+            out_.MainStats.Agility = (int)(out_.MainStats.Agility * out_.Scales.Agility);
+            out_.MainStats.Intelligence = (int)(out_.MainStats.Intelligence * out_.Scales.Intelligence);
+            
+            
             return out_;
         }
 

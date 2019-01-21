@@ -56,12 +56,12 @@ namespace WebApplication1.Game
             }
 
             {//Amulets
-                new CEquipmentDescription(1300, "Деревяный aамулет", "Просто деревяшка на веревке, может поможет, может нет",
+                new CEquipmentDescription(1300, "Деревяный aмулет", "Просто деревяшка на веревке, может поможет, может нет",
                     "/img/Equipment/Amulets/woodenamulet.jpg");
-                new CEquipmentDescription(1301, "Железный меч", "Ты чуствуешь какую-то магию от него ",
+                new CEquipmentDescription(1301, "Железный амулет", "Ты чуствуешь какую-то магию от него ",
                     "/img/Equipment/Amulets/ironamulet.jpg");
-                new CEquipmentDescription(1302, "Золотой амулет меч", "Амулет огромной мощи, которая может быть и проклятьем",
-                    "/img/Equipment/Amulets/woodenamulet.jpg");
+                new CEquipmentDescription(1302, "Золотой амулет", "Амулет огромной мощи, которая может быть и проклятьем",
+                    "/img/Equipment/Amulets/goldenamulet.jpg");
             }
         }
     }

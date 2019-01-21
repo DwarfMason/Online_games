@@ -21,12 +21,11 @@ namespace WebApplication1.Game.BaseClasses
             cult.IsInAction = true;
             ccontext.Update(cult);
             Instructions(cult);
-            
         }
 
         void Instructions(CCultivator cult)
         {
-            Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
+            Thread.CurrentThread.Priority = ThreadPriority.Highest;
             Thread.Sleep(30000);
             if (cult.Points > 10)
             {
@@ -74,7 +73,7 @@ namespace WebApplication1.Game.BaseClasses
             cult.Points++;
         }
 
-        private CMob MobBattle(CCultivator cult)
+        private void MobBattle(CCultivator cult)
         {
             cult.Event = new CCultivator.LastEvent();
             Random rnd = new Random();
@@ -184,7 +183,6 @@ namespace WebApplication1.Game.BaseClasses
                                  "\n еще и деньги забрали: " + enemy.Gold + " золота.\nНе злорадствуй, пока не побили!\n";
                 cult.Event.IsWin = true;
             }
-            return enemy;
         }
         
         
